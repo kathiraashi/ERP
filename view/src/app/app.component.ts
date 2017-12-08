@@ -8,7 +8,9 @@ import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   UserLoggedIn : boolean;
+  
   constructor(private router: Router, public dialog: MatDialog) { 
 
     router.events.subscribe(event => {
