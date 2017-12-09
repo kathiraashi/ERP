@@ -2,7 +2,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component'
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UiComponent } from './ui/ui.component';
 
 
 const appRoutes: Routes = [
@@ -20,6 +21,11 @@ const appRoutes: Routes = [
       path: 'dashboard', 
       component: DashboardComponent, 
       data: { animation: { value: 'dashboard', } }
+    },
+    { 
+      path: 'ui', 
+      component: UiComponent, 
+      data: { animation: { value: 'ui', } }
     }
   ];
   
