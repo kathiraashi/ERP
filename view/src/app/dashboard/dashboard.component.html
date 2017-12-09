@@ -1,3 +1,9 @@
+<div class="loader">
+  <div *ngIf="Spinner" class="spinner-div"><div class="spinner"></div></div>
+  <div [@pageLoader]="pageLoaderAction" class="loading-bar"><div class="bar"></div></div>
+</div>
+
+
 <div class="page">
   <div class="page-identity">
     <div class="page-name">
