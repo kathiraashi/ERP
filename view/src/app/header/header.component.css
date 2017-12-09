@@ -138,3 +138,37 @@
   } 
 
   
+
+  .YslideAnimateDown{
+    -webkit-animation: downslide 1.5s linear;
+    -webkit-animation-fill-mode: forwards;
+    animation: downslide 1.5s linear;
+    animation-fill-mode: forwards;
+}
+
+  @-webkit-keyframes downslide {
+    0% { -webkit-transform: translateY(-100%); }
+    100% { -webkit-transform: translateY(0%); }
+  }
+  
+  @keyframes downslide {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(0%); }
+  }
+
+  .YslideAnimateUp{
+    -webkit-animation: upslide 1s linear;
+    -webkit-animation-fill-mode: forwards;
+    animation: upslide 1s linear;
+    animation-fill-mode: forwards;
+}
+
+  @-webkit-keyframes upslide {
+    0% { -webkit-transform: translateY(0%); }
+    100% { -webkit-transform: translateY(-110%); }
+  }
+  
+  @keyframes upslide {
+    0% { transform: translateY(0%); }
+    100% { transform: translateY(-110%); }
+  }
