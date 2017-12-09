@@ -3,11 +3,8 @@
 
 
 
-<div id="prepRouteState" [@routerAnimations]="prepRouteState(outlet)" (@routerAnimations.start)="animationStarted()"
-(@routerAnimations.done)="animationDone()" >
-
+<div id="prepRouteState" [@routerAnimations]="prepRouteState(outlet)" (@routerAnimations.start)="animationStarted()" (@routerAnimations.done)="animationDone()" >
         <router-outlet #outlet="outlet"></router-outlet>
-        
 </div>
 
 
