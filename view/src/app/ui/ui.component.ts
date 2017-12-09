@@ -4,6 +4,9 @@ import { pageLoader, pageIdendity, pageContent } from '../animations/loader.anim
 import { ExampleComponent } from '../popups/example/example.component';
 import { filter } from 'rxjs/operators';
 
+import { IgxDatePickerComponent } from "../../../node_modules/igniteui-js-blocks/igniteui-js-blocks/../date-picker/date-picker.component";
+
+
 @Component({
   selector: 'app-ui',
   templateUrl: './ui.component.html',
@@ -17,6 +20,9 @@ export class UiComponent implements OnInit {
   pageLoaderAction = 'pageLoaderstart';
   popupReturnValue = '';
 
+
+
+
   exampleDialogRef: MatDialogRef<ExampleComponent>;
 
   constructor(public dialog: MatDialog) {}
@@ -24,7 +30,7 @@ export class UiComponent implements OnInit {
 
   openDialog() {
     this.exampleDialogRef = this.dialog.open(ExampleComponent, {
-      hasBackdrop: false
+      hasBackdrop: true
     });
 
     this.exampleDialogRef

@@ -7,10 +7,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
+
 import { AppRoutingModule } from './app.routing.module';
-
-
 import { MaterialModule } from './material.module';
+import { IgxDatePickerModule } from 'igniteui-js-blocks/main';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -37,7 +37,8 @@ import { ExampleComponent } from './popups/example/example.component';
     HttpModule,
     ReactiveFormsModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    IgxDatePickerModule
   ],
   providers: [],
   bootstrap: [AppComponent],
