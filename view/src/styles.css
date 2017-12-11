@@ -1,18 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~font-awesome/css/font-awesome.css';
+@import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';
 
+@import '../node_modules/@angular/cdk/overlay-prebuilt.css';
+@import '../node_modules/@angular/cdk/a11y-prebuilt.css';
 
 @import url('https://fonts.googleapis.com/css?family=Rubik');
 body{
     background-color: #f1f1f1ad
 }
 
+/* ngx-datepicker color change */
+.theme-green .bs-datepicker-body table td span.selected, 
+.theme-green .bs-datepicker-body table td.selected span, 
+.theme-green .bs-datepicker-body table td span[class*="select-"]:after, 
+.theme-green .bs-datepicker-body table td[class*="select-"] span:after,
+.theme-green .bs-datepicker-head
+{
+    background-color: #0464c7;
+}
+.theme-green .bs-datepicker-body table td.week span{
+    color: #0464c7;
+    font-weight: 600;
+}
 
 
+/* material css */
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
 
 
-
+  /* bootstrap css chenge */
+  .modal-content{
+  box-shadow: 0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);
+  border-radius: 2px;
+  border-color: #ffffff;
+  }
+  /* custom css */
 .spinner-div{
     position: absolute;
     right: 10px;
@@ -97,4 +130,13 @@ body{
 }
 .z-1{
     z-index: -1;
+}
+
+button:focus{
+    outline-color: transparent;
+    color: initial;
+    background-color: initial;
+}
+.mat-fab.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary{
+    color: #ffffff;
 }

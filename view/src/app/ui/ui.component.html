@@ -31,16 +31,83 @@
         <span>  Popup Enter Value :<u> {{ popupReturnValue }} </u> </span> 
       </div>
       <div class="col-sm-3">
-        <igx-datePicker></igx-datePicker>
       </div>
     </div>
 
+
     <div class="row">
-      <div class="col-sm-4"> 
+      <div class="col-xs-12 col-12 col-md-4 form-group">
+        <mat-form-field class="example-full-width cdk-overlay-pane">
+          <input matInput   placeholder="Select Date"  #dp1="bsDatepicker" bsDatepicker >
+          <mat-icon (click)="dp1.toggle()" matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-12 col-md-4 form-group">
+          <mat-form-field class="example-full-width cdk-overlay-pane">
+              <input matInput placeholder="Select Date Range" #drp="bsDaterangepicker" bsDaterangepicker value="">
+              <mat-icon (click)="drp.toggle()" matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-12 col-md-4 form-group">
+        <mat-form-field class="example-full-width cdk-overlay-pane">
+          <input matInput placeholder="Input Field" value="">
+          <mat-icon  matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
       </div>
     </div>
 
     
+    <button type="button" class="btn btn-primary" (click)="parentModal.show()">Open parent modal</button>
+    
+    <div class="modal fade" bsModal #parentModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">First modal</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="parentModal.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <button type="button" class="btn btn-primary" (click)="childModal.show()">Open second modal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div class="modal fade" bsModal #childModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">Second modal</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="childModal.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            This is second modal <br>
+            <button type="button" class="btn btn-primary" (click)="thirdModal.show()">Open third modal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div class="modal fade" bsModal #thirdModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">Third modal</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="thirdModal.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            This is third modal <br>
+            Click <b>&times;</b> to close modal.
+          </div>
+        </div>
+      </div>
+    </div>
     
 
   </mat-card>

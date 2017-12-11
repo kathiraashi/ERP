@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef  } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { pageLoader, pageIdendity, pageContent } from '../animations/loader.animation';
 import { ExampleComponent } from '../popups/example/example.component';
 import { filter } from 'rxjs/operators';
-
-import { IgxDatePickerComponent } from "../../../node_modules/igniteui-js-blocks/igniteui-js-blocks/../date-picker/date-picker.component";
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 
 @Component({
@@ -19,13 +19,12 @@ export class UiComponent implements OnInit {
   Loader = false;
   pageLoaderAction = 'pageLoaderstart';
   popupReturnValue = '';
-
-
-
+  public myModel = ''
+  public mask = [ /[1-9]/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
 
   exampleDialogRef: MatDialogRef<ExampleComponent>;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private modalService: BsModalService) {}
 
 
   openDialog() {
@@ -37,8 +36,10 @@ export class UiComponent implements OnInit {
         .afterClosed()
         .pipe(filter(name => name))
         .subscribe(name =>  this.popupReturnValue = name );
-   }
+    }
 
+    bsValue: Date = new Date();
+    bsRangeValue: any = [new Date(2017, 7, 4), new Date(2017, 7, 20)];
   
    ngOnInit() {
     setTimeout(() =>  { this.Spinner = true; this.Loader = true },1000 );
