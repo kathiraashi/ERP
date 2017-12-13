@@ -3,6 +3,7 @@
     height: 90px;
     position: fixed;
     top: 0px;
+    z-index: 1001;
 }
 .home-header .header-one{
     width: 100%;

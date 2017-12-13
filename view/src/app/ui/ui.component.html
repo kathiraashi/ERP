@@ -23,6 +23,7 @@
   </div>
 
   <mat-card class="example-card">
+
     <div class="row">
       <div class="col-sm-3"> 
         <button mat-raised-button color="primary" (click)="openDialog()">Open dialog</button> 
@@ -34,6 +35,7 @@
       </div>
     </div>
 
+    <hr>
 
     <div class="row">
       <div class="col-xs-12 col-12 col-md-4 form-group">
@@ -56,8 +58,11 @@
       </div>
     </div>
 
+    <hr>
     
     <button type="button" class="btn btn-primary" (click)="parentModal.show()">Open parent modal</button>
+
+    <hr>
     
     <div class="modal fade" bsModal #parentModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-lg">
@@ -108,7 +113,131 @@
         </div>
       </div>
     </div>
+
+    <p-dataTable [value]="cars" reorderableColumns="true"  resizableColumns="true" expandableRows="true" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="8" [rowsPerPageOptions]="[10,20,50,100]">
+      <p-header> Right Click on Rows for ContextMenu </p-header>
+      <p-column expander="true" styleClass="col-icon"></p-column>
+      <p-column field="vin" header="Vin" [sortable]="true"></p-column>
+      <p-column field="year" header="Year" [sortable]="true"></p-column>
+      <p-column field="brand" header="Brand" [sortable]="true"></p-column>
+      <p-column field="color" header="Color" [sortable]="true"></p-column>
+      <p-column styleClass="col-button">
+        <ng-template style="width:auto" pTemplate="header">
+            <button type="button" pButton icon="fa-refresh"></button>
+        </ng-template>
+        <ng-template let-car="rowData" pTemplate="body">
+            <button type="button" pButton (click)="selectCar(car)" icon="fa-search"></button>
+        </ng-template>
+      </p-column>
+      <ng-template let-car pTemplate="rowexpansion">
+          <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+              <div class="ui-grid-row">
+                  <div class="ui-grid-col-3" style="text-align:center">
+                      <i class="fa fa-search" (click)="showCar(car)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                      <img src="assets/showcase/images/demo/car/{{car.brand}}.png">
+                  </div>
+                  <div class="ui-grid-col-9">
+                      <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                          <div class="ui-grid-row">
+                              <div class="ui-grid-col-2 label">Vin: </div>
+                              <div class="ui-grid-col-10">{{car.vin}}</div>
+                          </div>
+                          <div class="ui-grid-row">
+                              <div class="ui-grid-col-2 label">Year: </div>
+                              <div class="ui-grid-col-10">{{car.year}}</div>
+                          </div>
+                          <div class="ui-grid-row">
+                              <div class="ui-grid-col-2 label">Brand: </div>
+                              <div class="ui-grid-col-10">{{car.brand}}</div>
+                          </div>
+                          <div class="ui-grid-row">
+                              <div class="ui-grid-col-2 label">Color: </div>
+                              <div class="ui-grid-col-10">{{car.color}}</div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+    </p-dataTable>
+
+    <hr>
+    <br>
+    <br>
+    <br>
     
+    <p-dialog header="Car Details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="true" width="250">
+        <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="selectedCar">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-4"><label for="vin" class="label">Vin</label></div>
+                <div class="ui-grid-col-8">{{selectedCar.vin}}</div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-4"><label for="brand" class="label">Year</label></div>
+                <div class="ui-grid-col-8">{{selectedCar.year}}</div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-4"><label for="brand" class="label">Brand</label></div>
+                <div class="ui-grid-col-8">{{selectedCar.brand}}</div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-4"><label for="color" class="label">Color</label></div>
+                <div class="ui-grid-col-8">{{selectedCar.color}}</div>
+            </div>
+        </div>
+    </p-dialog>
+
+
+
+    <p-dataTable #dt exportFilename="cars" [value]="cars1" sortField="brand" rowGroupMode="subheader" groupField="brand" expandableRowGroups="true"
+    [sortableRowGroup]="false">
+      <p-header>Toggleable Row Groups with Footers
+        <div class="ui-helper-clearfix" style="float:right">
+          <button type="button" pButton icon="fa-file-o" iconPos="left" label="All Data" (click)="dt.exportCSV()" ></button>
+          <button type="button" pButton icon="fa-file" iconPos="left" label="Selection Only" (click)="dt.exportCSV({selectionOnly:true})" ></button>
+      </div>
+
+      </p-header>
+      <ng-template pTemplate="rowgroupheader" let-rowData>{{rowData['brand']}}</ng-template>
+      <p-column field="color" header="Color"></p-column>
+      <p-column field="year" header="Year"></p-column>
+      <p-column field="vin" header="Vin"></p-column>
+      <p-column field="price" header="Price">
+          <ng-template let-col let-car="rowData" pTemplate="body">
+              <span>{{car[col.field] | currency:'USD':true:'.0-0'}}</span>
+          </ng-template>
+      </p-column>
+      <ng-template pTemplate="rowgroupfooter" let-car>
+          <td colspan="3" style="text-align:right">Total Price</td>
+          <td>{{calculateGroupTotal(car['brand']) | currency:'USD':true:'.0-0' }}</td>
+      </ng-template>
+    </p-dataTable>
+
+    <hr>
+
+    <p-growl [(value)]="msgs"></p-growl>
+
+    <button type="button" pButton (click)="showViaService()" label="Add with Service"></button>
+    <button type="button" pButton (click)="clearViaService()" label="Clear with Service"></button>
+
+
+    <hr>
+    <br>
+    <br>
+
+    <!-- <p-fileUpload #fileInput name="fileIcon" url="/upload.php" multiple="multiple" ></p-fileUpload> -->
+    
+
+    <p-fileUpload #fileInput name="demo[]" url="./upload.php" (onSelect)="onUpload($event)" 
+    multiple="multiple" accept="image/*" maxFileSize="1000000">
+      <!-- <ng-template pTemplate type="content">
+        <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+       </ul>
+      </ng-template>         -->
+    </p-fileUpload>
+
+
 
   </mat-card>
 </div>

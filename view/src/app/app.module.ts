@@ -5,6 +5,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -13,9 +14,11 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { TextMaskModule } from 'angular2-text-mask';
 import { BsDatepickerModule, ModalModule } from 'ngx-bootstrap';
 
-
 import { AppRoutingModule } from './app.routing.module';
 import { MaterialModule } from './material.module';
+import { PrimengModule } from './primeng.module';
+
+import { CarService } from './service/carservice'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -40,7 +43,9 @@ import { from } from 'rxjs/observable/from';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
+    PrimengModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
@@ -51,7 +56,7 @@ import { from } from 'rxjs/observable/from';
     ModalModule.forRoot(),
     TextMaskModule
   ],
-  providers: [],
+  providers: [CarService],
   bootstrap: [AppComponent],
   entryComponents: [ExampleComponent]
 })
