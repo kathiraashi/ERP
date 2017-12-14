@@ -8,12 +8,11 @@ import { Component, OnInit, Injectable  } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-
   constructor() { }
 
 
   ngOnInit() {
-
+   
   }
 
 }

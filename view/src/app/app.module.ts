@@ -27,6 +27,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UiComponent } from './ui/ui.component';
 import { ExampleComponent } from './popups/example/example.component';
 import { from } from 'rxjs/observable/from';
+import { CrmSettingsComponent } from './settings/crm-settings/crm-settings.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { from } from 'rxjs/observable/from';
     LoginComponent,
     DashboardComponent,
     UiComponent,
-    ExampleComponent
+    ExampleComponent,
+    CrmSettingsComponent
   ],
   imports: [
     CommonModule,

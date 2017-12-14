@@ -33,13 +33,29 @@ body{
     max-width: 500px;
     width: 100%;
   }
-  
   .example-full-width {
     width: 100%;
   }
-
   .cdk-overlay-container{
       z-index: 1002;
+  }
+  .mat-raised-button.mat-accent, 
+  .mat-fab.mat-accent, 
+  .mat-mini-fab.mat-accent{
+      background-color: #0464c7 ;
+      color: #ffffff;
+  }
+
+  .tabel-action .mat-mini-fab{
+      width: 37px !important;
+      height: 37px !important;
+  }
+  .tabel-action .mat-mini-fab .mat-button-wrapper{
+      line-height: 20px !important;
+      padding: 8px 0 !important;
+  }
+  .tabel-action .material-icons{
+      font-size: 21px !important;
   }
 
 
@@ -69,10 +85,134 @@ width: auto !important;
 
 
 
+/* settings tabs modify */
+.example-card.tab-mat-card{
+    padding: 0px;
+    box-shadow: none !important; /*new */
+}
 
+.tab-mat-card .ui-tabview{
+  padding: 0px !important;
+  background: whitesmoke; /*new */
+}
+.tab-mat-card .ui-tabview .ui-tabview-panel{
+    padding: 5px !important; /*new */
+}
+.tab-mat-card .ui-widget-header{
+    background: #ffffff !important; /*new */
+}
+.tab-mat-card .ui-datatable th.ui-state-default{
+    background-color: #ffffff !important; /*new */
+}
+.tab-mat-card .ui-datatable th.ui-state-default.ui-state-active {
+    background-color: #0464c7 !important; /*new */
+}
+.tab-mat-card .ui-datatable tbody > tr.ui-widget-content.ui-datatable-odd{
+    background: #ffffff !important; /*new */
+}
+.tab-mat-card .ui-datatable tbody > tr.ui-widget-content{
+    background: whitesmoke !important; /*new */
+}
+.tab-mat-card .ui-tabview-left>.ui-tabview-nav{
+ height: auto !important;
+ width: 20%;
+ margin-right: 1%;
+ padding-top: 0px;
+ /* border-right: 3px solid #0464c7; */
+ border-radius: 0px;
+ background-color: whitesmoke !important; /*new */
+}
+.tab-mat-card .ui-tabview.ui-tabview-left>.ui-tabview-nav li{
+    border: 0px solid #e4e2e2;
+    background-color: #ffffff;
+    width: 100%;
+    height: 50px;
+    line-height: 30px;
+    border-radius: 2px;
+    margin: 5px;
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2), 0 2px 10px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+}
 
+.tab-mat-card .ui-tabview .ui-tabview-nav > li.ui-state-active{
+    background: #0464c7 !important;
+    line-height: 30px;
+    color: #ffffff !important;
+}
+.tab-mat-card .ui-tabview .ui-tabview-nav li.ui-tabview-selected a{
+    color: #ffffff;
+    line-height: 30px;
+}
+.tab-mat-card .ui-tabview .ui-tabview-nav > li:not(.ui-state-active):not(.ui-state-disabled):hover{
+    background: #0464c7;
+}
+.tab-mat-card .ui-tabview .ui-tabview-nav li:not(.ui-state-active):not(.ui-state-disabled):hover{
+    border-color: #ffffff;
+    color: #212121;
+}
+.tab-mat-card .ui-tabview .ui-tabview-nav li:not(.ui-state-active):not(.ui-state-disabled):hover a{
+    color: #ffffff;
+}
+
+.tab-mat-card .ui-tabview .ui-tabview-nav > li:last-child:not(.ui-state-active):not(.ui-state-disabled):hover{
+    border-bottom-color: #0464c7 !important;
+}
+.tab-mat-card .ui-tabview .ui-tabview-nav >li:last-child.ui-state-active{
+    border-bottom-color: #0464c7 !important;
+}
+.tab-mat-card .ui-tabview-left>.ui-tabview-panels{
+    width: 79% !important;
+}
+.tab-mat-card .ui-datatable .ui-paginator{
+    padding: 10px !important;
+    text-align: right !important;
+    border-top: 1px solid lightgray;
+}
+.tab-mat-card .ui-dropdown .ui-dropdown-label{
+    text-align: left !important;
+}
+.tab-mat-card .ui-dropdown.ui-state-focus{
+    box-shadow: 0px 0px 0px transparent !important;
+}
+.tab-mat-card .ui-corner-all{
+    border-radius: 0px !important;
+}
+.tab-mat-card .ui-datatable{
+    box-shadow: 0 5px 10px -2px rgba(0,0,0,.2), 0 2px 10px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+}
 
   /* custom css */
+.color-success{
+    color: #199919 !important;
+}
+.color-warning{
+  color: rgb(221, 70, 10) !important;
+}
+.color-info{
+  color: rgb(13, 141, 216) !important;
+}
+.color-danger{
+    color: rgb(221, 10, 10) !important;
+}
+.color-white{
+    color: #ffffff !important;
+}
+
+.bg-color-success{
+    background-color: #199919 !important;
+}
+.bg-color-warning{
+    background-color: rgb(221, 70, 10) !important;
+}
+.bg-color-info{
+    background-color: rgb(13, 141, 216) !important;
+}
+.bg-color-danger{
+    background-color: rgb(221, 10, 10) !important;
+}
+.bg-color-white{
+    background-color: #ffffff !important;
+}
+
 .spinner-div{
     position: absolute;
     right: 10px;

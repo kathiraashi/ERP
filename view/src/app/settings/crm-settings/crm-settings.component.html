@@ -1,0 +1,1376 @@
+<div class="loader">
+    <div *ngIf="Spinner" class="spinner-div"><div class="spinner"></div></div>
+    <div [@pageLoader]="pageLoaderAction" class="loading-bar"><div class="bar"></div></div>
+</div>
+  
+<p-growl [value]="msgs"></p-growl>
+
+<div class="page">
+
+    <div class="page-identity">
+      <div class="page-name">
+        <h5> CRM Settings </h5>
+      </div>
+      <div class="page-track">
+        <ul>
+          <li><a routerLink="/dashboard"> Settings </a></li>
+          <li><i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
+          <li> CRM Settings </li>
+        </ul>
+      </div>
+    </div>
+  
+    <mat-card class="example-card tab-mat-card">
+
+        <p-tabView orientation="left" (onChange)="handleChange($event)">
+
+            <p-tabPanel header="Account Type">
+                <ng-template pTemplate="content">
+
+                    <p-dataTable [value]="cars" [globalFilter]="AccountTypeFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="AccountTypeAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Account Type </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #AccountTypeFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                 Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="AccountTypeEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Account Type -->
+
+            <p-tabPanel header="Industry Type">
+                <ng-template pTemplate="content">
+
+                    <p-dataTable [value]="cars" [globalFilter]="IndustryTypeFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="IndustryTypeAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Industry Type </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #IndustryTypeFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                 Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="IndustryTypeEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Industry Type -->
+
+            <p-tabPanel header="Ownership Type">
+                <ng-template pTemplate="content">
+                        
+                    <p-dataTable [value]="cars" [globalFilter]="OwnershipTypeFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="OwnershipTypeAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Ownership Type </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #OwnershipTypeFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                    Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="OwnershipTypeEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Ownership Type -->
+
+            <p-tabPanel header="Activity Type">
+                <ng-template pTemplate="content">
+                        
+                    <p-dataTable [value]="cars" [globalFilter]="ActivityTypeFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="ActivityTypeAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Activity Type </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #ActivityTypeFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                    Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="ActivityTypeEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Activity Type -->
+
+            <p-tabPanel header="Activity Status">
+                <ng-template pTemplate="content">
+                        
+                    <p-dataTable [value]="cars" [globalFilter]="ActivityStatusFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="ActivityStatusAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Activity Status </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #ActivityStatusFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                    Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="ActivityStatusEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Activity Status -->
+
+            <p-tabPanel header="Activity Periority">
+                <ng-template pTemplate="content">
+                        
+                    <p-dataTable [value]="cars" [globalFilter]="ActivityPeriorityFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="ActivityPeriorityAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Activity Periority </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #ActivityPeriorityFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                    Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="ActivityPeriorityEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Activity Periority -->
+
+            <p-tabPanel header="Pipline Status">
+                <ng-template pTemplate="content">
+                        
+                    <p-dataTable [value]="cars" [globalFilter]="PiplineStatusFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="PiplineStatusAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Pipline Status </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #PiplineStatusFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                    Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="PiplineStatusEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Pipline Status -->
+
+            <p-tabPanel header="Contact Role">
+                <ng-template pTemplate="content">
+                        
+                    <p-dataTable [value]="cars" [globalFilter]="ContactRoleFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="ContactRoleAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Contact Role </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #ContactRoleFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                    Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="ContactRoleEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Contact Role -->
+
+            <p-tabPanel header="Quotation Terms">
+                <ng-template pTemplate="content">
+                        
+                    <p-dataTable [value]="cars" [globalFilter]="QuotationTermsFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="QuotationTermsAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Quotation Terms </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #QuotationTermsFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                    Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="QuotationTermsEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Quotation Terms -->
+
+            <p-tabPanel header="Unite Of Measure">
+                <ng-template pTemplate="content">
+                        
+                    <p-dataTable [value]="cars" [globalFilter]="UniteOfMeasureFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="UniteOfMeasureAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Unite Of Measure </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #UniteOfMeasureFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                    Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="UniteOfMeasureEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Unite Of Measure -->
+
+            <p-tabPanel header="Opportunity Status">
+                <ng-template pTemplate="content">
+                        
+                    <p-dataTable [value]="cars" [globalFilter]="OpportunityStatusFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="OpportunityStatusAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Opportunity Status </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #OpportunityStatusFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                    Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="OpportunityStatusEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Opportunity Status -->
+
+        </p-tabView>
+        
+    </mat-card>
+</div>
+  
+
+
+<!-- Models -->
+
+    <!-- CRM Settings Account Type Add Model -->
+    <div class="modal fade" bsModal #AccountTypeAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Account type</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="AccountTypeAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="AccountTypeAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="accountType"  name="accountType" placeholder="Account Type">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="AccountTypeAddForm.controls.accountType.errors?.required && AccountTypeAddForm.controls.accountType.dirty" >  Account Type Is Required  </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="AccountTypeAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="AccountTypeAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRM Settings Account Type Edit Model -->
+    <div class="modal fade" bsModal #AccountTypeEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Account type</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="AccountTypeEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="AccountTypeEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="accountType" value="{{vin}}"  name="accountType" placeholder="Account Type">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="AccountTypeEditForm.controls.accountType.errors?.required && AccountTypeEditForm.controls.accountType.dirty" > Account Type Is Required  </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="AccountTypeEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="AccountTypeEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRM Settings Industry Type Add Model -->
+    <div class="modal fade" bsModal #IndustryTypeAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Industry type</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="IndustryTypeAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="IndustryTypeAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="industryType"  name="industryType" placeholder="Industry Type">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="IndustryTypeAddForm.controls.industryType.errors?.required && IndustryTypeAddForm.controls.industryType.dirty" >  Industry Type Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="IndustryTypeAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="IndustryTypeAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CRM Settings Industry Type Edit Model -->
+    <div class="modal fade" bsModal #IndustryTypeEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Industry type</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="IndustryTypeEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="IndustryTypeEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="industryType" value="{{vin}}"  name="industryType" placeholder="Industry Type">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="IndustryTypeEditForm.controls.industryType.errors?.required && IndustryTypeEditForm.controls.industryType.dirty" > Industry Type Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="IndustryTypeEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="IndustryTypeEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRM Settings Ownership Type Add Model -->
+    <div class="modal fade" bsModal #OwnershipTypeAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Ownership Type</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="OwnershipTypeAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="OwnershipTypeAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="ownershipType"  name="ownershipType" placeholder=" Ownership Type">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="OwnershipTypeAddForm.controls.ownershipType.errors?.required && OwnershipTypeAddForm.controls.ownershipType.dirty" >  Ownership Type Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="OwnershipTypeAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="OwnershipTypeAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- CRM Settings Ownership Type Edit Model -->
+    <div class="modal fade" bsModal #OwnershipTypeEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Ownership Type</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="OwnershipTypeEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="OwnershipTypeEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="ownershipType" value="{{vin}}"  name="ownershipType" placeholder="Ownership Type">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="OwnershipTypeEditForm.controls.ownershipType.errors?.required && OwnershipTypeEditForm.controls.ownershipType.dirty" > Ownership Type Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="OwnershipTypeEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="OwnershipTypeEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRM Settings Activity Type Add Model -->
+    <div class="modal fade" bsModal #ActivityTypeAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Activity Type</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="ActivityTypeAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="ActivityTypeAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="activityType"  name="activityType" placeholder="Activity Type">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="ActivityTypeAddForm.controls.activityType.errors?.required && ActivityTypeAddForm.controls.activityType.dirty" > Activity Type Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="ActivityTypeAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="ActivityTypeAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- CRM Settings Activity Type Edit Model -->
+    <div class="modal fade" bsModal #ActivityTypeEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Activity Type</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="ActivityTypeEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="ActivityTypeEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="activityType" value="{{vin}}"  name="activityType"  placeholder="Activity Type">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="ActivityTypeEditForm.controls.activityType.errors?.required && ActivityTypeEditForm.controls.activityType.dirty" > Activity Type Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="ActivityTypeEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="ActivityTypeEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRM Settings Activity Status Add Model -->
+    <div class="modal fade" bsModal #ActivityStatusAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Activity Status</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="ActivityStatusAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="ActivityStatusAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="activityStatus"  name="activityStatus"  placeholder="Activity Status">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="ActivityStatusAddForm.controls.activityStatus.errors?.required && ActivityStatusAddForm.controls.activityStatus.dirty" > Activity Status Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="ActivityStatusAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="ActivityStatusAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- CRM Settings Activity Status Edit Model -->
+    <div class="modal fade" bsModal #ActivityStatusEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Activity Status</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="ActivityStatusEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="ActivityStatusEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="activityStatus" value="{{vin}}"  name="activityStatus"  placeholder="Activity Status">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="ActivityStatusEditForm.controls.activityStatus.errors?.required && ActivityStatusEditForm.controls.activityStatus.dirty" > Activity Status Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="ActivityStatusEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="ActivityStatusEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRM Settings Activity Periority Add Model -->
+    <div class="modal fade" bsModal #ActivityPeriorityAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Activity Periority </h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="ActivityPeriorityAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="ActivityPeriorityAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="activityPeriority"  name="activityPeriority"  placeholder="Activity Periority">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="ActivityPeriorityAddForm.controls.activityPeriority.errors?.required && ActivityPeriorityAddForm.controls.activityPeriority.dirty" > Activity Periority Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="ActivityPeriorityAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="ActivityPeriorityAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- CRM Settings Activity Periority Edit Model -->
+    <div class="modal fade" bsModal #ActivityPeriorityEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Activity Periority</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="ActivityPeriorityEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="ActivityPeriorityEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="activityPeriority" value="{{vin}}"  name="activityPeriority" placeholder="Activity Periority">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="ActivityPeriorityEditForm.controls.activityPeriority.errors?.required && ActivityPeriorityEditForm.controls.activityPeriority.dirty" > Activity Periority Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="ActivityPeriorityEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="ActivityPeriorityEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRM Settings Pipline Status Add Model -->
+    <div class="modal fade" bsModal #PiplineStatusAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Pipline Status</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="PiplineStatusAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="PiplineStatusAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="piplineStatus"  name="piplineStatus"  placeholder=" Pipline Status">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="PiplineStatusAddForm.controls.piplineStatus.errors?.required && PiplineStatusAddForm.controls.piplineStatus.dirty" >  Pipline Status Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="PiplineStatusAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="PiplineStatusAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- CRM Settings Pipline Status Edit Model -->
+    <div class="modal fade" bsModal #PiplineStatusEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Pipline Status</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="PiplineStatusEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="PiplineStatusEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="piplineStatus" value="{{vin}}"  name="piplineStatus" placeholder=" Pipline Status ">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="PiplineStatusEditForm.controls.piplineStatus.errors?.required && PiplineStatusEditForm.controls.piplineStatus.dirty" > Pipline Status Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="PiplineStatusEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="PiplineStatusEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRM Settings Contact Role Add Model -->
+    <div class="modal fade" bsModal #ContactRoleAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Contact Role</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="ContactRoleAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="ContactRoleAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="contactRole"  name="contactRole" placeholder="Contact Role">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="ContactRoleAddForm.controls.contactRole.errors?.required && ContactRoleAddForm.controls.contactRole.dirty" >  Contact Role Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="ContactRoleAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="ContactRoleAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- CRM Settings Contact Role Edit Model -->
+    <div class="modal fade" bsModal #ContactRoleEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Contact Role</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="ContactRoleEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="ContactRoleEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="contactRole" value="{{vin}}"  name="contactRole"  placeholder="Contact Role">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="ContactRoleEditForm.controls.contactRole.errors?.required && ContactRoleEditForm.controls.contactRole.dirty" > Contact Role Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="ContactRoleEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="ContactRoleEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRM Settings Quotation Terms Add Model -->
+    <div class="modal fade" bsModal #QuotationTermsAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Industry type</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="QuotationTermsAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="QuotationTermsAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="quotationTermsName"  name="quotationTermsName" placeholder="Quotation Terms Name">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="QuotationTermsAddForm.controls.quotationTermsName.errors?.required && QuotationTermsAddForm.controls.quotationTermsName.dirty" > Quotation Terms Name Is Required  </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <p-editor [(ngModel)]="text1" formControlName="quotationTerms" [style]="{'height':'220px'}"></p-editor>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="QuotationTermsAddForm.controls.quotationTerms.errors?.required && QuotationTermsAddForm.controls.quotationTerms.dirty" > Quotation Terms Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="QuotationTermsAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="QuotationTermsAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- CRM Settings Quotation Terms Edit Model -->
+    <div class="modal fade" bsModal #QuotationTermsEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Quotation Terms</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="QuotationTermsEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="QuotationTermsEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="quotationTermsName" value="{{vin}}"  name="quotationTermsName" placeholder="Quotation Terms Name">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="QuotationTermsEditForm.controls.quotationTermsName.errors?.required && QuotationTermsEditForm.controls.quotationTermsName.dirty" > Quotation Terms Name Is Required  </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <p-editor [(ngModel)]="text2" formControlName="quotationTerms" [style]="{'height':'220px'}"></p-editor>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="QuotationTermsEditForm.controls.quotationTerms.errors?.required && QuotationTermsEditForm.controls.quotationTerms.dirty" > Quotation Terms Is Required  </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="QuotationTermsEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="QuotationTermsEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRM Settings Unite Of Measure Add Model -->
+    <div class="modal fade" bsModal #UniteOfMeasureAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left"> Add Unite Of Measure </h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="UniteOfMeasureAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="UniteOfMeasureAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="uniteOfMeasure"  name="uniteOfMeasure" placeholder=" Unite Of Measure">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="UniteOfMeasureAddForm.controls.uniteOfMeasure.errors?.required && UniteOfMeasureAddForm.controls.uniteOfMeasure.dirty" >  Unite Of Measure Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="UniteOfMeasureAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="UniteOfMeasureAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- CRM Settings Unite Of Measure Edit Model -->
+    <div class="modal fade" bsModal #UniteOfMeasureEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Unite Of Measure </h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="UniteOfMeasureEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="UniteOfMeasureEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="uniteOfMeasure" value="{{vin}}"  name="uniteOfMeasure" placeholder=" Unite Of Measure ">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="UniteOfMeasureEditForm.controls.uniteOfMeasure.errors?.required && UniteOfMeasureEditForm.controls.uniteOfMeasure.dirty" > Unite Of Measure Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="UniteOfMeasureEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="UniteOfMeasureEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRM Settings Opportunity Status Add Model -->
+    <div class="modal fade" bsModal #OpportunityStatusAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left"> Add Opportunity Status </h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="OpportunityStatusAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="OpportunityStatusAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="opportunityStatus"  name="opportunityStatus" placeholder=" Opportunity Status ">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="OpportunityStatusAddForm.controls.opportunityStatus.errors?.required && OpportunityStatusAddForm.controls.opportunityStatus.dirty" > Opportunity Status Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="OpportunityStatusAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="OpportunityStatusAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- CRM Settings Opportunity Status Edit Model -->
+    <div class="modal fade" bsModal #OpportunityStatusEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Opportunity Status </h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="OpportunityStatusEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="OpportunityStatusEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="opportunityStatus" value="{{vin}}"  name="opportunityStatus" placeholder=" Opportunity Status ">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="OpportunityStatusEditForm.controls.opportunityStatus.errors?.required && OpportunityStatusEditForm.controls.opportunityStatus.dirty" > Opportunity Status Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="OpportunityStatusEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="OpportunityStatusEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRM Settings Delete Confirmation Model -->
+    <ng-template #DeleteConfirm>
+        <div class="modal-body text-center">
+            <p>Are You Sure You Whant To Delete This Data ?</p>
+            <button type="button" mat-raised-button class="bg-color-warning" color="accent" (click)="declineDelete()" >No</button>
+            <button type="button" mat-raised-button color="accent" class="btn btn-default" (click)="confirmDelete()" >Yes</button>
+        </div>
+    </ng-template>
+

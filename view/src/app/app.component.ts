@@ -28,8 +28,8 @@ export class AppComponent {
 
 
   prepRouteState(outlet: any) {
-    const animation = outlet.activatedRouteData['animation'] || {};
-    return animation['value'] || null;
+    // const animation = outlet.activatedRouteData['animation'] || {};
+    // return animation['value'] || null;
   };
 
   animationStarted(){
