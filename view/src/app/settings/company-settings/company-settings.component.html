@@ -1,0 +1,589 @@
+<p-growl [value]="msgs"></p-growl>
+
+<div class="page">
+
+    <div class="page-identity">
+      <div class="page-name">
+        <h5> Company Settings </h5>
+      </div>
+      <div class="page-track">
+        <ul>
+          <li><a routerLink="/dashboard"> Settings </a></li>
+          <li><i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
+          <li> Company Settings </li>
+        </ul>
+      </div>
+    </div>
+  
+    <mat-card class="example-card tab-mat-card">
+
+        <p-tabView orientation="left" (onChange)="handleChange($event)">
+
+            <p-tabPanel header="Company Info">
+                <ng-template pTemplate="content">
+
+                  
+                    <div class="row">
+                      <mat-card class="example-card">
+                      <div class="col-sm-6">
+                        <img src="./assets/company.png" alt=" Company Image" style="width:100%; text-align:center">
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="left-data">
+                          <div class="row">
+                            <div class="col-sm-4 text-right"> <b> Phone : </b></div>
+                            <div class="col-sm-8 text-left"> <b> +91 82201 25844 </b></div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-4 text-right"> <b> Email : </b></div>
+                            <div class="col-sm-8 text-left"> <b> +91 82201 25844 </b></div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-4 text-right"> <b> Website : </b></div>
+                            <div class="col-sm-8 text-left"> <b> +91 82201 25844 </b></div>
+                          </div>
+                        </div>
+                      </div>
+                    </mat-card>
+                    </div>
+
+
+                    <div class="edit-button">
+                        <button mat-raised-button color="accent" (click)="CompanyInfoEdit.show()"> Edit </button>
+                    </div>
+
+                </ng-template>
+            </p-tabPanel><!-- Company Info -->
+
+            <p-tabPanel header="Contact Info">
+                <ng-template pTemplate="content">
+
+                    <p-dataTable [value]="cars" [globalFilter]="ContactInfoFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="ContactInfoAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Contact Info </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #ContactInfoFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                 Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="ContactInfoEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Contact Info -->
+
+            <p-tabPanel header="Departments">
+                <ng-template pTemplate="content">
+                        
+                    <p-dataTable [value]="cars" [globalFilter]="DepartmentsFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="DepartmentsAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Departments </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #DepartmentsFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                    Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="DepartmentsEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Departments -->
+
+            <p-tabPanel header="Branches">
+                <ng-template pTemplate="content">
+                        
+                    <p-dataTable [value]="cars" [globalFilter]="BranchesFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="BranchesAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Branches </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #BranchesFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                    Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="BranchesEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Branches -->
+
+            <p-tabPanel header="Registration Info">
+                <ng-template pTemplate="content">
+                        
+                    <p-dataTable [value]="cars" [globalFilter]="RegistrationInfoFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="RegistrationInfoAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Registration Info </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #RegistrationInfoFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                    Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="RegistrationInfoEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!-- Registration Info -->
+
+        </p-tabView>
+        
+    </mat-card>
+</div>
+  
+
+
+<!-- Models -->
+
+    <!-- Company Settings Contact Info Add Model -->
+    <div class="modal fade" bsModal #ContactInfoAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Contact Info</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="ContactInfoAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="AccountTypeAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="accountType"  name="accountType" placeholder="Contact Info">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="AccountTypeAddForm.controls.accountType.errors?.required && AccountTypeAddForm.controls.accountType.dirty" >  Contact Info Is Required  </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="ContactInfoAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="ContactInfoAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Company Settings Contact Info Edit Model -->
+    <div class="modal fade" bsModal #ContactInfoEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Contact Info</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="ContactInfoEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="AccountTypeEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="accountType" value="{{vin}}"  name="accountType" placeholder="Contact Info">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="AccountTypeEditForm.controls.accountType.errors?.required && AccountTypeEditForm.controls.accountType.dirty" > Contact Info Is Required  </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="ContactInfoEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="ContactInfoEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Company Settings Departments Add Model -->
+    <div class="modal fade" bsModal #DepartmentsAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Departments</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="DepartmentsAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="IndustryTypeAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="industryType"  name="industryType" placeholder="Departments">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="IndustryTypeAddForm.controls.industryType.errors?.required && IndustryTypeAddForm.controls.industryType.dirty" >  Departments Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="DepartmentsAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="DepartmentsAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Company Settings Departments Edit Model -->
+    <div class="modal fade" bsModal #DepartmentsEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Departments </h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="DepartmentsEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="IndustryTypeEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="industryType" value="{{vin}}"  name="industryType" placeholder="Departments">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="IndustryTypeEditForm.controls.industryType.errors?.required && IndustryTypeEditForm.controls.industryType.dirty" > Departments Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="DepartmentsEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="DepartmentsEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Company Settings Branches Add Model -->
+    <div class="modal fade" bsModal #BranchesAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Branches </h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="BranchesAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="OwnershipTypeAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="ownershipType"  name="ownershipType" placeholder=" Branches">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="OwnershipTypeAddForm.controls.ownershipType.errors?.required && OwnershipTypeAddForm.controls.ownershipType.dirty" >  Branches Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="BranchesAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="BranchesAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- Company Settings Branches Edit Model -->
+    <div class="modal fade" bsModal #BranchesEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Branches</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="BranchesEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="OwnershipTypeEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="ownershipType" value="{{vin}}"  name="ownershipType" placeholder="Branches">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="OwnershipTypeEditForm.controls.ownershipType.errors?.required && OwnershipTypeEditForm.controls.ownershipType.dirty" >Branches Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="BranchesEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="BranchesEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Company Settings Registration Info Add Model -->
+    <div class="modal fade" bsModal #RegistrationInfoAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Registration Info</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="RegistrationInfoAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="ActivityTypeAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="activityType"  name="activityType" placeholder="Registration Info">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="ActivityTypeAddForm.controls.activityType.errors?.required && ActivityTypeAddForm.controls.activityType.dirty" > Registration Info Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="RegistrationInfoAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="RegistrationInfoAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- Company Settings Registration Info Edit Model -->
+    <div class="modal fade" bsModal #RegistrationInfoEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Registration Info</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="RegistrationInfoEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="ActivityTypeEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="activityType" value="{{vin}}"  name="activityType"  placeholder="Registration Info">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="ActivityTypeEditForm.controls.activityType.errors?.required && ActivityTypeEditForm.controls.activityType.dirty" > Registration Info Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="RegistrationInfoEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="RegistrationInfoEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Company Settings Company Info Edit Model -->
+    <div class="modal fade" bsModal #CompanyInfoEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Company Info</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="CompanyInfoEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="ActivityStatusAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+                            <div class="col-sm-8">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="activityStatus"  name="activityStatus"  placeholder="Company Info">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-8  color-danger" *ngIf="ActivityStatusAddForm.controls.activityStatus.errors?.required && ActivityStatusAddForm.controls.activityStatus.dirty" > Company Info Is Required  </div>
+                        </div>
+    
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="CompanyInfoEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="CompanyInfoEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Company Settings Delete Confirmation Model -->
+    <ng-template #DeleteConfirm>
+        <div class="modal-body text-center">
+            <p>Are You Sure You Whant To Delete This Data ?</p>
+            <button type="button" mat-raised-button class="bg-color-warning" color="accent" (click)="declineDelete()" >No</button>
+            <button type="button" mat-raised-button color="accent" class="btn btn-default" (click)="confirmDelete()" >Yes</button>
+        </div>
+    </ng-template>
+

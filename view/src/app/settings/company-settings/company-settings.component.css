@@ -1,0 +1,36 @@
+.example-card {
+  width: 100%;
+}
+.edit-button{
+  position: absolute;
+  right: 10px;
+  top:10px;
+}
+
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+    height: 45px;
+  }
+
+  p-header .form-field mat-icon{
+    position: absolute;
+    right: 20px; 
+    bottom: 5px;
+    margin-top: -3px;
+    color: lightgray;
+  }
+  p-header .form-field.header-search{
+    background-color: #ffffff !important;
+    padding: 6px 5px;
+    margin-top: -3px;
+    margin-bottom: -3px;
+  }
+  .ui-paginator-rpp-options	{
+    display: none;
+  }

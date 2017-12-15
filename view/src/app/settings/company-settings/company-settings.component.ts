@@ -13,14 +13,13 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { Car} from '../../domain/car';
 import { CarService} from '../../service/carservice';
 
-
 @Component({
-  selector: 'app-crm-settings',
-  templateUrl: './crm-settings.component.html',
-  styleUrls: ['./crm-settings.component.css'],
+  selector: 'app-company-settings',
+  templateUrl: './company-settings.component.html',
+  styleUrls: ['./company-settings.component.css'],
   providers: [ MessageService ]
 })
-export class CrmSettingsComponent implements OnInit {
+export class CompanySettingsComponent implements OnInit {
 
 
   // datatable primng
