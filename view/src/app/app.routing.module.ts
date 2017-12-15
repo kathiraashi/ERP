@@ -6,6 +6,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UiComponent } from './ui/ui.component';
 import { CrmSettingsComponent } from './settings/crm-settings/crm-settings.component';
 import { CompanySettingsComponent } from './settings/company-settings/company-settings.component';
+import { LeadsSettingsComponent } from './settings/leads-settings/leads-settings.component';
+import { PurchaseSettingsComponent } from './settings/purchase-settings/purchase-settings.component';
 
 
 const appRoutes: Routes = [
@@ -14,7 +16,9 @@ const appRoutes: Routes = [
     { path: 'dashboard',          component: DashboardComponent,          data: { animation: { value: 'dashboard', } }           },
     { path: 'ui',                 component: UiComponent,                 data: { animation: { value: 'ui', } }                  },
     { path: 'crmSettings',        component: CrmSettingsComponent,        data: { animation: { value: 'crmSettings', } }         },
-    { path: 'companySettings',    component: CompanySettingsComponent,    data: { animation: { value: 'companySettings', } }     }
+    { path: 'companySettings',    component: CompanySettingsComponent,    data: { animation: { value: 'companySettings', } }     },
+    { path: 'leadsSettings',      component: LeadsSettingsComponent,      data: { animation: { value: 'leadsSettings', } }       },
+    { path: 'purchaseSettings',   component: PurchaseSettingsComponent,   data: { animation: { value: 'purchaseSettings', } }    }
   ];
   
 

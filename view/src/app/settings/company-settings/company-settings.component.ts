@@ -35,31 +35,22 @@ export class CompanySettingsComponent implements OnInit {
   modalRef: BsModalRef;
 
   //form
-  AccountTypeAddForm: FormGroup;
-  AccountTypeEditForm: FormGroup;
-  IndustryTypeAddForm: FormGroup;
-  IndustryTypeEditForm: FormGroup;
-  OwnershipTypeAddForm: FormGroup;
-  OwnershipTypeEditForm: FormGroup;
-  ActivityTypeAddForm: FormGroup;
-  ActivityTypeEditForm: FormGroup;
-  ActivityStatusAddForm: FormGroup;
-  ActivityStatusEditForm: FormGroup;
-  ActivityPeriorityAddForm: FormGroup;
-  ActivityPeriorityEditForm: FormGroup;
-  PiplineStatusAddForm: FormGroup;
-  PiplineStatusEditForm: FormGroup;
-  ContactRoleAddForm: FormGroup;
-  ContactRoleEditForm: FormGroup;
-  QuotationTermsAddForm: FormGroup;
-  QuotationTermsEditForm: FormGroup;
-  UniteOfMeasureAddForm: FormGroup;
-  UniteOfMeasureEditForm: FormGroup;
-  OpportunityStatusAddForm: FormGroup;
-  OpportunityStatusEditForm: FormGroup;
+  CompanyInfoEditForm: FormGroup;
+  ContactInfoAddForm: FormGroup;
+  ContactInfoEditForm: FormGroup;
+  DepartmentsAddForm: FormGroup;
+  DepartmentsEditForm: FormGroup;
+  BranchesAddForm: FormGroup;
+  BranchesEditForm: FormGroup;
+  RegistrationInfoAddForm: FormGroup;
+  RegistrationInfoEditForm: FormGroup;
 
-  text1: string = '<div>Hello World!</div><div>Add Quotation Terms</div>';
-  text2: string = '<div>Hello World!</div><div>Edit Quotation Terms</div>';
+  comTypes = [ 'Company Type-One', 'Company Type-Two', 'Company Type-Three', 'Company Type-Four', 'Company Type-Five'];
+  busTypes = [ 'Type Of Busioness-One', 'Type Of Busioness-Two', 'Type Of Busioness-Three', 'Type Of Busioness-Four', 'Type Of Busioness-Five'];
+  departments = [ 'Department-One', 'Department-Two', 'Department-Three', 'Department-Four'];
+  registrationTypes = [ 'CST', 'TIN', 'GST', 'PAN', 'Service Tax', 'Others'];
+  AddFormOthers = false;
+  EditFormOthers = false;
   vin;
 
   constructor(  private formBuilder: FormBuilder,
@@ -101,37 +92,84 @@ export class CompanySettingsComponent implements OnInit {
   }
 
 
-
   handleChange(e) {
     // console.log(e.index);
     // console.log(e.originalEvent.target.innerText);
   }
 
+
   createForm(){
 
-    this.AccountTypeAddForm= this.formBuilder.group({ accountType: ['', Validators.compose([ Validators.required ])] });
-    this.AccountTypeEditForm = this.formBuilder.group({ accountType: ['', Validators.compose([ Validators.required ])] });
-    this.IndustryTypeAddForm= this.formBuilder.group({ industryType: ['', Validators.compose([ Validators.required ])] });
-    this.IndustryTypeEditForm = this.formBuilder.group({  industryType: ['', Validators.compose([ Validators.required ])] });
-    this.OwnershipTypeAddForm = this.formBuilder.group({ ownershipType: ['', Validators.compose([ Validators.required ])] });
-    this.OwnershipTypeEditForm = this.formBuilder.group({ ownershipType: ['', Validators.compose([ Validators.required ])] });
-    this.ActivityTypeAddForm = this.formBuilder.group({ activityType: ['', Validators.compose([ Validators.required ])] });
-    this.ActivityTypeEditForm = this.formBuilder.group({ activityType: ['', Validators.compose([ Validators.required ])] });
-    this.ActivityStatusAddForm = this.formBuilder.group({ activityStatus: ['', Validators.compose([ Validators.required ])] });
-    this.ActivityStatusEditForm = this.formBuilder.group({ activityStatus: ['', Validators.compose([ Validators.required ])] });
-    this.ActivityPeriorityAddForm = this.formBuilder.group({ activityPeriority: ['', Validators.compose([ Validators.required ])] });
-    this.ActivityPeriorityEditForm = this.formBuilder.group({ activityPeriority: ['', Validators.compose([ Validators.required ])] });
-    this.PiplineStatusAddForm = this.formBuilder.group({ piplineStatus: ['', Validators.compose([ Validators.required ])] });
-    this.PiplineStatusEditForm = this.formBuilder.group({ piplineStatus: ['', Validators.compose([ Validators.required ])] });
-    this.ContactRoleAddForm = this.formBuilder.group({ contactRole: ['', Validators.compose([ Validators.required ])] });
-    this.ContactRoleEditForm = this.formBuilder.group({ contactRole: ['', Validators.compose([ Validators.required ])] });
-    this.QuotationTermsAddForm = this.formBuilder.group({ quotationTermsName: ['', Validators.compose([ Validators.required ])], quotationTerms: ['', Validators.compose([ Validators.required ])] });
-    this.QuotationTermsEditForm = this.formBuilder.group({ quotationTermsName: ['', Validators.compose([ Validators.required ])], quotationTerms: ['', Validators.compose([ Validators.required ])] });
-    this.UniteOfMeasureAddForm = this.formBuilder.group({ uniteOfMeasure: ['', Validators.compose([ Validators.required ])] });
-    this.UniteOfMeasureEditForm = this.formBuilder.group({ uniteOfMeasure: ['', Validators.compose([ Validators.required ])] });
-    this.OpportunityStatusAddForm = this.formBuilder.group({ opportunityStatus: ['', Validators.compose([ Validators.required ])] });
-    this.OpportunityStatusEditForm = this.formBuilder.group({ opportunityStatus: ['', Validators.compose([ Validators.required ])] });
+    this.CompanyInfoEditForm= this.formBuilder.group({ 
+      image: ['', Validators.compose([ Validators.required ])],
+      companyName: ['', Validators.compose([ Validators.required ])],
+      pnoneNumber: ['', Validators.compose([ Validators.required ])],
+      eMail: ['', Validators.compose([ Validators.required ])],
+      website: ['', Validators.compose([ Validators.required ])],
+      companyType: ['', Validators.compose([ Validators.required ])],
+      TypeOfBusiness: ['', Validators.compose([ Validators.required ])],
+      address: ['', Validators.compose([ Validators.required ])]
+    });
+    this.ContactInfoAddForm = this.formBuilder.group({ 
+      conPersonName: ['', Validators.compose([ Validators.required ])],
+      mobileNumber: ['', Validators.compose([ Validators.required ])] ,
+      eMail: ['', Validators.compose([ Validators.required ])]
+    });
+    this.ContactInfoEditForm= this.formBuilder.group({ 
+      conPersonName: ['', Validators.compose([ Validators.required ])],
+      mobileNumber: ['', Validators.compose([ Validators.required ])] ,
+      eMail: ['', Validators.compose([ Validators.required ])]
+    });
+    this.DepartmentsAddForm = this.formBuilder.group({  
+      departmrntName: ['', Validators.compose([ Validators.required ])],
+      departmrntHead: ['', Validators.compose([ Validators.required ])]
+    });
+    this.DepartmentsEditForm = this.formBuilder.group({ 
+      departmrntName: ['', Validators.compose([ Validators.required ])],
+      departmrntHead: ['', Validators.compose([ Validators.required ])]
+    });
+    this.BranchesAddForm = this.formBuilder.group({ 
+      branchName: ['', Validators.compose([ Validators.required ])],
+      branchHead: ['', Validators.compose([ Validators.required ])],
+      departments: ['', Validators.compose([ Validators.required ])],
+      address: ['', Validators.compose([ Validators.required ])]
+    });
+    this.BranchesEditForm = this.formBuilder.group({ 
+      branchName: ['', Validators.compose([ Validators.required ])],
+      branchHead: ['', Validators.compose([ Validators.required ])],
+      departments: ['', Validators.compose([ Validators.required ])],
+      address: ['', Validators.compose([ Validators.required ])] 
+    });
+    this.RegistrationInfoAddForm = this.formBuilder.group({ 
+      registrationType: ['', Validators.compose([ Validators.required ])],
+      incorporatedDate: ['', Validators.compose([ Validators.required ])],
+      number: ['', Validators.compose([ Validators.required ])],
+      SpecifyRegistrationType:['']
+    });
+    this.RegistrationInfoEditForm = this.formBuilder.group({ 
+      registrationType: ['', Validators.compose([ Validators.required ])],
+      incorporatedDate: ['', Validators.compose([ Validators.required ])],
+      number: ['', Validators.compose([ Validators.required ])],
+      SpecifyRegistrationType:['']
+    });
 
   };//createForm
+  
+
+  RegTypeStatusAddForm(){
+    if(this.RegistrationInfoAddForm.get('registrationType').value == "Others" ){
+      this.AddFormOthers = true;
+    }else{
+      this.AddFormOthers = false;
+    }
+  };
+  RegTypeStatusEditForm(){
+    if(this.RegistrationInfoEditForm .get('registrationType').value == "Others" ){
+      this.EditFormOthers = true;
+    }else{
+      this.EditFormOthers = false;
+    }
+  };
+
 
 }

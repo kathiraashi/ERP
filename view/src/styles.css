@@ -65,6 +65,12 @@ body{
   border-radius: 2px;
   border-color: #ffffff;
   }
+  .modal-backdrop{
+    z-index:1001 !important;
+  }
+  .modal{
+      z-index:1002 !important;
+  }
 
 
  /* primeng css chenge */
@@ -100,6 +106,7 @@ width: auto !important;
 }
 .tab-mat-card .ui-tabview .ui-tabview-panel{
     padding: 5px !important; /*new */
+    width: 79%;
 }
 .tab-mat-card .ui-widget-header{
     background: #ffffff !important; /*new */
@@ -196,9 +203,9 @@ width: auto !important;
     -moz-animation-delay:0.3s;
     animation-delay:0.3s; */
 
-    -webkit-animation-duration:1s;
-    -moz-animation-duration:1s;
-    animation-duration:1s;
+    -webkit-animation-duration:1.5s;
+    -moz-animation-duration:1.5s;
+    animation-duration:1.5s;
 }
 
 @-webkit-keyframes fadeIn { 
@@ -212,7 +219,7 @@ width: auto !important;
     to { opacity:1; display: block !important } }
 
 
-.ui-tabview-panel.ui-helper-hidden{
+.ui-tabview-panel.ui-widget-content.ng-star-inserted.ui-helper-hidden{
         display: block !important;
         opacity:1 !important;
         position: absolute;
@@ -231,13 +238,13 @@ width: auto !important;
     }
     @-webkit-keyframes fadeOut {    
         from { opacity:1;} 
-        to { opacity:0; display: none ; } }
+        to { opacity:0; display: none !important; transform: scale(0.0); } }
     @-moz-keyframes fadeOut { 
         from { opacity:1; } 
-        to { opacity:0; display: none ; } }
+        to { opacity:0 ; display: none !important; transform: scale(0.0); } }
     @keyframes fadeOut { 
         from { opacity:1;  } 
-        to { opacity:0; display: none ; } }
+        to { opacity:0; display: none !important; transform: scale(0.0); } }
     
 
 

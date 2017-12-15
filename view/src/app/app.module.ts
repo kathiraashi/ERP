@@ -29,6 +29,12 @@ import { ExampleComponent } from './popups/example/example.component';
 import { from } from 'rxjs/observable/from';
 import { CrmSettingsComponent } from './settings/crm-settings/crm-settings.component';
 import { CompanySettingsComponent } from './settings/company-settings/company-settings.component';
+import { LeadsSettingsComponent } from './settings/leads-settings/leads-settings.component';
+import { PurchaseSettingsComponent } from './settings/purchase-settings/purchase-settings.component';
+import { AccountsSettingsComponent } from './settings/accounts-settings/accounts-settings.component';
+import { HrmsSettingsComponent } from './settings/hrms-settings/hrms-settings.component';
+import { HrSettingsComponent } from './settings/hr-settings/hr-settings.component';
+import { InventorySettingsComponent } from './settings/inventory-settings/inventory-settings.component';
 
 
 @NgModule({
@@ -40,7 +46,13 @@ import { CompanySettingsComponent } from './settings/company-settings/company-se
     UiComponent,
     ExampleComponent,
     CrmSettingsComponent,
-    CompanySettingsComponent
+    CompanySettingsComponent,
+    LeadsSettingsComponent,
+    PurchaseSettingsComponent,
+    AccountsSettingsComponent,
+    HrmsSettingsComponent,
+    HrSettingsComponent,
+    InventorySettingsComponent
   ],
   imports: [
     CommonModule,
