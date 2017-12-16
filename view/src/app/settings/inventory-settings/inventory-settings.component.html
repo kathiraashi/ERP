@@ -4,13 +4,13 @@
 
     <div class="page-identity">
       <div class="page-name">
-        <h5> Leads Settings </h5>
+        <h5> Inventory Settings </h5>
       </div>
       <div class="page-track">
         <ul>
           <li><a routerLink="/dashboard"> Settings </a></li>
           <li><i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
-          <li> Leads Settings </li>
+          <li> Inventory Settings </li>
         </ul>
       </div>
     </div>
@@ -19,20 +19,20 @@
 
         <p-tabView orientation="left" (onChange)="handleChange($event)">
 
-            <p-tabPanel header="Lead Source">
+            <p-tabPanel header="Warehouse">
                 <ng-template pTemplate="content">
 
-                    <p-dataTable [value]="cars" [globalFilter]="LeadSourceFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                    <p-dataTable [value]="cars" [globalFilter]="WarehouseFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-raised-button color="accent" (click)="LeadSourceAdd.show()"> Add New </button> 
+                                    <button mat-raised-button color="accent" (click)="WarehouseAdd.show()"> Add New </button> 
                                 </div>
-                                <div class="col-sm-4 text-center"> <h4> Lead Source </h4> </div>
+                                <div class="col-sm-4 text-center"> <h4> Warehouse </h4> </div>
                                 <div class="col-sm-4 text-right"> 
                                     <div class="form-field header-search">
                                         <mat-form-field style="width:100%;height:40px; margin-top:-10px">
-                                            <input matInput #LeadSourceFilter maxlength="12" placeholder="Search">
+                                            <input matInput #WarehouseFilter maxlength="12" placeholder="Search">
                                             <mat-hint align="start"><strong></strong> </mat-hint>
                                             <mat-hint align="end"></mat-hint>
                                         </mat-form-field>
@@ -60,7 +60,7 @@
                             </ng-template>
                             <ng-template let-car="rowData" pTemplate="body">
                                     <div class="button-row tabel-action">
-                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="LeadSourceEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="WarehouseEdit.show()" > <mat-icon>border_color</mat-icon> </button>
                                         <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
                                         <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
@@ -69,7 +69,59 @@
                     </p-dataTable>
 
                 </ng-template>
-            </p-tabPanel><!--Lead Source -->
+            </p-tabPanel><!--Warehouse -->
+
+            <p-tabPanel header="Unit Of Measure">
+                <ng-template pTemplate="content">
+
+                    <p-dataTable [value]="cars" [globalFilter]="UnitOfMeasureFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-4 text-left">
+                                    <button mat-raised-button color="accent" (click)="UnitOfMeasureAdd.show()"> Add New </button> 
+                                </div>
+                                <div class="col-sm-4 text-center"> <h4> Unit Of Measure </h4> </div>
+                                <div class="col-sm-4 text-right"> 
+                                    <div class="form-field header-search">
+                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
+                                            <input matInput #UnitOfMeasureFilter maxlength="12" placeholder="Search">
+                                            <mat-hint align="start"><strong></strong> </mat-hint>
+                                            <mat-hint align="end"></mat-hint>
+                                        </mat-form-field>
+                                        <mat-icon>search</mat-icon>
+                                    </div>
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                        <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                        <p-column field="color" header="Color" [sortable]="true" >
+                            <ng-template let-col let-car="rowData" pTemplate="body">
+                                <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                            </ng-template>
+                        </p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                            <ng-template pTemplate="header">
+                                    Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="UnitOfMeasureEdit.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </ng-template>
+            </p-tabPanel><!--Unit Of Measure -->
 
         </p-tabView>
         
@@ -80,28 +132,44 @@
 
 <!-- Models -->
 
-    <!-- Leads Settings Lead Source Add Model -->
-    <div class="modal fade" bsModal #LeadSourceAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Inventory Settings Warehouse Add Model -->
+    <div class="modal fade" bsModal #WarehouseAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title pull-left">Add Lead Source </h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="LeadSourceAdd.hide()">
+                    <h4 class="modal-title pull-left">Add Warehouse </h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="WarehouseAdd.hide()">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="LeadSourceAddForm" (submit) = onRgisterSubmit() >
+                    <form class="md-float-material" [formGroup]="WarehouseAddForm" (submit) = onRgisterSubmit() >
             
                         <div class="form-group row">
 
                             <div class="col-sm-6" style="margin-bottom:20px;">
                                 <div class="example-container">
                                     <mat-form-field>
-                                        <input matInput type="text" formControlName="leadSource"  name="conPersonName" placeholder="Lead Source">
+                                        <input matInput type="text" formControlName="warehouseName"  name="warehouseName" placeholder="Warehouse Name">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-sm-8  color-danger" *ngIf="LeadSourceAddForm.controls.leadSource.errors?.required && LeadSourceAddForm.controls.leadSource.dirty" > Lead Source Name Is Required  </div>
+                                <div class="col-sm-8  color-danger" *ngIf="WarehouseAddForm.controls.warehouseName.errors?.required && WarehouseAddForm.controls.warehouseName.dirty" > Warehouse Name Is Required  </div>
+                            </div>
+                            <div class="col-sm-6" style="margin-bottom:20px;">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="warehouseCode"  name="warehouseCode" placeholder="Warehouse Code">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-8  color-danger" *ngIf="WarehouseAddForm.controls.warehouseCode.errors?.required && WarehouseAddForm.controls.warehouseCode.dirty" > Warehouse Code Is Required  </div>
+                            </div>
+                            <div class="col-sm-6" style="margin-bottom:20px;">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <textarea matInput formControlName="warehouseAddress" name="warehouseAddress" placeholder="warehouse Address"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-8  color-danger" *ngIf="WarehouseAddForm.controls.warehouseAddress.errors?.required && WarehouseAddForm.controls.warehouseAddress.dirty" > Warehouse Address Is Required  </div>
                             </div>
                             
                         </div>
@@ -109,50 +177,138 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="LeadSourceAdd.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="LeadSourceAdd.hide()"> Submit </button>
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="WarehouseAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="WarehouseAdd.hide()"> Submit </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Leads Settings Lead Source Edit Model -->
-    <div class="modal fade" bsModal #LeadSourceEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Inventory Settings Warehouse Edit Model -->
+    <div class="modal fade" bsModal #WarehouseEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title pull-left">Edit Lead Source</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="LeadSourceEdit.hide()">
+                    <h4 class="modal-title pull-left">Edit Warehouse</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="WarehouseEdit.hide()">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="LeadSourceEditForm" (submit) = onCrmSubmit() >
+                    <form class="md-float-material" [formGroup]="WarehouseEditForm" (submit) = onCrmSubmit() >
             
                         <div class="form-group row">
                                 
-                          <div class="col-sm-6" style="margin-bottom:20px;">
-                              <div class="example-container">
-                                  <mat-form-field>
-                                      <input matInput type="text" formControlName="leadSource"  name="conPersonName" placeholder="Lead Source">
-                                  </mat-form-field>
-                              </div>
-                              <div class="col-sm-8  color-danger" *ngIf="LeadSourceEditForm.controls.leadSource.errors?.required && LeadSourceEditForm.controls.leadSource.dirty" > Lead Source Name Is Required  </div>
-                          </div>
+                            <div class="col-sm-6" style="margin-bottom:20px;">
+                                    <div class="example-container">
+                                        <mat-form-field>
+                                            <input matInput type="text" formControlName="warehouseName"  name="warehouseName" placeholder="Warehouse Name">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-8  color-danger" *ngIf="WarehouseEditForm.controls.warehouseName.errors?.required && WarehouseEditForm.controls.warehouseName.dirty" > Warehouse Name Is Required  </div>
+                                </div>
+                                <div class="col-sm-6" style="margin-bottom:20px;">
+                                    <div class="example-container">
+                                        <mat-form-field>
+                                            <input matInput type="text" formControlName="warehouseCode"  name="warehouseCode" placeholder="Warehouse Code">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-8  color-danger" *ngIf="WarehouseEditForm.controls.warehouseCode.errors?.required && WarehouseEditForm.controls.warehouseCode.dirty" > Warehouse Code Is Required  </div>
+                                </div>
+                                <div class="col-sm-6" style="margin-bottom:20px;">
+                                    <div class="example-container">
+                                        <mat-form-field>
+                                            <textarea matInput formControlName="warehouseAddress" name="warehouseAddress" placeholder="warehouse Address"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-8  color-danger" *ngIf="WarehouseEditForm.controls.warehouseAddress.errors?.required && WarehouseEditForm.controls.warehouseAddress.dirty" > Warehouse Address Is Required  </div>
+                                </div>
                             
                         </div>
 
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="LeadSourceEdit.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="LeadSourceEdit.hide()"> Submit </button>
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="WarehouseEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="WarehouseEdit.hide()"> Submit </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Leads Settings Delete Confirmation Model -->
+    <!-- Inventory Settings Unit Of Measure Add Model -->
+    <div class="modal fade" bsModal #UnitOfMeasureAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Unit Of Measure </h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="UnitOfMeasureAdd.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="UnitOfMeasureAddForm" (submit) = onRgisterSubmit() >
+            
+                        <div class="form-group row">
+
+                            <div class="col-sm-6" style="margin-bottom:20px;">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="unitOfMeasure"  name="unitOfMeasure" placeholder="Unit Of Measure">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-8  color-danger" *ngIf="UnitOfMeasureAddForm.controls.unitOfMeasure.errors?.required && UnitOfMeasureAddForm.controls.unitOfMeasure.dirty" > Unit Of Measure Is Required  </div>
+                            </div>
+                            
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="UnitOfMeasureAdd.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="UnitOfMeasureAdd.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inventory Settings Unit Of Measure Edit Model -->
+    <div class="modal fade" bsModal #UnitOfMeasureEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Unit Of Measure</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="UnitOfMeasureEdit.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="md-float-material" [formGroup]="UnitOfMeasureEditForm" (submit) = onCrmSubmit() >
+            
+                        <div class="form-group row">
+                                
+                            <div class="col-sm-6" style="margin-bottom:20px;">
+                                    <div class="example-container">
+                                        <mat-form-field>
+                                            <input matInput type="text" formControlName="unitOfMeasure"  name="unitOfMeasure" placeholder=" Unit Of Measure ">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-sm-8  color-danger" *ngIf="UnitOfMeasureEditForm.controls.unitOfMeasure.errors?.required && UnitOfMeasureEditForm.controls.unitOfMeasure.dirty" > Unit Of Measure Name Is Required  </div>
+                                </div>
+                            
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="UnitOfMeasureEdit.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="UnitOfMeasureEdit.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inventory Settings Delete Confirmation Model -->
     <ng-template #DeleteConfirm>
         <div class="modal-body text-center">
             <p>Are You Sure You Whant To Delete This Data ?</p>

@@ -34,8 +34,10 @@ msgs: Message[] = [];
 modalRef: BsModalRef;
 
 //form
-LeadSourceAddForm: FormGroup;
-LeadSourceEditForm: FormGroup;
+WarehouseAddForm: FormGroup;
+WarehouseEditForm: FormGroup;
+UnitOfMeasureAddForm: FormGroup;
+UnitOfMeasureEditForm: FormGroup;
 vin;
 
 constructor(  private formBuilder: FormBuilder,
@@ -85,8 +87,18 @@ handleChange(e) {
 
 createForm(){
 
-  this.LeadSourceAddForm = this.formBuilder.group({ leadSource: ['', Validators.compose([ Validators.required ])] });
-  this.LeadSourceEditForm= this.formBuilder.group({ leadSource: ['', Validators.compose([ Validators.required ])] });
+  this.WarehouseAddForm = this.formBuilder.group({ 
+    warehouseName: ['', Validators.compose([ Validators.required ])],
+    warehouseCode: ['', Validators.compose([ Validators.required ])],
+    warehouseAddress: ['', Validators.compose([ Validators.required ])]
+  });
+  this.WarehouseEditForm= this.formBuilder.group({ 
+    warehouseName: ['', Validators.compose([ Validators.required ])],
+    warehouseCode: ['', Validators.compose([ Validators.required ])],
+    warehouseAddress: ['', Validators.compose([ Validators.required ])]
+  });
+  this.UnitOfMeasureAddForm = this.formBuilder.group({ unitOfMeasure: ['', Validators.compose([ Validators.required ])] });
+  this.UnitOfMeasureEditForm= this.formBuilder.group({ unitOfMeasure: ['', Validators.compose([ Validators.required ])] });
 
 };//createForm
 
