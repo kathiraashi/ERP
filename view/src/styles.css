@@ -58,6 +58,13 @@ body{
       font-size: 21px !important;
   }
 
+  .mat-radio-button.mat-accent .mat-radio-inner-circle{
+    background-color: #0464c7 ;
+  }
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    border-color:#0464c7;  
+  }
+
 
   /* bootstrap css chenge */
   .modal-content{
@@ -246,6 +253,26 @@ width: auto !important;
         from { opacity:1;  } 
         to { opacity:0; display: none !important; transform: scale(0.0); } }
     
+
+
+/* product add css */
+.left-select-bar .select-title{
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    margin-bottom: 5px !important;
+}
+.left-select-bar .mat-radio-label-content{
+    font-size: 14px !important;
+    padding-left: 4px !important;
+}
+.left-select-bar .mat-radio-outer-circle{
+    height: 17px !important;
+    width: 17px !important;
+}
+.left-select-bar .mat-radio-inner-circle{
+    height: 17px !important;
+    width: 17px !important;
+}
 
 
 

@@ -12,6 +12,7 @@ import { AccountsSettingsComponent } from './settings/accounts-settings/accounts
 import { HrmsSettingsComponent } from './settings/hrms-settings/hrms-settings.component';
 import { HrSettingsComponent } from './settings/hr-settings/hr-settings.component';
 import { InventorySettingsComponent } from './settings/inventory-settings/inventory-settings.component';
+import { ProductSettingsComponent } from './settings/product-settings/product-settings.component';
 
 
 const appRoutes: Routes = [
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
     { path: 'accountsSettings',     component: AccountsSettingsComponent,       data: { animation: { value: 'accountsSettings', } }    },
     { path: 'hrmsSettings',         component: HrmsSettingsComponent,           data: { animation: { value: 'hrmsSettings', } }        },
     { path: 'hrSettings',           component: HrSettingsComponent,             data: { animation: { value: 'hrSettings', } }          },
-    { path: 'inventorySettings',    component: InventorySettingsComponent,      data: { animation: { value: 'hrmsSettings', } }        }
+    { path: 'inventorySettings',    component: InventorySettingsComponent,      data: { animation: { value: 'hrmsSettings', } }        },
+    { path: 'productSettings',      component: ProductSettingsComponent,        data: { animation: { value: 'productSettings', } }     }
   ];
   
 
