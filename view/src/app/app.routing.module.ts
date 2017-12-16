@@ -9,18 +9,24 @@ import { CompanySettingsComponent } from './settings/company-settings/company-se
 import { LeadsSettingsComponent } from './settings/leads-settings/leads-settings.component';
 import { PurchaseSettingsComponent } from './settings/purchase-settings/purchase-settings.component';
 import { AccountsSettingsComponent } from './settings/accounts-settings/accounts-settings.component';
+import { HrmsSettingsComponent } from './settings/hrms-settings/hrms-settings.component';
+import { HrSettingsComponent } from './settings/hr-settings/hr-settings.component';
+import { InventorySettingsComponent } from './settings/inventory-settings/inventory-settings.component';
 
 
 const appRoutes: Routes = [
-    { path: '',                   component: LoginComponent,              data: { animation: { value: 'login', } }               },
-    { path: 'login',              component: LoginComponent,              data: { animation: { value: 'login', } }               },
-    { path: 'dashboard',          component: DashboardComponent,          data: { animation: { value: 'dashboard', } }           },
-    { path: 'ui',                 component: UiComponent,                 data: { animation: { value: 'ui', } }                  },
-    { path: 'crmSettings',        component: CrmSettingsComponent,        data: { animation: { value: 'crmSettings', } }         },
-    { path: 'companySettings',    component: CompanySettingsComponent,    data: { animation: { value: 'companySettings', } }     },
-    { path: 'leadsSettings',      component: LeadsSettingsComponent,      data: { animation: { value: 'leadsSettings', } }       },
-    { path: 'purchaseSettings',   component: PurchaseSettingsComponent,   data: { animation: { value: 'purchaseSettings', } }    },
-    { path: 'accountsSettings',   component: AccountsSettingsComponent,   data: { animation: { value: 'accountsSettings', } }    }
+    { path: '',                     component: LoginComponent,                  data: { animation: { value: 'login', } }               },
+    { path: 'login',                component: LoginComponent,                  data: { animation: { value: 'login', } }               },
+    { path: 'dashboard',            component: DashboardComponent,              data: { animation: { value: 'dashboard', } }           },
+    { path: 'ui',                   component: UiComponent,                     data: { animation: { value: 'ui', } }                  },
+    { path: 'crmSettings',          component: CrmSettingsComponent,            data: { animation: { value: 'crmSettings', } }         },
+    { path: 'companySettings',      component: CompanySettingsComponent,        data: { animation: { value: 'companySettings', } }     },
+    { path: 'leadsSettings',        component: LeadsSettingsComponent,          data: { animation: { value: 'leadsSettings', } }       },
+    { path: 'purchaseSettings',     component: PurchaseSettingsComponent,       data: { animation: { value: 'purchaseSettings', } }    },
+    { path: 'accountsSettings',     component: AccountsSettingsComponent,       data: { animation: { value: 'accountsSettings', } }    },
+    { path: 'hrmsSettings',         component: HrmsSettingsComponent,           data: { animation: { value: 'hrmsSettings', } }        },
+    { path: 'hrSettings',           component: HrSettingsComponent,             data: { animation: { value: 'hrSettings', } }          },
+    { path: 'inventorySettings',    component: InventorySettingsComponent,      data: { animation: { value: 'hrmsSettings', } }        }
   ];
   
 

@@ -348,11 +348,13 @@ background-color: #0464c7;
     float: left;
 }
 .page-identity .page-track ul{
-    float: right;
     margin-bottom: 0px;
     list-style: none;
     display: inline-block;
     height: 42px;
+}
+.page-identity .page-track ul{
+    float: right;
 }
 .page-identity .page-track ul li{
     float: left;
