@@ -8,6 +8,7 @@ import { CrmSettingsComponent } from './settings/crm-settings/crm-settings.compo
 import { CompanySettingsComponent } from './settings/company-settings/company-settings.component';
 import { LeadsSettingsComponent } from './settings/leads-settings/leads-settings.component';
 import { PurchaseSettingsComponent } from './settings/purchase-settings/purchase-settings.component';
+import { AccountsSettingsComponent } from './settings/accounts-settings/accounts-settings.component';
 
 
 const appRoutes: Routes = [
@@ -18,7 +19,8 @@ const appRoutes: Routes = [
     { path: 'crmSettings',        component: CrmSettingsComponent,        data: { animation: { value: 'crmSettings', } }         },
     { path: 'companySettings',    component: CompanySettingsComponent,    data: { animation: { value: 'companySettings', } }     },
     { path: 'leadsSettings',      component: LeadsSettingsComponent,      data: { animation: { value: 'leadsSettings', } }       },
-    { path: 'purchaseSettings',   component: PurchaseSettingsComponent,   data: { animation: { value: 'purchaseSettings', } }    }
+    { path: 'purchaseSettings',   component: PurchaseSettingsComponent,   data: { animation: { value: 'purchaseSettings', } }    },
+    { path: 'accountsSettings',   component: AccountsSettingsComponent,   data: { animation: { value: 'accountsSettings', } }    }
   ];
   
 
