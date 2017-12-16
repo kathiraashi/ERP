@@ -16,15 +16,15 @@
     </div>
 
     <mat-card class="example-card">
-      <div class="row">
-        <div class="col-sm-3 left-select-bar">
-            <div class="example-container">
+      <div class="row left-select-bar">
+            <!-- <div class="example-container">
                 <mat-form-field>
                     <input matInput type="text"  name="companyName"  placeholder="Product Name">
                 </mat-form-field>
             </div>
-            <div style="margin-top:15px;">
-              <div class="example-container" style="margin-left:20px;">
+            <div style="margin-top:5px;">
+              <h5 class="select-title"> Product Type</h5>
+              <div class="example-container">
                 <mat-radio-group class="example-radio-group" [(ngModel)]="ProductType">
                   <mat-radio-button class="example-radio-button bg-color-primary" *ngFor="let Type of ProductsType" [value]="Type">
                     {{Type}}
@@ -32,19 +32,20 @@
                 </mat-radio-group>
               </div>
             </div>
-            <div style="margin-top:15px;">
-              <h5 class="select-title"> Product Varient </h5>
-              <div class="example-container" style="margin-left:20px;">
-                <mat-radio-group class="example-radio-group" [(ngModel)]="ProductVarient">
-                  <mat-radio-button class="example-radio-button bg-color-primary" *ngFor="let Varient of ProductsVarients" [value]="Varient">
-                    {{Varient}}
+            <hr class="m-5-0"> -->
+            <div class="col-sm-3 " style="border-right:1px solid lightgray">
+              <h5 class="select-title"> Product Variant </h5>
+              <div class="example-container">
+                <mat-radio-group class="example-radio-group" [(ngModel)]="ProductVariant">
+                  <mat-radio-button class="example-radio-button bg-color-primary" *ngFor="let Variant of ProductsVariants" [value]="Variant">
+                    {{Variant}}
                   </mat-radio-button>
                 </mat-radio-group>
               </div>
             </div>
-            <div style="margin-top:15px;">
+            <div class="col-sm-3" style="border-right:1px solid lightgray">
               <h5 class="select-title"> Product HSN/SAC Code </h5>
-              <div class="example-container" style="margin-left:20px;">
+              <div class="example-container">
                 <mat-radio-group class="example-radio-group" [(ngModel)]="ProducHsnCode">
                   <mat-radio-button class="example-radio-button bg-color-primary" *ngFor="let HsnCode of ProductsHsnCodes" [value]="HsnCode">
                     {{HsnCode}}
@@ -52,9 +53,9 @@
                 </mat-radio-group>
               </div>
             </div>
-            <div style="margin-top:15px;">
+            <div class="col-sm-3" style="border-right:1px solid lightgray">
               <h5 class="select-title"> Product Item Code </h5>
-              <div class="example-container" style="margin-left:20px;">
+              <div class="example-container">
                 <mat-radio-group class="example-radio-group" [(ngModel)]="ProductItemCode">
                   <mat-radio-button class="example-radio-button bg-color-primary" *ngFor="let ItemCode of ProductsItemCodes" [value]="ItemCode">
                     {{ItemCode}}
@@ -62,9 +63,9 @@
                 </mat-radio-group>
               </div>
             </div>
-            <div style="margin-top:15px;">
+            <div class="col-sm-3">
               <h5 class="select-title"> Product Bar Code </h5>
-              <div class="example-container" style="margin-left:20px;">
+              <div class="example-container">
                 <mat-radio-group class="example-radio-group" [(ngModel)]="ProductBarCode">
                   <mat-radio-button class="example-radio-button bg-color-primary" *ngFor="let BarCode of ProductsBarCodes" [value]="BarCode">
                     {{BarCode}}
@@ -73,8 +74,6 @@
               </div>
             </div>
 
-        </div>
-        <div class="col-sm-9"></div>
       </div>
     </mat-card>
 

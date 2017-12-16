@@ -36,6 +36,7 @@ import { HrmsSettingsComponent } from './settings/hrms-settings/hrms-settings.co
 import { HrSettingsComponent } from './settings/hr-settings/hr-settings.component';
 import { InventorySettingsComponent } from './settings/inventory-settings/inventory-settings.component';
 import { ProductSettingsComponent } from './settings/product-settings/product-settings.component';
+import { ProductsComponent } from './settings/products/products.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { ProductSettingsComponent } from './settings/product-settings/product-se
     HrmsSettingsComponent,
     HrSettingsComponent,
     InventorySettingsComponent,
-    ProductSettingsComponent
+    ProductSettingsComponent,
+    ProductsComponent
   ],
   imports: [
     CommonModule,
