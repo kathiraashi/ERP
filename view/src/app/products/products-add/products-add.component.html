@@ -1,0 +1,206 @@
+<p-growl [value]="msgs"></p-growl>
+
+<div class="page">
+
+    <div class="page-identity">
+      <div class="page-name">
+        <h5> Products Add </h5>
+      </div>
+      <div class="page-track">
+        <ul>
+          <li><a routerLink="/dashboard"> Settings </a></li>
+          <li><i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
+          <li> Products Add </li>
+        </ul>
+      </div>
+    </div>
+
+    <mat-card class="example-card">
+      <form class="md-float-material" [formGroup]="ProductAddForm" >
+        <div class="row">
+          <div class="col-sm-3 left-select-bar">
+              <div class="example-container">
+                  <mat-form-field>
+                      <input matInput type="text" formControlName="productName"  name="productName"  placeholder="Product Name">
+                  </mat-form-field>
+              </div>
+              <div style="margin-top:5px;">
+                <div class="example-container" style="margin-top:20px;">
+                    <mat-checkbox formControlName="productSold" color="accent" class="bg-color-primary" name="productSold" > Can Be Sold </mat-checkbox>
+                    <mat-checkbox formControlName="productPurchased" color="accent" class="bg-color-primary" name="productPurchased" > Can Be Purchased </mat-checkbox>
+                </div>
+              </div>
+
+          </div>
+          <div class="col-sm-9">
+            <mat-tab-group class="demo-tab-group">
+
+              <mat-tab label="Product Add">
+                <div class="demo-tab-content">
+                  <div class="row">
+                    <div class="col-sm-6" style="margin-bottom:20px">
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-select formControlName="productType" name="productType" placeholder="Product Type">
+                                    <mat-option *ngFor="let productType of productTypes" [value]="productType">{{productType}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom:20px">
+                        <div class="example-container">
+                            <mat-form-field>
+                                <input matInput type="text" formControlName="purchaseCost"  name="purchaseCost"  placeholder="purchase Cost">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom:20px">
+                        <div class="example-container">
+                            <mat-form-field>
+                                <input matInput type="text" formControlName="saleCost"  name="saleCost"  placeholder="Sale Cost">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom:20px">
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-select formControlName="unitofMeasure" name="unitofMeasure" placeholder="Unit of Measure">
+                                    <mat-option *ngFor="let unitofMeasure of unitofMeasures" [value]="unitofMeasure">{{unitofMeasure}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom:20px">
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-select formControlName="salesTax" name="salesTax" placeholder="Sales Tax">
+                                    <mat-option *ngFor="let salesTax of salesTaxes" [value]="salesTax">{{salesTax}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="margin-bottom:20px">
+                        <div class="example-container">
+                            <mat-form-field>
+                                <input matInput type="text" formControlName="hsnCode"  name="hsnCode"  placeholder="HSN Code">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-tab>
+
+              <mat-tab label="Variants">
+                <div class="demo-tab-content tab-mat-card">
+                    <p-dataTable [value]="cars" sortMode="multiple" [rows]="5" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[5,10]">
+                        <p-header>
+                            <div class="row">
+                                <div class="col-sm-6 text-left"> <h4> Variants </h4> </div>
+                                <div class="col-sm-6 text-right">
+                                    <button mat-raised-button color="accent" (click)="addAttributeAdd()" (click)="attributeForm.show()" > Add New </button> 
+                                </div>
+                            </div> 
+                        </p-header>
+                        <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                            <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                <span >{{i+1}}</span>
+                            </ng-template> 
+                        </p-column>
+                        <p-column field="vin" header="Attribute" [sortable]="true" ></p-column>
+                        <p-column field="year" header="Attribute Value" [sortable]="true" ></p-column>
+                        <p-column styleClass="col-button" [style]="{'text-align':'center', 'width':'100px'}" >
+                            <ng-template pTemplate="header">
+                                 Action
+                            </ng-template>
+                            <ng-template let-car="rowData" pTemplate="body">
+                                    <div class="button-row tabel-action">
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="arttributeEdit(rowIndex)" (click)="attributeForm.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div>
+                            </ng-template>
+                        </p-column>
+                    </p-dataTable>
+
+                </div>  
+              </mat-tab>
+              <mat-tab label="Description" *ngIf="ProductType != 'Purchased'">
+                No content  
+              </mat-tab>
+              <mat-tab label="Price List">
+                <div class="demo-tab-content">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                  Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+                  In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+                  feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+                  orci enim rutrum enim, vel tempor sapien arcu a tellus.
+                  <br />
+                  <br />
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                  Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+                  In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+                  feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+                  orci enim rutrum enim, vel tempor sapien arcu a tellus.
+                </div>  
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+
+      </form>
+
+  <!-- Account Settings Payment Terms Edit Model -->
+    <div class="modal fade" bsModal #attributeForm="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit Payment Terms</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="attributeForm.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                            
+                        <div class="col-sm-6" style="margin-bottom:20px;">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput type="text"  id="vin" [(ngModel)]="car.vin"  placeholder="vin">
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6" style="margin-bottom:20px;">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput type="text" id="year" [(ngModel)]="car.year"  placeholder="year">
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-danger" color="accent" (click)="delete()" (click)="attributeForm.hide()"> Delete </button>
+                    <button mat-raised-button color="accent" (click)="save()" (click)="attributeForm.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </mat-card>
+
+
+        <!-- Account Settings Delete Confirmation Model -->
+        <ng-template #DeleteConfirm>
+            <div class="modal-body text-center">
+                <p>Are You Sure You Whant To Delete This Data ?</p>
+                <button type="button" mat-raised-button class="bg-color-warning" color="accent" (click)="declineDelete()" >No</button>
+                <button type="button" mat-raised-button color="accent" class="btn btn-default" (click)="confirmDelete()" >Yes</button>
+            </div>
+        </ng-template>
+
+        
+
+
+</div>

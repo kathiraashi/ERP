@@ -13,6 +13,8 @@ import { HrmsSettingsComponent } from './settings/hrms-settings/hrms-settings.co
 import { HrSettingsComponent } from './settings/hr-settings/hr-settings.component';
 import { InventorySettingsComponent } from './settings/inventory-settings/inventory-settings.component';
 import { ProductSettingsComponent } from './settings/product-settings/product-settings.component';
+import { ProductsComponent } from './products/products/products.component';
+import { ProductsAddComponent } from './products/products-add/products-add.component';
 
 
 const appRoutes: Routes = [
@@ -28,7 +30,9 @@ const appRoutes: Routes = [
     { path: 'hrmsSettings',         component: HrmsSettingsComponent,           data: { animation: { value: 'hrmsSettings', } }        },
     { path: 'hrSettings',           component: HrSettingsComponent,             data: { animation: { value: 'hrSettings', } }          },
     { path: 'inventorySettings',    component: InventorySettingsComponent,      data: { animation: { value: 'hrmsSettings', } }        },
-    { path: 'productSettings',      component: ProductSettingsComponent,        data: { animation: { value: 'productSettings', } }     }
+    { path: 'productSettings',      component: ProductSettingsComponent,        data: { animation: { value: 'productSettings', } }     },
+    { path: 'products',             component: ProductsComponent,               data: { animation: { value: 'products', } }            },
+    { path: 'productsAdd',          component: ProductsAddComponent,            data: { animation: { value: 'productsAdd', } }         }
   ];
   
 
