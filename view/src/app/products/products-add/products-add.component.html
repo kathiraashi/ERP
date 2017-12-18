@@ -16,7 +16,7 @@
     </div>
 
     <mat-card class="example-card">
-      <form class="md-float-material" [formGroup]="ProductAddForm" >
+      <form class="md-float-material" [formGroup]="ProductAddForm" (submit)="onsubmit()" >
         <div class="row">
           <div class="col-sm-3 left-select-bar">
               <div class="example-container">
@@ -97,7 +97,7 @@
                             <div class="row">
                                 <div class="col-sm-6 text-left"> <h4> Variants </h4> </div>
                                 <div class="col-sm-6 text-right">
-                                    <button mat-raised-button color="accent" (click)="addAttributeAdd()" (click)="attributeForm.show()" > Add New </button> 
+                                    <button type="button" mat-raised-button color="accent" (click)="addAttributeAdd()" (click)="attributeForm.show()" > Add New </button> 
                                 </div>
                             </div> 
                         </p-header>
@@ -112,20 +112,21 @@
                             <ng-template pTemplate="header">
                                  Action
                             </ng-template>
-                            <ng-template let-car="rowData" pTemplate="body">
+                            <ng-template let-rowId="rowIndex" pTemplate="body">
                                     <div class="button-row tabel-action">
-                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="arttributeEdit(rowIndex)" (click)="attributeForm.show()" > <mat-icon>border_color</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button type="button" mat-mini-fab class="bg-color-info" color="accent" (click)="arttributeEdit(rowId)" (click)="attributeForm.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button type="button" mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
                     </p-dataTable>
-
                 </div>  
               </mat-tab>
-              <mat-tab label="Description" *ngIf="ProductType != 'Purchased'">
+
+              <mat-tab label="Description">
                 No content  
               </mat-tab>
+
               <mat-tab label="Price List">
                 <div class="demo-tab-content">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
@@ -142,13 +143,24 @@
                   orci enim rutrum enim, vel tempor sapien arcu a tellus.
                 </div>  
               </mat-tab>
+
             </mat-tab-group>
           </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="pull-right" style="margin-top:20px;">
+                        <button type="reset" mat-raised-button class="bg-color-warning" color="accent" (click)="formReset()"> Reset </button>
+                        <button type="submit" mat-raised-button class="bg-color-success" color="accent"  (click)="formSubmit()" > Submit </button>
+                </div>
+            </div>
         </div>
 
       </form>
 
-  <!-- Account Settings Payment Terms Edit Model -->
+    </mat-card>
+
+    <!-- Account Settings Payment Terms Edit Model -->
     <div class="modal fade" bsModal #attributeForm="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" >
             <div class="modal-content">
@@ -158,13 +170,14 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form class="md-float-material" [formGroup]="AttrAddForm" (submit)="formSubmit()">
                 <div class="modal-body">
                     <div class="form-group row">
                             
                         <div class="col-sm-6" style="margin-bottom:20px;">
                             <div class="example-container">
                                 <mat-form-field>
-                                    <input matInput type="text"  id="vin" [(ngModel)]="car.vin"  placeholder="vin">
+                                    <input matInput formControlName="vin" type="text" [(ngModel)]="car.vin"  placeholder="vin">
                                 </mat-form-field>
                             </div>
                         </div>
@@ -172,23 +185,38 @@
                         <div class="col-sm-6" style="margin-bottom:20px;">
                             <div class="example-container">
                                 <mat-form-field>
-                                    <input matInput type="text" id="year" [(ngModel)]="car.year"  placeholder="year">
+                                    <input matInput formControlName="year" type="text" [(ngModel)]="car.year"  placeholder="year">
                                 </mat-form-field>
                             </div>
                         </div>
 
+                        <div class="col-sm-6" style="margin-bottom:20px;">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput formControlName="color" type="text" [(ngModel)]="car.color"  placeholder="color">
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6" style="margin-bottom:20px;">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput formControlName="brand" type="text" [(ngModel)]="car.brand"  placeholder="brand">
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-danger" color="accent" (click)="delete()" (click)="attributeForm.hide()"> Delete </button>
-                    <button mat-raised-button color="accent" (click)="save()" (click)="attributeForm.hide()"> Submit </button>
-                </div>
+                    <button type="reset" mat-raised-button class="bg-color-danger" color="accent" (click)="attributeForm.hide()"> close </button>
+                    <button type="submit" mat-raised-button color="accent" (click)="attributeForm.hide()"> Submit </button>
+                </div> 
+                </form>
             </div>
         </div>
     </div>
-
-
-    </mat-card>
 
 
         <!-- Account Settings Delete Confirmation Model -->

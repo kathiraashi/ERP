@@ -84,13 +84,20 @@ export class LeadsSettingsComponent implements OnInit {
 
 
   createForm(){
-
     this.LeadSourceAddForm = this.formBuilder.group({ leadSource: ['', Validators.compose([ Validators.required ])] });
-    this.LeadSourceEditForm= this.formBuilder.group({ leadSource: ['', Validators.compose([ Validators.required ])] });
-
+    this.LeadSourceEditForm = this.formBuilder.group({ leadSource: ['', Validators.compose([ Validators.required ])] });
   };//createForm
   
 
+  leadSourceEditSubmit(){
+    console.log(this.LeadSourceEditForm.value.leadSource);
+    this.LeadSourceEditForm.reset();
+  }
+
+  leadSourceAddSubmit(){
+    console.log(this.LeadSourceAddForm.value.leadSource);
+    this.LeadSourceAddForm.reset();
+  }
 
 
 }

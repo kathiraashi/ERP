@@ -84,17 +84,15 @@
     <div class="modal fade" bsModal #LeadSourceAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Add Lead Source </h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="LeadSourceAdd.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="LeadSourceAddForm" (submit) = onRgisterSubmit() >
-            
+                <form class="md-float-material" [formGroup]="LeadSourceAddForm" (submit)="leadSourceAddSubmit()" >
+                    <div class="modal-header">
+                        <h4 class="modal-title pull-left">Add Lead Source </h4>
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="LeadSourceAdd.hide()">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
                         <div class="form-group row">
-
                             <div class="col-sm-6" style="margin-bottom:20px;">
                                 <div class="example-container">
                                     <mat-form-field>
@@ -103,15 +101,13 @@
                                 </div>
                                 <div class="col-sm-8  color-danger" *ngIf="LeadSourceAddForm.controls.leadSource.errors?.required && LeadSourceAddForm.controls.leadSource.dirty" > Lead Source Name Is Required  </div>
                             </div>
-                            
                         </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="LeadSourceAdd.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="LeadSourceAdd.hide()"> Submit </button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" mat-raised-button class="bg-color-warning" color="accent" (click)="LeadSourceAdd.hide()"> Close </button>
+                        <button type="submit" mat-raised-button color="accent" (click)="LeadSourceAdd.hide()"> Submit </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -120,34 +116,30 @@
     <div class="modal fade" bsModal #LeadSourceEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Edit Lead Source</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="LeadSourceEdit.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="LeadSourceEditForm" (submit) = onCrmSubmit() >
-            
-                        <div class="form-group row">
-                                
-                          <div class="col-sm-6" style="margin-bottom:20px;">
-                              <div class="example-container">
-                                  <mat-form-field>
-                                      <input matInput type="text" formControlName="leadSource"  name="leadSource" placeholder="Lead Source">
-                                  </mat-form-field>
-                              </div>
-                              <div class="col-sm-8  color-danger" *ngIf="LeadSourceEditForm.controls.leadSource.errors?.required && LeadSourceEditForm.controls.leadSource.dirty" > Lead Source Name Is Required  </div>
-                          </div>
-                            
+                <form class="md-float-material" [formGroup]="LeadSourceEditForm" (submit)="leadSourceEditSubmit()" >
+                    <div class="modal-header">
+                        <h4 class="modal-title pull-left">Edit Lead Source</h4>
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="LeadSourceEdit.hide()">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">       
+                            <div class="col-sm-6" style="margin-bottom:20px;">
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <input matInput type="text" formControlName="leadSource"  name="leadSource" placeholder="Lead Source">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-8  color-danger" *ngIf="LeadSourceEditForm.controls.leadSource.errors?.required && LeadSourceEditForm.controls.leadSource.dirty" > Lead Source Name Is Required  </div>
+                            </div> 
                         </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="LeadSourceEdit.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="LeadSourceEdit.hide()"> Submit </button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" mat-raised-button class="bg-color-warning" color="accent" (click)="LeadSourceEdit.hide()"> Close </button>
+                        <button type="submit"mat-raised-button color="accent" (click)="LeadSourceEdit.hide()"> Submit </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

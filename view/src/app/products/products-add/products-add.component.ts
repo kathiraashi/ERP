@@ -22,13 +22,14 @@ import { CarService} from '../../service/carservice';
 export class ProductsAddComponent implements OnInit {
 
   // datatable primng
-  cars: Car[];
+  cars=[];
   cols: any[];
   displayDialog: boolean;
   car: Car = new PrimeCar();
   selectedCar: Car;
   newCar: boolean;
   msgs: Message[] = [];
+  rowId;
 
 
   //modal 
@@ -36,6 +37,7 @@ export class ProductsAddComponent implements OnInit {
 
   //form
   ProductAddForm: FormGroup;
+  AttrAddForm: FormGroup;
 
   productTypes = [ 'Stockble', 'Consumable', 'Service'];
   unitofMeasures = [ 'Unit of Measures-One', 'Unit of Measures-Two', 'Unit of Measures-Three'];
@@ -48,6 +50,7 @@ export class ProductsAddComponent implements OnInit {
                 private messageService: MessageService 
               ) {
     this.createForm();
+    this.addForm();
   } //constructor
 
   ngOnInit() {
@@ -57,50 +60,34 @@ export class ProductsAddComponent implements OnInit {
 
   addAttributeAdd(){
     this.car = new PrimeCar();
+    this.newCar = true;
   }
 
-  arttributeEdit(data){
-    console.log(data);
+  arttributeEdit(id){
+    this.rowId = id;
+    this.car = this.cars[id];
+    console.log(this.car);
+    this.newCar = false;
   }
 
-  onRgisterSubmit(){
+  onsubmit(){
     console.log('submit');
   }
 
-
-  save() {
-    console.log(this.car);
-      let cars = [...this.cars];
-      cars.push(this.car);
-      this.cars = cars;
-      this.car = null;
+  formSubmit(){
+    let cars = [...this.cars];
+    if(!this.newCar){
+      this.cars[this.rowId]=this.car;
+      console.log(this.car);
+    }else{
+      console.log(this.car);
+     this.cars.push( Object.assign({}, this.car));
+     this.cars=this.cars.slice();
+    }
+    this.cars= cars;
   }
 
-  delete() {
-      let index = this.findSelectedCarIndex();
-      this.cars = this.cars.filter((val,i) => i!=index);
-      this.car = null;
-      this.displayDialog = false;
-  }    
-
-  onRowSelect(event) {
-      this.newCar = false;
-      this.car = this.cloneCar(event.data);
-      this.displayDialog = true;
-  }
-
-  cloneCar(c: Car): Car {
-      let car = new PrimeCar();
-      for(let prop in c) {
-          car[prop] = c[prop];
-      }
-      return car;
-  }
-
-  findSelectedCarIndex(): number {
-      return this.cars.indexOf(this.selectedCar);
-  }
-
+  
 
   
   openModal(template: TemplateRef<any>) {
@@ -134,11 +121,20 @@ export class ProductsAddComponent implements OnInit {
       salesTax:  ['', Validators.compose([ Validators.required ])],
       hsnCode:  ['', Validators.compose([ Validators.required ])]
     });
+  };
+  addForm(){
+    this.AttrAddForm= this.formBuilder.group({ 
+      vin: ['', Validators.compose([ Validators.required ])],
+      year:  ['', Validators.compose([ Validators.required ])],
+      color: ['', Validators.compose([ Validators.required ])],
+      brand:  ['', Validators.compose([ Validators.required ])]
+    });
+
   };//createForm
   
 
 }
 
 class PrimeCar implements Car {
-  constructor(public vin?, public year?) {}
+  constructor(public vin?, public year?, public color?, public brand?) {}
 }
