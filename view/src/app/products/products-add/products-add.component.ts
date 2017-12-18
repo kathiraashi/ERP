@@ -1,6 +1,6 @@
 // default modules
 import { Component, OnInit, TemplateRef  } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormControl, FormArray} from '@angular/forms';
 import { DefaultUrlHandlingStrategy } from '@angular/router/src/url_handling_strategy';
 
 //Feture Modules
@@ -30,6 +30,7 @@ export class ProductsAddComponent implements OnInit {
   newCar: boolean;
   msgs: Message[] = [];
   rowId;
+  deleteId;
 
 
   //modal 
@@ -39,12 +40,15 @@ export class ProductsAddComponent implements OnInit {
   ProductAddForm: FormGroup;
   AttrAddForm: FormGroup;
 
+  invoiceForm: FormGroup;
+
   productTypes = [ 'Stockble', 'Consumable', 'Service'];
   unitofMeasures = [ 'Unit of Measures-One', 'Unit of Measures-Two', 'Unit of Measures-Three'];
   salesTaxes = [ 'Sales Tax-One', 'Sales Tax-Two', 'Sales Tax-Three'];
   vin;
 
   constructor(  private formBuilder: FormBuilder,
+                private _formBuild: FormBuilder,
                 private modalService: BsModalService,
                 private carService: CarService,
                 private messageService: MessageService 
@@ -55,10 +59,50 @@ export class ProductsAddComponent implements OnInit {
 
   ngOnInit() {
     this.carService.getCarsSmall().then(cars => this.cars = cars);
+
+    this.invoiceForm = this._formBuild.group({
+      Package_Title: [''],
+      HotelData: this._formBuild.array([this.addRows()])
+    });
+
   }//ngOnInit
 
 
+
+  addRows() {
+    let group = this._formBuild.group({
+      Htitle: [''],
+      HDescription: [''],
+      hotelStar: [],
+      RoomData: this._formBuild.array([])
+    });
+    this.addRoom(group.controls.RoomData)
+    return group;
+  }
+  
+  addHotel() {
+    const control: FormArray = this.invoiceForm.get(`HotelData`) as FormArray;
+    control.push(this.addRows());
+  }
+  
+  addRoom(hotel:any) {
+    let group = this._formBuild.group({
+      Hotel_Room_Type: ['']
+    })
+    hotel.push(group)
+  }
+  
+  removeRooms(hotel, index) { 
+    hotel.controls.RoomData.removeAt(index)
+    
+  }
+
+
+
+
   addAttributeAdd(){
+    this.AttrAddForm.reset();
+    this.AttrAddForm.markAsUntouched();
     this.car = new PrimeCar();
     this.newCar = true;
   }
@@ -66,7 +110,6 @@ export class ProductsAddComponent implements OnInit {
   arttributeEdit(id){
     this.rowId = id;
     this.car = this.cars[id];
-    console.log(this.car);
     this.newCar = false;
   }
 
@@ -74,27 +117,25 @@ export class ProductsAddComponent implements OnInit {
     console.log('submit');
   }
 
-  formSubmit(){
-    let cars = [...this.cars];
+  formSubmit(){ 
     if(!this.newCar){
-      this.cars[this.rowId]=this.car;
-      console.log(this.car);
+      let cars = [...this.cars];
+      this.cars[this.rowId] = this.car;
+      this.cars= cars;
     }else{
-      console.log(this.car);
      this.cars.push( Object.assign({}, this.car));
-     this.cars=this.cars.slice();
+     this.cars = this.cars.slice();
     }
-    this.cars= cars;
   }
-
   
-
-  
-  openModal(template: TemplateRef<any>) {
+  openModal(roindex, template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    this.deleteId = roindex;
   }
 
-  confirmDelete(): void {
+  confirmDelete(index): void {
+    console.log(index);
+    this.cars = this.cars.filter((val,i) => i!=index);
     this.modalRef.hide();
     this.msgs = [];
     this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
@@ -124,10 +165,10 @@ export class ProductsAddComponent implements OnInit {
   };
   addForm(){
     this.AttrAddForm= this.formBuilder.group({ 
-      vin: ['', Validators.compose([ Validators.required ])],
-      year:  ['', Validators.compose([ Validators.required ])],
-      color: ['', Validators.compose([ Validators.required ])],
-      brand:  ['', Validators.compose([ Validators.required ])]
+      vin: ['', Validators.compose([ ])],
+      year:  ['', Validators.compose([ ])],
+      color: ['', Validators.compose([ ])],
+      brand:  ['', Validators.compose([ ])]
     });
 
   };//createForm

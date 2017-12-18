@@ -115,7 +115,7 @@
                             <ng-template let-rowId="rowIndex" pTemplate="body">
                                     <div class="button-row tabel-action">
                                         <button type="button" mat-mini-fab class="bg-color-info" color="accent" (click)="arttributeEdit(rowId)" (click)="attributeForm.show()" > <mat-icon>border_color</mat-icon> </button>
-                                        <button type="button" mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button type="button" mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(rowId, DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -124,7 +124,30 @@
               </mat-tab>
 
               <mat-tab label="Description">
-                No content  
+                <button (click)="addHotel()">Add Hotel</button>
+                <form [formGroup]="invoiceForm">
+                <label>Package Title: </label>
+                <input formControlName="Package_Title"/>
+                <hr>
+                <div formArrayName="HotelData">
+                  <div *ngFor="let hotel of invoiceForm.controls.HotelData.controls; let i = index" [formGroupName]="i" >
+                    <fieldset>
+                      <label>Hotel Title </label>
+                      <input formControlName="Htitle" />
+                      <button (click)="addRoom(hotel.controls.RoomData)">Add Room</button>
+                      <div formArrayName="RoomData">
+                        <div *ngFor="let room of hotel.controls.RoomData.controls; let j = index" [formGroupName]="j">
+                          <fieldset>
+                            <label>Room Type</label>
+                            <input formControlName="Hotel_Room_Type">
+                            <button (click)="removeRooms(hotel, j)">Remove</button>
+                          </fieldset>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+                </form>
               </mat-tab>
 
               <mat-tab label="Price List">
@@ -210,7 +233,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" mat-raised-button class="bg-color-danger" color="accent" (click)="attributeForm.hide()"> close </button>
+                    <button type="button" mat-raised-button class="bg-color-danger" color="accent" (click)="attributeForm.hide()"> close </button>
                     <button type="submit" mat-raised-button color="accent" (click)="attributeForm.hide()"> Submit </button>
                 </div> 
                 </form>
@@ -224,7 +247,7 @@
             <div class="modal-body text-center">
                 <p>Are You Sure You Whant To Delete This Data ?</p>
                 <button type="button" mat-raised-button class="bg-color-warning" color="accent" (click)="declineDelete()" >No</button>
-                <button type="button" mat-raised-button color="accent" class="btn btn-default" (click)="confirmDelete()" >Yes</button>
+                <button type="button" mat-raised-button color="accent" class="btn btn-default" (click)="confirmDelete(deleteId)" >Yes</button>
             </div>
         </ng-template>
 
