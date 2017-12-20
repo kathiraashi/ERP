@@ -37,9 +37,9 @@ export class ProductsAddComponent implements OnInit {
 
   //form
   ProductAddForm: FormGroup;
-  AttrAddForm: FormGroup;
-
-  public invoiceForm: FormGroup;
+  priceListAddForm: FormGroup;
+  AttributeForm: FormGroup;
+  descriptionForm: FormGroup;
 
   productTypes = [ 'Stockble', 'Consumable', 'Service'];
   unitofMeasures = [ 'Unit of Measures-One', 'Unit of Measures-Two', 'Unit of Measures-Three'];
@@ -53,70 +53,63 @@ export class ProductsAddComponent implements OnInit {
                 private _fb: FormBuilder 
               ) {
     this.createForm();
-    this.addForm();
   } //constructor
 
   ngOnInit() {
     this.carService.getCarsSmall().then(cars => this.cars = cars);
 
-
-    this.invoiceForm = this._fb.group({
-      itemRows: this._fb.array([this.initItemRows()])
+    //attribute Array
+    this.AttributeForm = this._fb.group({
+      AttributeRows: this._fb.array([this.initAttributeRows()])
     });
+
   }//ngOnInit
 
 
-
-  initItemRows() {
+  //Attribute Array
+  initAttributeRows() {
     return this._fb.group({
       attrname: [''],
       attrvalue:['']
     });
-}
-
-addNewRow() {
-    const control = <FormArray>this.invoiceForm.controls['itemRows'];
-    control.push(this.initItemRows());
-}
-
-deleteRow(index: number) {
-    const control = <FormArray>this.invoiceForm.controls['itemRows'];
-    control.removeAt(index);
-}
+  }
+  addNewAttribute() {
+      const control = <FormArray>this.AttributeForm.controls['AttributeRows'];
+      control.push(this.initAttributeRows());
+  }
+  deleteRow(index: number) {
+      const control = <FormArray>this.AttributeForm.controls['AttributeRows'];
+      control.removeAt(index);
+  }
 
 
 
-
-  addAttributeAdd(){
+  //price List
+  addpriceListAdd(){
     this.car = new PrimeCar();
     this.newCar = true;
   }
-
-  arttributeEdit(id){
+  priceListEdit(id){
     this.rowId = id;
     this.car = this.cars[id];
-    console.log(this.car);
     this.newCar = false;
   }
-
-  onsubmit(){
-    console.log('submit');
-  }
-
   formSubmit(){
     let cars = [...this.cars];
     if(!this.newCar){
       this.cars[this.rowId]=this.car;
-      console.log(this.car);
     }else{
-      console.log(this.car);
      this.cars= cars;
      this.cars.push( Object.assign({}, this.car));
      this.cars=this.cars.slice();
-    }
-    
+    }  
   }
 
+
+
+  onsubmit(){
+    console.log('submit');
+  }
   
 
   
@@ -151,20 +144,21 @@ deleteRow(index: number) {
       salesTax:  ['', Validators.compose([ Validators.required ])],
       hsnCode:  ['', Validators.compose([ Validators.required ])]
     });
-  };
-  addForm(){
-    this.AttrAddForm= this.formBuilder.group({ 
+
+    this.descriptionForm= this.formBuilder.group({ 
+      desQuotations: ['', Validators.compose([ Validators.required ])],
+      desVendor:  ['', Validators.compose([ Validators.required ])],
+      desDelivary: ['', Validators.compose([ Validators.required ])]
+    });
+
+    this.priceListAddForm= this.formBuilder.group({ 
       vin: ['', Validators.compose([ Validators.required ])],
       year:  ['', Validators.compose([ Validators.required ])],
       color: ['', Validators.compose([ Validators.required ])],
       brand:  ['', Validators.compose([ Validators.required ])]
     });
 
-    this.invoiceForm= this.formBuilder.group({ 
-      Package_Title: ['', Validators.compose([ Validators.required ])]
-      });
-
-  };//createForm
+  }; //createForm
   
 
 }

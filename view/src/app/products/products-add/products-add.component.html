@@ -94,12 +94,12 @@
                 <div class="demo-tab-content">
                     <div class="row" style="margin-bottom:10px;">
                         <div class="col-sm-12">
-                            <button type="button" mat-raised-button color="accent" (click)="addNewRow()" class="pull-right">Add new Attribute </button>
+                            <button type="button" mat-raised-button color="accent" (click)="addNewAttribute()" class="pull-right">Add new Attribute </button>
                         </div>
                     </div>
-                    <form [formGroup]="invoiceForm">
-                        <div formArrayName="itemRows">
-                        <div *ngFor="let itemrow of invoiceForm.controls.itemRows.controls; let i=index"  [formGroupName]="i">
+                    <form [formGroup]="AttributeForm">
+                        <div formArrayName="AttributeRows">
+                        <div *ngFor="let itemrow of AttributeForm.controls.AttributeRows.controls; let i=index"  [formGroupName]="i">
                             <div class="row">
                                 <div class="col-sm-5"> 
                                     <div class="example-container">
@@ -116,7 +116,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-2" style="line-height:60px;"> 
-                                    <button mat-mini-fab class="bg-color-danger" color="accent" *ngIf="invoiceForm.controls.itemRows.controls.length > 1" (click)="deleteRow(i)">
+                                    <button mat-mini-fab class="bg-color-danger" color="accent" *ngIf="AttributeForm.controls.AttributeRows.controls.length > 1" (click)="deleteRow(i)">
                                         <mat-icon>delete_forever</mat-icon>
                                     </button> 
                                 </div>
@@ -129,7 +129,31 @@
 
               <mat-tab label="Description">
                 <div class="demo-tab-content">
-                rgfhfmgnds
+                    <form [formGroup]="descriptionForm">
+                        <div class="row">
+                            <div class="col-sm-4"> 
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <textarea matInput type="text" formControlName="desQuotations"  name="desQuotations"  placeholder="Description For Quotations"></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-4"> 
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <textarea matInput type="text" formControlName="desVendor"  name="desVendor"  placeholder="Description For Vendor"></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-4"> 
+                                <div class="example-container">
+                                    <mat-form-field>
+                                        <textarea matInput type="text" formControlName="desDelivary"  name="desDelivary"  placeholder="Description For Delivary"></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
               </mat-tab>
 
@@ -138,9 +162,9 @@
                     <p-dataTable [value]="cars" sortMode="multiple" [rows]="5" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[5,10]">
                         <p-header>
                             <div class="row">
-                                <div class="col-sm-6 text-left"> <h4> Variants </h4> </div>
+                                <div class="col-sm-6 text-left"> <h4> Price List </h4> </div>
                                 <div class="col-sm-6 text-right">
-                                    <button type="button" mat-raised-button color="accent" (click)="addAttributeAdd()" (click)="attributeForm.show()" > Add New </button> 
+                                    <button type="button" mat-raised-button color="accent" (click)="addpriceListAdd()" (click)="priceListForm.show()" > Add New </button> 
                                 </div>
                             </div> 
                         </p-header>
@@ -161,7 +185,7 @@
                             </ng-template>
                             <ng-template let-rowId="rowIndex" pTemplate="body">
                                     <div class="button-row tabel-action">
-                                        <button type="button" mat-mini-fab class="bg-color-info" color="accent" (click)="arttributeEdit(rowId)" (click)="attributeForm.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button type="button" mat-mini-fab class="bg-color-info" color="accent" (click)="priceListEdit(rowId)" (click)="priceListForm.show()" > <mat-icon>border_color</mat-icon> </button>
                                         <button type="button" mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(rowId, DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
@@ -187,16 +211,16 @@
     </mat-card>
 
     <!-- Account Settings Payment Terms Edit Model -->
-    <div class="modal fade" bsModal #attributeForm="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" bsModal #priceListForm="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" >
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title pull-left">Edit Payment Terms</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="attributeForm.hide()">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="priceListForm.hide()">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="md-float-material" [formGroup]="AttrAddForm" (submit)="formSubmit()">
+                <form class="md-float-material" [formGroup]="priceListAddForm" (submit)="formSubmit()">
                 <div class="modal-body">
                     <div class="form-group row">
                             
@@ -236,8 +260,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" mat-raised-button class="bg-color-danger" color="accent" (click)="attributeForm.hide()"> close </button>
-                    <button type="submit" mat-raised-button color="accent" (click)="attributeForm.hide()"> Submit </button>
+                    <button type="button" mat-raised-button class="bg-color-danger" color="accent" (click)="priceListForm.hide()"> close </button>
+                    <button type="submit" mat-raised-button color="accent" (click)="priceListForm.hide()"> Submit </button>
                 </div> 
                 </form>
             </div>

@@ -17,7 +17,15 @@
 
     <mat-card class="example-card">
       <div class="row">
-       
+        <div class="col-sm-4">
+          <mat-card class="example-card" [class.hover-shadow]="Hovered1" (mouseover)="Hovered1=true" (mouseout)="Hovered1=false"></mat-card>
+        </div>
+        <div class="col-sm-4">
+          <mat-card class="example-card" [class.hover-shadow]="Hovered2" (mouseover)="Hovered2=true" (mouseout)="Hovered2=false"></mat-card>
+        </div>
+        <div class="col-sm-4">
+          <mat-card class="example-card" [class.hover-shadow]="Hovered3" (mouseover)="Hovered3=true" (mouseout)="Hovered3=false"></mat-card>
+        </div>
       </div>
     </mat-card>
 
