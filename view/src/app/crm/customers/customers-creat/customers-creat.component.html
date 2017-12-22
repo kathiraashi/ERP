@@ -1,0 +1,95 @@
+<p-growl [value]="msgs"></p-growl>
+
+<div class="page">
+
+    <div class="page-identity">
+      <div class="page-name">
+        <h5> Creat Customers </h5>
+      </div>
+      <div class="page-track">
+        <ul>
+          <li><a routerLink="/crmCustomersList"> Customers List </a></li>
+          <li><i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
+          <li> Creat Customers </li>
+        </ul>
+      </div>
+    </div>
+
+    <mat-card class="example-card">
+      <form action="" [formGroup]="CreatCustomerForm" (submit)="onRgisterSubmit()" method="post">
+        <div class="row">
+            <div class="col-sm-4" style="margin-bottom: 30px">
+                <div class="example-container">
+                    <mat-form-field>
+                        <input matInput type="text" formControlName="createdBy" readonly  name="createdBy" placeholder="Created By">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-4" style="margin-bottom: 30px">
+                <div class="example-container">
+                    <mat-form-field>
+                        <input matInput type="text" formControlName="customerName"  name="customerName" placeholder="Customer Name">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-4" style="margin-bottom: 30px">
+                <div class="example-container">
+                    <mat-form-field>
+                        <input matInput type="text" formControlName="phoneNumber"  name="phoneNumber" placeholder="Phone Number">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-4" style="margin-bottom: 30px">
+                <div class="example-container">
+                    <mat-form-field>
+                        <input matInput type="text" formControlName="emailAddress"  name="emailAddress" placeholder="Email Address">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-4" style="margin-bottom: 30px">
+                <div class="example-container">
+                    <mat-form-field>
+                        <input matInput type="text" formControlName="website"  name="website" placeholder="Website">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-4" style="margin-bottom: 30px">
+                <div class="example-container">
+                    <mat-form-field>
+                        <input matInput type="text" formControlName="noOfEployees"  name="noOfEployees" placeholder="No.Of Eployees">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-4" style="margin-bottom: 30px">
+                <div class="example-container">
+                    <mat-form-field>
+                        <mat-select formControlName="accountType" placeholder="Account Type">
+                            <mat-option *ngFor="let AccountType of AccountTypes" [value]="AccountType">{{AccountType}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-4" style="margin-bottom: 30px">
+                <div class="example-container">
+                    <mat-form-field>
+                        <mat-select formControlName="industryType" placeholder="Industry Type">
+                            <mat-option *ngFor="let IndustryType of IndustryTypes" [value]="IndustryType">{{IndustryType}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-4" style="margin-bottom: 30px">
+                <div class="example-container">
+                    <mat-form-field>
+                        <mat-select formControlName="ownershipType" placeholder="Ownership Type">
+                            <mat-option *ngFor="let OwnershipType of OwnershipTypes" [value]="OwnershipType">{{OwnershipType}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </div>
+      </form>
+    </mat-card>
+
+</div>

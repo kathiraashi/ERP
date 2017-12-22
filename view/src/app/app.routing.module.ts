@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UiComponent } from './ui/ui.component';
+//settings
 import { CrmSettingsComponent } from './settings/crm-settings/crm-settings.component';
 import { CompanySettingsComponent } from './settings/company-settings/company-settings.component';
 import { LeadsSettingsComponent } from './settings/leads-settings/leads-settings.component';
@@ -13,8 +14,12 @@ import { HrmsSettingsComponent } from './settings/hrms-settings/hrms-settings.co
 import { HrSettingsComponent } from './settings/hr-settings/hr-settings.component';
 import { InventorySettingsComponent } from './settings/inventory-settings/inventory-settings.component';
 import { ProductSettingsComponent } from './settings/product-settings/product-settings.component';
+//products
 import { ProductsComponent } from './products/products/products.component';
 import { ProductsAddComponent } from './products/products-add/products-add.component';
+//crm
+import { CustomersListComponent } from './crm/customers/customers-list/customers-list.component';
+import { CustomersCreatComponent } from './crm/customers/customers-creat/customers-creat.component';
 
 
 const appRoutes: Routes = [
@@ -22,6 +27,7 @@ const appRoutes: Routes = [
     { path: 'login',                component: LoginComponent,                  data: { animation: { value: 'login', } }               },
     { path: 'dashboard',            component: DashboardComponent,              data: { animation: { value: 'dashboard', } }           },
     { path: 'ui',                   component: UiComponent,                     data: { animation: { value: 'ui', } }                  },
+    //Settings
     { path: 'crmSettings',          component: CrmSettingsComponent,            data: { animation: { value: 'crmSettings', } }         },
     { path: 'companySettings',      component: CompanySettingsComponent,        data: { animation: { value: 'companySettings', } }     },
     { path: 'leadsSettings',        component: LeadsSettingsComponent,          data: { animation: { value: 'leadsSettings', } }       },
@@ -31,8 +37,12 @@ const appRoutes: Routes = [
     { path: 'hrSettings',           component: HrSettingsComponent,             data: { animation: { value: 'hrSettings', } }          },
     { path: 'inventorySettings',    component: InventorySettingsComponent,      data: { animation: { value: 'hrmsSettings', } }        },
     { path: 'productSettings',      component: ProductSettingsComponent,        data: { animation: { value: 'productSettings', } }     },
+    //Products
     { path: 'products',             component: ProductsComponent,               data: { animation: { value: 'products', } }            },
-    { path: 'productsAdd',          component: ProductsAddComponent,            data: { animation: { value: 'productsAdd', } }         }
+    { path: 'productsAdd',          component: ProductsAddComponent,            data: { animation: { value: 'productsAdd', } }         },
+    //crm
+    { path: 'crmCustomersList',     component: CustomersListComponent,          data: { animation: { value: 'crmCustomersList', } }    },
+    { path: 'crmCreatCustomers',    component: CustomersCreatComponent,         data: { animation: { value: 'crmCreatCustomers', } }   }
   ];
   
 

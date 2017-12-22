@@ -38,6 +38,8 @@ import { InventorySettingsComponent } from './settings/inventory-settings/invent
 import { ProductSettingsComponent } from './settings/product-settings/product-settings.component';
 import { ProductsComponent } from './products/products/products.component';
 import { ProductsAddComponent } from './products/products-add/products-add.component';
+import { CustomersListComponent } from './crm/customers/customers-list/customers-list.component';
+import { CustomersCreatComponent } from './crm/customers/customers-creat/customers-creat.component';
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { ProductsAddComponent } from './products/products-add/products-add.compo
     InventorySettingsComponent,
     ProductSettingsComponent,
     ProductsComponent,
-    ProductsAddComponent
+    ProductsAddComponent,
+    CustomersListComponent,
+    CustomersCreatComponent
   ],
   imports: [
     CommonModule,

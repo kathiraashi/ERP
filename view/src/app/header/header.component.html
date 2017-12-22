@@ -7,6 +7,13 @@
       <ul class="menus">
         <li class="menu-list"><a routerLink="/dashboard"> Dashboard </a></li>
         <li class="menu-list">
+          <a class="tree-menus"> CRM <i class="fa fa-angle-double-right" aria-hidden="true"></i> 
+            <ul class="tree-view">
+              <li class="tree-list"><a routerLink="/crmCustomersList"> Customers </a></li>
+            </ul>
+          </a>
+        </li>
+        <!-- <li class="menu-list">
           <a class="tree-menus" routerLink="/ui"> Ui Examples <i class="fa fa-angle-double-right" aria-hidden="true"></i>
             <ul class="tree-view">
               <li class="tree-list"> <a href=""> Submenu One </a></li>
@@ -27,10 +34,9 @@
               </li>
             </ul>
           </a>
-        </li>
-        <li class="menu-list"><a href=""> Menu Three</a></li>
+        </li> -->
+        <li class="menu-list"><a routerLink="/ui" > Examples </a></li>
         <li class="menu-list"><a routerLink="/products"> Products </a></li>
-        <li class="menu-list"><a routerLink="/productsAdd" > Products Add </a></li>
         <li class="menu-list">
           <a class="tree-menus"> Settings <i class="fa fa-angle-double-right" aria-hidden="true"></i> 
             <ul class="tree-view">
@@ -44,8 +50,8 @@
               <li class="tree-list"><a routerLink="/inventorySettings"> Inventory Settings </a></li>
               <li class="tree-list"><a routerLink="/productSettings"> Product Settings </a></li>
             </ul>
-         </a>
-      </li>
+          </a>
+        </li>
       </ul>
     </div>
   </div>

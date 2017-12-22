@@ -30,6 +30,7 @@ export class ProductsAddComponent implements OnInit {
   newCar: boolean;
   msgs: Message[] = [];
   rowId;
+  deleterowId;
 
 
   //modal 
@@ -116,14 +117,20 @@ export class ProductsAddComponent implements OnInit {
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
+  deleteId(rowid){
+    this.deleterowId = rowid;
+  }
 
-  confirmDelete(): void {
+  confirmDelete(rowid): void {
+    this.cars = this.cars.filter((val,i) => i!=rowid);
     this.modalRef.hide();
+    this.deleterowId = '';
     this.msgs = [];
     this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
   }
 
   declineDelete(): void {
+    this.deleterowId = '';
     this.modalRef.hide();
     this.msgs = [];
     this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Declined'});
