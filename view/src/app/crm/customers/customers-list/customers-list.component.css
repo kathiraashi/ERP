@@ -1,3 +1,37 @@
 .hover-shadow{
     box-shadow: 0 1px 10px 3px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12) !important
   }
+  .opacity-0{
+    opacity: 0;
+  }
+  .opacity-1{
+    opacity: 1;
+  }
+  .list-card{
+    padding: 5px !important;
+  }
+  .list-card-name{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #6c7986;
+    margin: 5px 0px;
+  }
+  .list-card-email{
+    font-weight: 600;
+    color: #6c7986;
+    font-size: 16px;
+    margin: 4px 0px;
+  }
+  .list-card-phone{
+    font-weight: 600;
+    color: #6c7986;
+    font-size: 14px;
+    margin: 8px 0px;
+  }
+  .list-card-address{
+    font-weight: 600;
+    color: #6c7986;
+    font-size: 14px;
+    margin: 0px 0px;
+  }

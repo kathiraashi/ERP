@@ -20,6 +20,7 @@ import { ProductsAddComponent } from './products/products-add/products-add.compo
 //crm
 import { CustomersListComponent } from './crm/customers/customers-list/customers-list.component';
 import { CustomersCreatComponent } from './crm/customers/customers-creat/customers-creat.component';
+import { CustomersViewComponent } from './crm/customers/customers-view/customers-view.component';
 
 
 const appRoutes: Routes = [
@@ -42,7 +43,9 @@ const appRoutes: Routes = [
     { path: 'productsAdd',          component: ProductsAddComponent,            data: { animation: { value: 'productsAdd', } }         },
     //crm
     { path: 'crmCustomersList',     component: CustomersListComponent,          data: { animation: { value: 'crmCustomersList', } }    },
-    { path: 'crmCreatCustomers',    component: CustomersCreatComponent,         data: { animation: { value: 'crmCreatCustomers', } }   }
+    { path: 'crmCreatCustomers',    component: CustomersCreatComponent,         data: { animation: { value: 'crmCreatCustomers', } }   },
+    { path: 'crmViewCustomers',     component: CustomersViewComponent,          data: { animation: { value: 'crmViewCustomers', } }    }
+    
   ];
   
 

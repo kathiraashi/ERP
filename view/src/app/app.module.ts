@@ -40,6 +40,7 @@ import { ProductsComponent } from './products/products/products.component';
 import { ProductsAddComponent } from './products/products-add/products-add.component';
 import { CustomersListComponent } from './crm/customers/customers-list/customers-list.component';
 import { CustomersCreatComponent } from './crm/customers/customers-creat/customers-creat.component';
+import { CustomersViewComponent } from './crm/customers/customers-view/customers-view.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { CustomersCreatComponent } from './crm/customers/customers-creat/custome
     ProductsComponent,
     ProductsAddComponent,
     CustomersListComponent,
-    CustomersCreatComponent
+    CustomersCreatComponent,
+    CustomersViewComponent
   ],
   imports: [
     CommonModule,

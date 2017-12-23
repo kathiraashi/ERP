@@ -7,3 +7,12 @@
     width: 100%;
     height: 45px;
   }
+  .text-style-1{
+    margin-top: 25px;
+    line-height: 30px;
+    font-size: 20px; 
+    font-weight: 700; 
+    color: #6c7986;
+    font-family: 'Rubik', sans-serif;
+    border-bottom: 2px dashed #0464c7;
+  }

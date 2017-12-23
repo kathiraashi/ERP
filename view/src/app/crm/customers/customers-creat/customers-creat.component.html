@@ -1,12 +1,12 @@
 <p-growl [value]="msgs"></p-growl>
 
-<div class="page">
+<div class="page" style="margin-top:130px">
 
-    <div class="page-identity">
+    <div class="page-identity" style="position:fixed; margin-top:-40px;">
       <div class="page-name">
         <h5> Creat Customers </h5>
       </div>
-      <div class="page-track">
+      <div class="page-track" style="width:47%">
         <ul>
           <li><a routerLink="/crmCustomersList"> Customers List </a></li>
           <li><i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
@@ -15,81 +15,217 @@
       </div>
     </div>
 
-    <mat-card class="example-card">
       <form action="" [formGroup]="CreatCustomerForm" (submit)="onRgisterSubmit()" method="post">
         <div class="row">
-            <div class="col-sm-4" style="margin-bottom: 30px">
-                <div class="example-container">
-                    <mat-form-field>
-                        <input matInput type="text" formControlName="createdBy" readonly  name="createdBy" placeholder="Created By">
-                    </mat-form-field>
-                </div>
+            <div class="col-sm-3">
+                <mat-card class="example-card" style="position:fixed;width:23%">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <img src="../../../../assets/profile.png" alt="" style="width:180px;height:180px;border-radius:50px;">
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <button type="button" mat-raised-button class="bg-color-primary" color="accent"> Change Picture </button>
+                        </div>
+                        <div class="col-sm-12" style="margin:20px 0px;">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput type="text" formControlName="companyName" placeholder="Company Name">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="margin-bottom: 20px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput type="text" formControlName="phoneNumber" placeholder="Phone Number">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="margin-bottom: 20px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput type="text" formControlName="emailAddress" placeholder="Email Address">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="margin-bottom: 20px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput type="text" formControlName="website" placeholder="Website">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card>
             </div>
-            <div class="col-sm-4" style="margin-bottom: 30px">
-                <div class="example-container">
-                    <mat-form-field>
-                        <input matInput type="text" formControlName="customerName"  name="customerName" placeholder="Customer Name">
-                    </mat-form-field>
-                </div>
+            <div class="col-sm-9">
+                <mat-card class="example-card" style="margin-bottom:40px;">
+                    <h5 class="text-style-1" style="margin-top:0px;"> Company Details </h5>
+                    <div class="row" style="padding:10px;background-color:#ecf0f5b5">
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput type="text" formControlName="noOfEployees" placeholder="No.Of Eployees">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <mat-select formControlName="accountType" placeholder="Account Type">
+                                        <mat-option *ngFor="let AccountType of AccountTypes" [value]="AccountType">{{AccountType}}</mat-option>
+                                        <mat-option value="none">none</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <mat-select formControlName="industryType" placeholder="Industry Type">
+                                        <mat-option *ngFor="let IndustryType of IndustryTypes" [value]="IndustryType">{{IndustryType}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <mat-select formControlName="ownershipType" placeholder="Ownership Type">
+                                        <mat-option *ngFor="let OwnershipType of OwnershipTypes" [value]="OwnershipType">{{OwnershipType}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <textarea matInput type="text" formControlName="notes" placeholder="Notes"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="text-style-1"> Shipping Address </h5>
+                    <div class="row" style="padding:10px;background-color:#ecf0f5b5">
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput type="text" formControlName="street" placeholder="No / Street">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput type="text" formControlName="area" placeholder="Area">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <mat-select formControlName="country" placeholder="Country">
+                                        <mat-option *ngFor="let Country of Countries" [value]="Country">{{Country}}</mat-option>
+                                        <mat-option value="none">none</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <mat-select formControlName="state" placeholder="State">
+                                        <mat-option *ngFor="let State of States" [value]="State">{{State}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <mat-select formControlName="city" placeholder="City">
+                                        <mat-option *ngFor="let City of Cities" [value]="City">{{City}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput type="text" formControlName="zipCode" placeholder="Zip Code">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div style="margin-top:5px;">
+                                <div class="example-container" style="margin-top:20px;">
+                                    <mat-checkbox formControlName="sameAddress" color="accent" class="bg-color-primary" > Same As The Shipping Address </mat-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="text-style-1"> Billing Address </h5>
+                    <div class="row" style="padding:10px;background-color:#ecf0f5b5">
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput type="text" formControlName="billStreet" placeholder="No / Street">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput type="text" formControlName="billArea" placeholder="Area">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <mat-select formControlName="billCountry" placeholder="Country">
+                                        <mat-option *ngFor="let Country of Countries" [value]="Country">{{Country}}</mat-option>
+                                        <mat-option value="none">none</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <mat-select formControlName="billState" placeholder="State">
+                                        <mat-option *ngFor="let State of States" [value]="State">{{State}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <mat-select formControlName="billCity" placeholder="City">
+                                        <mat-option *ngFor="let City of Cities" [value]="City">{{City}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-bottom: 30px">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <input matInput type="text" formControlName="billZipCode" placeholder="Zip Code">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:20px;"> 
+                        <div class="col-sm-12 text-right">
+                            <button type="button" mat-raised-button class="bg-color-warning" routerLink="/crmCustomersList" color="accent" style="margin-right:20px"> Cancel </button>
+                            <button type="button" mat-raised-button class="bg-color-success" color="accent"> Submit </button>
+                        </div>
+                    </div>
+                </mat-card>
             </div>
-            <div class="col-sm-4" style="margin-bottom: 30px">
-                <div class="example-container">
-                    <mat-form-field>
-                        <input matInput type="text" formControlName="phoneNumber"  name="phoneNumber" placeholder="Phone Number">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="col-sm-4" style="margin-bottom: 30px">
-                <div class="example-container">
-                    <mat-form-field>
-                        <input matInput type="text" formControlName="emailAddress"  name="emailAddress" placeholder="Email Address">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="col-sm-4" style="margin-bottom: 30px">
-                <div class="example-container">
-                    <mat-form-field>
-                        <input matInput type="text" formControlName="website"  name="website" placeholder="Website">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="col-sm-4" style="margin-bottom: 30px">
-                <div class="example-container">
-                    <mat-form-field>
-                        <input matInput type="text" formControlName="noOfEployees"  name="noOfEployees" placeholder="No.Of Eployees">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="col-sm-4" style="margin-bottom: 30px">
-                <div class="example-container">
-                    <mat-form-field>
-                        <mat-select formControlName="accountType" placeholder="Account Type">
-                            <mat-option *ngFor="let AccountType of AccountTypes" [value]="AccountType">{{AccountType}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="col-sm-4" style="margin-bottom: 30px">
-                <div class="example-container">
-                    <mat-form-field>
-                        <mat-select formControlName="industryType" placeholder="Industry Type">
-                            <mat-option *ngFor="let IndustryType of IndustryTypes" [value]="IndustryType">{{IndustryType}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="col-sm-4" style="margin-bottom: 30px">
-                <div class="example-container">
-                    <mat-form-field>
-                        <mat-select formControlName="ownershipType" placeholder="Ownership Type">
-                            <mat-option *ngFor="let OwnershipType of OwnershipTypes" [value]="OwnershipType">{{OwnershipType}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-            </div>
-
         </div>
       </form>
-    </mat-card>
 
 </div>
