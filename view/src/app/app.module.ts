@@ -41,6 +41,7 @@ import { ProductsAddComponent } from './products/products-add/products-add.compo
 import { CustomersListComponent } from './crm/customers/customers-list/customers-list.component';
 import { CustomersCreatComponent } from './crm/customers/customers-creat/customers-creat.component';
 import { CustomersViewComponent } from './crm/customers/customers-view/customers-view.component';
+import { PopupCustomerAddComponent } from './popups/crm/popup-customer-add/popup-customer-add.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { CustomersViewComponent } from './crm/customers/customers-view/customers
     ProductsAddComponent,
     CustomersListComponent,
     CustomersCreatComponent,
-    CustomersViewComponent
+    CustomersViewComponent,
+    PopupCustomerAddComponent
   ],
   imports: [
     CommonModule,
@@ -86,6 +88,6 @@ import { CustomersViewComponent } from './crm/customers/customers-view/customers
   ],
   providers: [CarService],
   bootstrap: [AppComponent],
-  entryComponents: [ExampleComponent]
+  entryComponents: [ExampleComponent, PopupCustomerAddComponent]
 })
 export class AppModule { }

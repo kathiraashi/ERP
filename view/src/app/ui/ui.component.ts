@@ -58,7 +58,9 @@ export class UiComponent implements OnInit {
 // material dialog
   openDialog() {
     this.exampleDialogRef = this.dialog.open(ExampleComponent, {
-      hasBackdrop: true
+      hasBackdrop: true,
+      height: '90%',
+      width: '90%'
     });
 
     this.exampleDialogRef

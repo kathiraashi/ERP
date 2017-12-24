@@ -1,0 +1,63 @@
+<form [formGroup]="PopupCustomerAddForm" (ngSubmit)="submit()">
+  <h1 mat-dialog-title style="text-align:center;margin-top:-20px;margin-bottom:0px"> {{data.type}} </h1>
+  <hr style="margin-top:10px;">
+  <mat-dialog-content style="overflow:initial">
+    <div class="form-group row">
+      <div class="col-sm-6" style="margin-bottom:20px;">
+          <div class="example-container">
+              <mat-form-field>
+                  <input matInput type="text" formControlName="name"  placeholder=" Name ">
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="col-sm-6" style="margin-bottom:20px;">
+          <div class="example-container">
+              <mat-form-field>
+                  <input matInput type="text" formControlName="mobile" placeholder="Mobile">
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="col-sm-6" style="margin-bottom:20px;">
+          <div class="example-container">
+              <mat-form-field>
+                  <input matInput type="text" formControlName="phone" placeholder="Phone">
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="col-sm-6" style="margin-bottom:20px;">
+          <div class="example-container">
+              <mat-form-field>
+                  <input matInput type="text" formControlName="email" placeholder="E-mail">
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="col-sm-6" style="margin-bottom:20px;">
+          <div class="example-container">
+              <mat-form-field>
+                  <input matInput type="text" formControlName="jobTitle" placeholder="Job Title">
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="col-sm-6" style="margin-bottom: 20px">
+          <div class="example-container">
+              <mat-form-field>
+                  <mat-select formControlName="contactRole" placeholder="Contact Role">
+                      <mat-option *ngFor="let ContactRole of ContactRoles" [value]="ContactRole">{{ContactRole}}</mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="col-sm-6" style="margin-bottom:20px;">
+          <div class="example-container">
+              <mat-form-field>
+                  <textarea matInput type="text" formControlName="notes" placeholder=" Notes "></textarea>
+              </mat-form-field>
+          </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
+    <button type="submit" mat-raised-button color="accent" > Submit </button>
+  </mat-dialog-actions>
+</form>

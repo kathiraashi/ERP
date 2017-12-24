@@ -1,17 +1,23 @@
 // default modules
 import { Component, OnInit, TemplateRef  } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { DefaultUrlHandlingStrategy } from '@angular/router/src/url_handling_strategy';
+import { filter } from 'rxjs/operators';
 
 //Feture Modules
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 //custome Modules
 import { Car} from '../../../domain/car';
 import { CarService} from '../../../service/carservice';
+
+
+//popups
+import { PopupCustomerAddComponent } from '../../../popups/crm/popup-customer-add/popup-customer-add.component'
 
 @Component({
   selector: 'app-customers-view',
@@ -46,7 +52,8 @@ export class CustomersViewComponent implements OnInit {
   Statuses = [ 'Status 1', 'Status 2', 'Status 3'];
   Priorities = [ 'Priority 1', 'Priority 2', 'Priority 3'];
 
-  constructor(  private formBuilder: FormBuilder,
+  constructor(  public dialog: MatDialog,
+                private formBuilder: FormBuilder,
                 private modalService: BsModalService,
                 private carService: CarService,
                 private messageService: MessageService 
@@ -66,6 +73,24 @@ export class CustomersViewComponent implements OnInit {
     this.msgs = [];
     this.msgs.push({severity:'info', summary:'Car Select', detail:'Vin: ' + car.vin});
   }//ViewCar
+
+
+  // material dialog 
+  popupReturnValue = '';
+  exampleDialogRef: MatDialogRef<PopupCustomerAddComponent>;
+
+  // material dialog
+  openDialog() {
+   let exampleDialogRef = this.dialog.open(PopupCustomerAddComponent, {
+      data: {
+        type: 'Contact Add Form'
+      }
+   });
+    exampleDialogRef.afterClosed().subscribe(result => console.log(result));
+        
+    }
+
+
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
