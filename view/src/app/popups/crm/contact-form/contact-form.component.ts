@@ -2,24 +2,25 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA  } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
-@Component({
-  selector: 'app-popup-customer-add',
-  templateUrl: './popup-customer-add.component.html',
-  styleUrls: ['./popup-customer-add.component.css']
-})
-export class PopupCustomerAddComponent implements OnInit {
 
-  PopupCustomerAddForm: FormGroup;
+@Component({
+  selector: 'app-contact-form',
+  templateUrl: './contact-form.component.html',
+  styleUrls: ['./contact-form.component.css']
+})
+export class ContactFormComponent implements OnInit {
+
+  CustomerForm: FormGroup;
   ContactRoles = [ 'ContactRole 1', 'ContactRole 2', 'ContactRole 3'];
   values;
   
     constructor(
       private formBuilder: FormBuilder,
-      private dialogRef: MatDialogRef<PopupCustomerAddComponent>,
+      private dialogRef: MatDialogRef<ContactFormComponent>,
       @Inject(MAT_DIALOG_DATA) private data:any ) { }
   
     ngOnInit() {
-      this.PopupCustomerAddForm = this.formBuilder.group({ 
+      this.CustomerForm = this.formBuilder.group({ 
         name: ['', Validators.compose([  ])],
         mobile: ['', Validators.compose([  ])],
         phone: ['', Validators.compose([  ])],
@@ -30,8 +31,7 @@ export class PopupCustomerAddComponent implements OnInit {
       });
 
       if (this.data.type == 'Edit') {
-        console.log(this.data.value.vin)
-        this.PopupCustomerAddForm.setValue({
+        this.CustomerForm.setValue({
           name : this.data.value.vin,
           mobile : this.data.value.year,
           phone : this.data.value.color,
@@ -48,7 +48,7 @@ export class PopupCustomerAddComponent implements OnInit {
     }
 
     submit() {
-      this.dialogRef.close(this.PopupCustomerAddForm.value);
+      this.dialogRef.close(this.CustomerForm.value);
     }
 
 }

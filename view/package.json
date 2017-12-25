@@ -27,6 +27,7 @@
     "@types/hammerjs": "^2.0.35",
     "angular2-text-mask": "^8.0.4",
     "bootstrap": "^3.3.7",
+    "chart.js": "^2.7.1",
     "core-js": "^2.4.1",
     "devextreme": "^17.2.3",
     "devextreme-angular": "^17.2.3",

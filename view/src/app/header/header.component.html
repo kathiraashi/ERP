@@ -1,13 +1,29 @@
 <div class="home-header YslideAnimateDown"  >
     <div class="header-one">
-      <img src="../assets/logo.png" alt="Logo" class="header-logo"> 
+      <img src="../assets/logonew1.png" alt="Logo" class="header-logo"> 
       <div class="logout"> <h5><a routerLink="/login"> Logout </a></h5></div>
+      <div class="logout"> <h5><a (click)="visibleSidebar2 = true" > Right Bar </a></h5></div>
     </div>
     <div class="header-two">
       <ul class="menus">
-        <li class="menu-list"><a routerLink="/dashboard"> Dashboard </a></li>
         <li class="menu-list">
-          <a class="tree-menus"> CRM <i class="fa fa-angle-double-right" aria-hidden="true"></i> 
+          <a routerLink="/dashboard">
+            <span style="display:flex">
+              <span class="pull-left" style="line-height:30px;margin-top:8px;">
+                <mat-icon>dashboard</mat-icon>
+              </span>  
+              <span class="pull-left"> &nbsp; Dashboard </span> 
+            </span>
+          </a>
+        </li>
+        <li class="menu-list">
+          <a class="tree-menus" > 
+            <span style="display:flex" >
+              <span class="pull-left" style="line-height:30px;margin-top:8px">
+                <mat-icon>supervisor_account</mat-icon>
+              </span>  
+              <span class="pull-left"> &nbsp; CRM </span> 
+            </span>
             <ul class="tree-view">
               <li class="tree-list"><a routerLink="/crmCustomersList"> Customers </a></li>
             </ul>
@@ -35,10 +51,34 @@
             </ul>
           </a>
         </li> -->
-        <li class="menu-list"><a routerLink="/ui" > Examples </a></li>
-        <li class="menu-list"><a routerLink="/products"> Products </a></li>
         <li class="menu-list">
-          <a class="tree-menus"> Settings <i class="fa fa-angle-double-right" aria-hidden="true"></i> 
+          <a routerLink="/ui" > 
+            <span style="display:flex">
+              <span class="pull-left" style="line-height:30px;margin-top:10px;">
+                <mat-icon style="font-size:22px;">functions</mat-icon>
+              </span>  
+              <span class="pull-left"> &nbsp; Examples </span> 
+            </span>
+          </a>
+        </li>
+        <li class="menu-list">
+          <a routerLink="/products">
+            <span style="display:flex">
+              <span class="pull-left" style="line-height:30px;margin-top:10px;">
+                <mat-icon style="font-size:22px;">local_offer</mat-icon>
+              </span>  
+              <span class="pull-left"> &nbsp; Products </span> 
+            </span>
+          </a>
+        </li>
+        <li class="menu-list">
+          <a class="tree-menus">
+            <span style="display:flex">
+              <span class="pull-left" style="line-height:30px;margin-top:10px;">
+                <mat-icon style="font-size:22px;">settings</mat-icon>
+              </span>  
+              <span class="pull-left"> &nbsp; Settings </span> 
+            </span>
             <ul class="tree-view">
               <li class="tree-list"><a routerLink="/companySettings"> Company Settings </a></li>
               <li class="tree-list"><a routerLink="/crmSettings"> CRM Settings </a></li>
@@ -55,3 +95,8 @@
       </ul>
     </div>
   </div>
+
+
+  <p-sidebar [(visible)]="visibleSidebar2" position="right" [baseZIndex]="10000">
+      <h1 style="font-weight:normal">Right Sidebar</h1>
+  </p-sidebar>

@@ -18,36 +18,36 @@
       <form action="" [formGroup]="CreatCustomerForm" (submit)="onRgisterSubmit()" method="post">
         <div class="row">
             <div class="col-sm-3">
-                <mat-card class="example-card" style="position:fixed;width:23%">
+                <mat-card class="example-card" style="position:fixed;width:23%;padding-top:0px;max-height:500px; overflow:auto;">
                     <div class="row">
                         <div class="col-sm-12 text-center">
-                            <img src="../../../../assets/profile.png" alt="" style="width:180px;height:180px;border-radius:50px;">
+                            <img src="../../../../assets/profile.png" alt="" style="width:160px;height:160px;border-radius:50px;">
                         </div>
                         <div class="col-sm-12 text-center">
                             <button type="button" mat-raised-button class="bg-color-primary" color="accent"> Change Picture </button>
                         </div>
-                        <div class="col-sm-12" style="margin:20px 0px;">
+                        <div class="col-sm-12" style="margin:15px 0px;">
                             <div class="example-container">
                                 <mat-form-field>
                                     <input matInput type="text" formControlName="companyName" placeholder="Company Name">
                                 </mat-form-field>
                             </div>
                         </div>
-                        <div class="col-sm-12" style="margin-bottom: 20px">
+                        <div class="col-sm-12" style="margin-bottom: 15px">
                             <div class="example-container">
                                 <mat-form-field>
                                     <input matInput type="text" formControlName="phoneNumber" placeholder="Phone Number">
                                 </mat-form-field>
                             </div>
                         </div>
-                        <div class="col-sm-12" style="margin-bottom: 20px">
+                        <div class="col-sm-12" style="margin-bottom: 15px">
                             <div class="example-container">
                                 <mat-form-field>
                                     <input matInput type="text" formControlName="emailAddress" placeholder="Email Address">
                                 </mat-form-field>
                             </div>
                         </div>
-                        <div class="col-sm-12" style="margin-bottom: 20px">
+                        <div class="col-sm-12" style="margin-bottom: 15px">
                             <div class="example-container">
                                 <mat-form-field>
                                     <input matInput type="text" formControlName="website" placeholder="Website">

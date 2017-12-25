@@ -17,7 +17,7 @@ import { CarService} from '../../../service/carservice';
 
 
 //popups
-import { PopupCustomerAddComponent } from '../../../popups/crm/popup-customer-add/popup-customer-add.component'
+import { ContactFormComponent } from '../../../popups/crm/contact-form/contact-form.component'
 
 @Component({
   selector: 'app-customers-view',
@@ -34,20 +34,17 @@ export class CustomersViewComponent implements OnInit {
   selectedCar: Car;
   dialogVisible: boolean;
   msgs: Message[] = [];
+  data;
 
 
   //modal 
   modalRef: BsModalRef;
 
   //form
-  ContactsAddForm: FormGroup;
-  ContactsEditForm: FormGroup;
   ActivityAddForm: FormGroup;
   ActivityEditForm: FormGroup;
   vin;
 
-  ContactRoles = [ 'ContactRole 1', 'ContactRole 2', 'ContactRole 3'];
-  ContactPersons = [ 'ContactPerson 1', 'ContactPerson 2', 'ContactPerson 3'];
   ActivityTypes = [ 'ActivityType 1', 'ActivityType 2', 'ActivityType 3'];
   Statuses = [ 'Status 1', 'Status 2', 'Status 3'];
   Priorities = [ 'Priority 1', 'Priority 2', 'Priority 3'];
@@ -59,23 +56,28 @@ export class CustomersViewComponent implements OnInit {
                 private messageService: MessageService 
               ) {
                  this.createForm();
+                 this.data = {
+                  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                  datasets: [
+                      {
+                          label: 'My First dataset',
+                          backgroundColor: '#42A5F5',
+                          borderColor: '#1E88E5',
+                          data: [65, 59, 80, 81, 56, 55, 40]
+                      },
+                      {
+                          label: 'My Second dataset',
+                          backgroundColor: '#9CCC65',
+                          borderColor: '#7CB342',
+                          data: [28, 48, 40, 19, 86, 27, 90]
+                      }
+                  ]
+              }
                 } //constructor
 
   ngOnInit() {
      this.carService.getCarsSmall().then(cars => this.cars = cars);
   }//ngOnInit
-
-  EditCar(car: Car) {
-    this.vin = car.vin;
-    let exampleDialogRef = this.dialog.open(PopupCustomerAddComponent, {
-      data: {
-        Header:'Contact Edit Form',
-        type:'Edit',
-        value:car
-      }
-   });
-    exampleDialogRef.afterClosed().subscribe(result => console.log(result));
-  }//EditCar
 
   ViewCar(car: Car) {
     this.msgs = [];
@@ -85,19 +87,28 @@ export class CustomersViewComponent implements OnInit {
 
   // material dialog 
   popupReturnValue = '';
-  exampleDialogRef: MatDialogRef<PopupCustomerAddComponent>;
+  exampleDialogRef: MatDialogRef<ContactFormComponent>;
 
-  // material dialog
-  openDialog() {
-   let exampleDialogRef = this.dialog.open(PopupCustomerAddComponent, {
-      data: {
-        Header:'Contact Add Form',
-        type:'Add'
-      }
-   });
-    exampleDialogRef.afterClosed().subscribe(result => console.log(result));
-        
-    }
+// Forms Popups
+    ContactAdd() {
+      let exampleDialogRef = this.dialog.open(ContactFormComponent, {
+          data: { 
+            Header:'Contact Add Form', 
+            type:'Add' 
+          }
+      });
+        exampleDialogRef.afterClosed().subscribe(result => console.log(result));
+    }//ContactAdd
+    ContactEdit(car: Car) {
+      let exampleDialogRef = this.dialog.open(ContactFormComponent, {
+          data: {
+            Header:'Contact Edit Form',
+            type:'Edit',
+            value:car
+          }
+      });
+        exampleDialogRef.afterClosed().subscribe(result => console.log(result));
+    }//ContactEdit
 
 
 
@@ -118,31 +129,7 @@ export class CustomersViewComponent implements OnInit {
   }
 
 
-  handleChange(e) {
-    // console.log(e.index);
-    // console.log(e.originalEvent.target.innerText);
-  }
-
-
   createForm(){
-    this.ContactsAddForm = this.formBuilder.group({ 
-      name: ['', Validators.compose([  ])],
-      mobile: ['', Validators.compose([  ])],
-      phone: ['', Validators.compose([  ])],
-      email: ['', Validators.compose([  ])],
-      jobTitle: ['', Validators.compose([  ])],
-      contactRole: ['', Validators.compose([  ])],
-      notes: ['', Validators.compose([  ])]
-    });
-    this.ContactsEditForm = this.formBuilder.group({ 
-      name: ['', Validators.compose([  ])],
-      mobile: ['', Validators.compose([  ])],
-      phone: ['', Validators.compose([  ])],
-      email: ['', Validators.compose([  ])],
-      jobTitle: ['', Validators.compose([  ])],
-      contactRole: ['', Validators.compose([  ])],
-      notes: ['', Validators.compose([  ])] 
-    });
     this.ActivityAddForm = this.formBuilder.group({ 
       activityDate: ['', Validators.compose([  ])],
       contactPerson: ['', Validators.compose([  ])],
@@ -164,22 +151,13 @@ export class CustomersViewComponent implements OnInit {
   };//createForm
   
 
-  ContactsAddFormSubmit(){
-    console.log(this.ContactsAddForm.value.leadSource);
-    this.ContactsAddForm.reset();
-  }
-  ContactsEditFormSubmit(){
-    console.log(this.ContactsEditForm.value.leadSource);
-    this.ContactsEditForm.reset();
-  }
-
   ActivityAddFormSubmit(){
-    console.log(this.ContactsAddForm.value.leadSource);
-    this.ContactsAddForm.reset();
+    console.log(this.ActivityAddForm.value.leadSource);
+    this.ActivityAddForm.reset();
   }
   ActivityEditFormSubmit(){
-    console.log(this.ContactsEditForm.value.leadSource);
-    this.ContactsEditForm.reset();
+    console.log(this.ActivityAddForm.value.leadSource);
+    this.ActivityAddForm.reset();
   }
 
 
