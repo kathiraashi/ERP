@@ -67,6 +67,14 @@ export class CustomersViewComponent implements OnInit {
 
   EditCar(car: Car) {
     this.vin = car.vin;
+    let exampleDialogRef = this.dialog.open(PopupCustomerAddComponent, {
+      data: {
+        Header:'Contact Edit Form',
+        type:'Edit',
+        value:car
+      }
+   });
+    exampleDialogRef.afterClosed().subscribe(result => console.log(result));
   }//EditCar
 
   ViewCar(car: Car) {
@@ -83,7 +91,8 @@ export class CustomersViewComponent implements OnInit {
   openDialog() {
    let exampleDialogRef = this.dialog.open(PopupCustomerAddComponent, {
       data: {
-        type: 'Contact Add Form'
+        Header:'Contact Add Form',
+        type:'Add'
       }
    });
     exampleDialogRef.afterClosed().subscribe(result => console.log(result));
