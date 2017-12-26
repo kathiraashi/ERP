@@ -104,8 +104,8 @@ export class CrmSettingsComponent implements OnInit {
 
 
   handleChange(e) {
-    // console.log(e.index);
-    // console.log(e.originalEvent.target.innerText);
+    console.log(e.index);
+    console.log(e.originalEvent.target.innerText);
   }
 
   createForm(){

@@ -12,7 +12,7 @@
   }
   .list-card-name{
     font-family: 'Rubik', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: #6c7986;
     margin: 5px 0px;
@@ -20,18 +20,18 @@
   .list-card-email{
     font-weight: 600;
     color: #6c7986;
-    font-size: 16px;
+    font-size: 14px;
     margin: 4px 0px;
   }
   .list-card-phone{
     font-weight: 600;
     color: #6c7986;
-    font-size: 14px;
+    font-size: 13px;
     margin: 8px 0px;
   }
   .list-card-address{
     font-weight: 600;
     color: #6c7986;
-    font-size: 14px;
+    font-size: 13px;
     margin: 0px 0px;
   }

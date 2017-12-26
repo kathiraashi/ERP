@@ -85,18 +85,23 @@
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-raised-button color="accent" (click)="ContactInfoAdd.show()"> Add New </button> 
+                                    <button mat-button class="color-success" style="font-weight:600" (click)="ContactInfoAdd.show()"> + Create </button> 
                                 </div>
-                                <div class="col-sm-4 text-center"> <h4> Contact Info </h4> </div>
-                                <div class="col-sm-4 text-right"> 
-                                    <div class="form-field header-search">
-                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
-                                            <input matInput #ContactInfoFilter maxlength="12" placeholder="Search">
-                                            <mat-hint align="start"><strong></strong> </mat-hint>
-                                            <mat-hint align="end"></mat-hint>
-                                        </mat-form-field>
-                                        <mat-icon>search</mat-icon>
-                                    </div>
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-5 text-left"> 
+                                    <div style="width:100%;display:inline-flex">
+                                        <div style="float:left;width:85%">
+                                            <mat-form-field class="search-field" style="width:100%;height:44px; margin-top:-10px;">
+                                                <input matInput type="text" #ContactInfoFilter placeholder="Search" />
+                                                <button mat-button matSuffix mat-icon-button aria-label="Search">
+                                                    <mat-icon style="font-size:25px">search</mat-icon>
+                                                </button>
+                                            </mat-form-field> 
+                                        </div>
+                                        <div style="float:left;width:15%;text-align:center;height:35px">
+                                            <button mat-button mat-icon-button > <mat-icon style="font-size:28px;margin-top:8px;color:#546a77">filter_list</mat-icon> </button>
+                                        </div>
+                                    </div>         
                                 </div>
                             </div> 
                         </p-header>
@@ -137,18 +142,23 @@
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-raised-button color="accent" (click)="DepartmentsAdd.show()"> Add New </button> 
+                                    <button mat-button class="color-success" style="font-weight:600" (click)="DepartmentsAdd.show()"> + Create </button> 
                                 </div>
-                                <div class="col-sm-4 text-center"> <h4> Departments </h4> </div>
-                                <div class="col-sm-4 text-right"> 
-                                    <div class="form-field header-search">
-                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
-                                            <input matInput #DepartmentsFilter maxlength="12" placeholder="Search">
-                                            <mat-hint align="start"><strong></strong> </mat-hint>
-                                            <mat-hint align="end"></mat-hint>
-                                        </mat-form-field>
-                                        <mat-icon>search</mat-icon>
-                                    </div>
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-5 text-left"> 
+                                    <div style="width:100%;display:inline-flex">
+                                        <div style="float:left;width:85%">
+                                            <mat-form-field class="search-field" style="width:100%;height:44px; margin-top:-10px;">
+                                                <input matInput type="text" #DepartmentsFilter placeholder="Search" />
+                                                <button mat-button matSuffix mat-icon-button aria-label="Search">
+                                                    <mat-icon style="font-size:25px">search</mat-icon>
+                                                </button>
+                                            </mat-form-field> 
+                                        </div>
+                                        <div style="float:left;width:15%;text-align:center;height:35px">
+                                            <button mat-button mat-icon-button > <mat-icon style="font-size:28px;margin-top:8px;color:#546a77">filter_list</mat-icon> </button>
+                                        </div>
+                                    </div>         
                                 </div>
                             </div> 
                         </p-header>
@@ -189,18 +199,23 @@
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-raised-button color="accent" (click)="BranchesAdd.show()"> Add New </button> 
+                                    <button mat-button class="color-success" style="font-weight:600" (click)="BranchesAdd.show()"> + Create </button> 
                                 </div>
-                                <div class="col-sm-4 text-center"> <h4> Branches </h4> </div>
-                                <div class="col-sm-4 text-right"> 
-                                    <div class="form-field header-search">
-                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
-                                            <input matInput #BranchesFilter maxlength="12" placeholder="Search">
-                                            <mat-hint align="start"><strong></strong> </mat-hint>
-                                            <mat-hint align="end"></mat-hint>
-                                        </mat-form-field>
-                                        <mat-icon>search</mat-icon>
-                                    </div>
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-5 text-left"> 
+                                    <div style="width:100%;display:inline-flex">
+                                        <div style="float:left;width:85%">
+                                            <mat-form-field class="search-field" style="width:100%;height:44px; margin-top:-10px;">
+                                                <input matInput type="text" #BranchesFilter placeholder="Search" />
+                                                <button mat-button matSuffix mat-icon-button aria-label="Search">
+                                                    <mat-icon style="font-size:25px">search</mat-icon>
+                                                </button>
+                                            </mat-form-field> 
+                                        </div>
+                                        <div style="float:left;width:15%;text-align:center;height:35px">
+                                            <button mat-button mat-icon-button > <mat-icon style="font-size:28px;margin-top:8px;color:#546a77">filter_list</mat-icon> </button>
+                                        </div>
+                                    </div>         
                                 </div>
                             </div> 
                         </p-header>
@@ -241,18 +256,23 @@
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-raised-button color="accent" (click)="RegistrationInfoAdd.show()"> Add New </button> 
+                                    <button mat-button class="color-success" style="font-weight:600" (click)="RegistrationInfoAdd.show()"> + Create </button> 
                                 </div>
-                                <div class="col-sm-4 text-center"> <h4> Registration Info </h4> </div>
-                                <div class="col-sm-4 text-right"> 
-                                    <div class="form-field header-search">
-                                        <mat-form-field style="width:100%;height:40px; margin-top:-10px">
-                                            <input matInput #RegistrationInfoFilter maxlength="12" placeholder="Search">
-                                            <mat-hint align="start"><strong></strong> </mat-hint>
-                                            <mat-hint align="end"></mat-hint>
-                                        </mat-form-field>
-                                        <mat-icon>search</mat-icon>
-                                    </div>
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-5 text-left"> 
+                                    <div style="width:100%;display:inline-flex">
+                                        <div style="float:left;width:85%">
+                                            <mat-form-field class="search-field" style="width:100%;height:44px; margin-top:-10px;">
+                                                <input matInput type="text" #RegistrationInfoFilter placeholder="Search" />
+                                                <button mat-button matSuffix mat-icon-button aria-label="Search">
+                                                    <mat-icon style="font-size:25px">search</mat-icon>
+                                                </button>
+                                            </mat-form-field> 
+                                        </div>
+                                        <div style="float:left;width:15%;text-align:center;height:35px">
+                                            <button mat-button mat-icon-button > <mat-icon style="font-size:28px;margin-top:8px;color:#546a77">filter_list</mat-icon> </button>
+                                        </div>
+                                    </div>         
                                 </div>
                             </div> 
                         </p-header>

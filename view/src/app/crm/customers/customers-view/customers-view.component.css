@@ -1,5 +1,13 @@
-   .demo-tab-content {
+  .demo-tab-group{
+    border:1px solid lightgray;
+    height: 100%;
+    background-color: #f1f4f7;
+  }
+  .demo-tab-content {
     padding: 16px;
+  }
+  .demo-tab-group .mat-tab-header{
+    background-color: #ffffff;
   }
   .customer-card-name{
     text-align: center;
