@@ -10,9 +10,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { OverlayModule } from '@angular/cdk/overlay';
 import { A11yModule } from '@angular/cdk/a11y';
-
 import { TextMaskModule } from 'angular2-text-mask';
 import { BsDatepickerModule, ModalModule } from 'ngx-bootstrap';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app.routing.module';
 import { MaterialModule } from './material.module';
@@ -84,7 +84,8 @@ import { ContactFormComponent } from './popups/crm/contact-form/contact-form.com
     A11yModule,
     BsDatepickerModule.forRoot(),
     ModalModule.forRoot(),
-    TextMaskModule
+    TextMaskModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyD9sVX8Wudcp2N1Qp23aED0q2pVwehbnGs'})
   ],
   providers: [CarService],
   bootstrap: [AppComponent],

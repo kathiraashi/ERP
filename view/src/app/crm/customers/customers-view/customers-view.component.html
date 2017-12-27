@@ -1,9 +1,9 @@
 
 <p-growl [value]="msgs"></p-growl>
 
-<div class="page" style="margin-top:130px">
+<div class="page" style="margin-top:137px">
 
-    <div class="page-identity" style="position:fixed; margin-top:-40px;">
+    <div class="page-identity" style="position:fixed; margin-top:-42px;">
       <div class="page-name">
         <h5> </h5>
       </div>
@@ -22,11 +22,71 @@
             <!-- left bar -->
             <div class="col-sm-9">
                 <div class="row">
-                    <div class="col-sm-12" style="height:130px; display:inline-flex;">
-                        <img src="../../../../assets/company.png" alt="Customer Image" style="height:100%;padding:5px;margin-right: 20px;">
-                        <div class="row" style="width:100%">
-                            <div class="col-sm-12" style="height:45px;padding-right:0px">
-                                <h5 style="line-height:40px;"> Customer Name 
+                    <div class="col-sm-12" style="height:150px; display:inline-flex;">
+                        <img src="../../../../assets/company.png" alt="Customer Image" style="max-height: 140px;max-width: 220px;margin: 0px 5px;box-shadow: 0 1px 6px 1px rgba(0,0,0,.2);">
+                        <div class="row" style="width:100%;margin-left:10px;">
+                            <div class="col-sm-12" style="height:100px">
+                                <div class="row">
+                                    <div class="col-sm-3" style="padding-right:0px">
+                                        <mat-card class="customer-stylish-card card-1" >
+                                            <div class="stylish-card-top" >
+                                                <div class="icon-style"> <mat-icon>account_balance_wallet</mat-icon> </div>
+                                                <div class="text-style">
+                                                    <span class="heading-style"> Account Balnce </span>
+                                                    <span class="value-style"> Rs.2,00,00,000.00</span>
+                                                </div>
+                                            </div>
+                                            <div class="stylish-card-bottom">
+                                                 <small> Rs.5,000.00 Last Added </small> 
+                                            </div>
+                                        </mat-card>
+                                    </div>
+                                    <div class="col-sm-3" style="padding-right:0px">
+                                        <mat-card class="customer-stylish-card card-2" >
+                                            <div class="stylish-card-top" >
+                                                <div class="icon-style"> <mat-icon>assignment</mat-icon> </div>
+                                                <div class="text-style">
+                                                    <span class="heading-style"> Logs Activity </span>
+                                                    <span class="value-style"> 25 Logs </span>
+                                                </div>
+                                            </div>
+                                            <div class="stylish-card-bottom" >
+                                                <small> 45 Logs In last Day </small>
+                                            </div>
+                                        </mat-card>
+                                    </div>
+                                    <div class="col-sm-3" style="padding-right:0px">
+                                        <mat-card class="customer-stylish-card card-3" >
+                                            <div class="stylish-card-top" >
+                                                <div class="icon-style"> <mat-icon>add_shopping_cart</mat-icon> </div>
+                                                <div class="text-style">
+                                                    <span class="heading-style"> Customer Leads </span>
+                                                    <span class="value-style"> 25 Leads  </span>
+                                                </div>
+                                            </div>
+                                            <div class="stylish-card-bottom" >
+                                                <small> 25 Leads In Last Day  </small>
+                                            </div>
+                                        </mat-card>
+                                    </div>
+                                    <div class="col-sm-3" style="padding-right:0px">
+                                        <mat-card class="customer-stylish-card card-4" >
+                                            <div class="stylish-card-top" >
+                                                <div class="icon-style"> <mat-icon>alarm</mat-icon> </div>
+                                                <div class="text-style">
+                                                    <span class="heading-style"> Remainders </span>
+                                                    <span class="value-style"> 10 Remainders </span>
+                                                </div>
+                                            </div>
+                                            <div class="stylish-card-bottom" >
+                                                <small> 10 Remainders In Last Day </small>
+                                            </div>
+                                        </mat-card>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" style="height:40px;padding-right:0px">
+                                <h5 style="line-height:40px;margin-bottom:0px;"> <span class="cus-name"> Customer Name </span>
                                     <button type="button" mat-icon-button color="" >
                                         <mat-icon>create</mat-icon>
                                     </button>
@@ -36,30 +96,90 @@
                                         </button> 
                                     </span>
                                 </h5>
-                                <span> aall</span>
-                            </div>
-                            <div class="col-sm-12" style="height:85px">
-                                <div class="row">
-                                    <div class="col-sm-3" style="padding-right:0px">
-                                        <mat-card style="height:75px"></mat-card>
-                                    </div>
-                                    <div class="col-sm-3" style="padding-right:0px">
-                                        <mat-card style="height:75px"></mat-card>
-                                    </div>
-                                    <div class="col-sm-3" style="padding-right:0px">
-                                        <mat-card style="height:75px"></mat-card>
-                                    </div>
-                                    <div class="col-sm-3" style="padding-right:0px">
-                                        <mat-card style="height:75px"></mat-card>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-12" style="padding-right:0px;border-top:2px solid #f1f4f7; border-right:2px solid #f1f4f7">
                         <p-tabView class="tab-style-2">
                             <p-tabPanel header="About" >
-                                The story begins as Don Vito Corleone, the head of a New York Mafia family,
+                                <mat-accordion>
+                                    <mat-expansion-panel [expanded]="true">
+                                        <mat-expansion-panel-header class="customer-expansion-header">
+                                            <mat-panel-title>
+                                                <span class="cus-name"> Customer Details </span>
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-4"> <h5 class="customer-details-title">Customer Name  </h5> </div>
+                                                    <div class="col-sm-8"> <h5 class="customer-details-value">Customer Name </h5> </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-4"> <h5 class="customer-details-title">E-mail </h5> </div>
+                                                    <div class="col-sm-8"> <h5 class="customer-details-value">Customerinfo@gmail.com </h5> </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-4"> <h5 class="customer-details-title">Phone </h5> </div>
+                                                    <div class="col-sm-8"> <h5 class="customer-details-value"> 0427 234 2345 </h5> </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-4"> <h5 class="customer-details-title">Mobile </h5> </div>
+                                                    <div class="col-sm-8"> <h5 class="customer-details-value"> +91 9876543210 </h5> </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-4"> <h5 class="customer-details-title">Industry Type  </h5> </div>
+                                                    <div class="col-sm-8"> <h5 class="customer-details-value"> Manufacturing </h5> </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-4" style="padding-right:0px;"> <h5 class="customer-details-title">No Of Employees </h5> </div>
+                                                    <div class="col-sm-8"> <h5 class="customer-details-value"> 75 Employees </h5> </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-4"> <h5 class="customer-details-title"> Notes </h5> </div>
+                                                    <div class="col-sm-8"> <h5 class="customer-details-value notes"> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                                        Voluptate magni dignissimos minima pariatur consequatur debitis quo laudantium nemo, illo eum odit neque. </h5> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel>
+                                    <mat-expansion-panel>
+                                        <mat-expansion-panel-header class="customer-expansion-header">
+                                            <mat-panel-title>
+                                                    <span class="cus-name"> Address Details  </span>
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <h5 class="customer-details-title"> Shipping Address </h5>
+                                                <div style="margin-left:30px;">
+                                                    <h5 class="customer-details-value address"> No.32 Shri Lakshmi Nagar,</h5>
+                                                    <h5 class="customer-details-value address"> Ganapathy,</h5>
+                                                    <h5 class="customer-details-value address"> Coimbatore,</h5>
+                                                    <h5 class="customer-details-value address"> Tamil Nadu - 641007,</h5>
+                                                    <h5 class="customer-details-value address"> India.</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <h5 class="customer-details-title"> Billing Address </h5>
+                                                <div style="margin-left:30px;">
+                                                    <h5 class="customer-details-value address"> No.32 Shri Lakshmi Nagar,</h5>
+                                                    <h5 class="customer-details-value address"> Ganapathy,</h5>
+                                                    <h5 class="customer-details-value address"> Coimbatore,</h5>
+                                                    <h5 class="customer-details-value address"> Tamil Nadu - 641007,</h5>
+                                                    <h5 class="customer-details-value address"> India.</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4" style="padding:0px">
+                                                <agm-map [latitude]="11.044377" [longitude]="76.976176">
+                                                    <agm-marker [latitude]="11.044377" [longitude]="76.976176"></agm-marker> 
+                                                </agm-map>
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel>
+                                </mat-accordion>
                             </p-tabPanel>
                             <p-tabPanel header="Contact" class="tab-mat-card">
                                 <p-dataTable [value]="cars" [globalFilter]="ContactsFilter" sortMode="multiple" [rows]="5" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[5,10,25,50]">
@@ -140,7 +260,62 @@
             </div>
             <!-- right bar -->
             <div class="col-sm-3">
-                <p-calendar class="custom_calender_1" [inline]="true"></p-calendar> 
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p-calendar class="custom_calender_1" [inline]="true"></p-calendar> 
+                    </div>
+                    <div class="col-sm-12" style="margin-top:10px">
+                        <mat-card style="padding:0px;border:1px solid #e7e9ea;box-shadow:none;">
+                            <div class="create-schedule">
+                                <h5 class="create-schedule-header"> Recent </h5>
+                                <div class="recent-list">
+                                    <div class="recent-image">
+                                        <img src="../../../../assets/profile.png" alt="" style="height:40px; width:40px; border-radius:40px;">
+                                    </div>
+                                    <div class="recent-content"> New Contact Created
+                                        <div class="recent-time"> ( 27/12/2017 05:32-PM ) </div>
+                                    </div>
+                                </div>
+                                <div class="recent-list" style="background-color: #dadada52;">
+                                    <div class="recent-image">
+                                        <img src="../../../../assets/profile.png" alt="" style="height:40px; width:40px; border-radius:40px;">
+                                    </div>
+                                    <div class="recent-content"> New Quotation Created
+                                        <div class="recent-time"> ( 27/12/2017 05:32-PM ) </div>
+                                    </div>
+                                </div>
+                                <div class="recent-list">
+                                    <div class="recent-image">
+                                        <img src="../../../../assets/profile.png" alt="" style="height:40px; width:40px; border-radius:40px;">
+                                    </div>
+                                    <div class="recent-content"> Some Contact Updated
+                                        <div class="recent-time"> ( 27/12/2017 05:32-PM ) </div>
+                                    </div>
+                                </div>
+                                <div class="recent-list" style="background-color: #dadada52;">
+                                    <div class="recent-image">
+                                        <img src="../../../../assets/profile.png" alt="" style="height:40px; width:40px; border-radius:40px;">
+                                    </div>
+                                    <div class="recent-content">  Some Quotation Edited
+                                        <div class="recent-time"> ( 27/12/2017 05:32-PM ) </div>
+                                    </div>
+                                </div>
+                                <div class="recent-list">
+                                    <div class="recent-image">
+                                        <img src="../../../../assets/profile.png" alt="" style="height:40px; width:40px; border-radius:40px;">
+                                    </div>
+                                    <div class="recent-content"> New Contact Created
+                                        <div class="recent-time"> ( 27/12/2017 05:32-PM ) </div>
+                                    </div>
+                                </div>
+                                <div class="recent-list" style="background-color: #dadada52;text-align:center">
+                                    <h5 style="text-align:center;width:100%"> ... </h5>
+                                </div>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </mat-card>

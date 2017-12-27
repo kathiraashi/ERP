@@ -32,6 +32,15 @@ body{
 
 
 /* material css */
+.mat-focused .mat-form-field-label{
+    color: #49b660 !important;
+}
+.mat-form-field-ripple{
+    background-color: #49b660;
+}
+.mat-checkbox-ripple.mat-ripple>*{
+    background-color:transparent !important;
+}
 .mat-button.mat-accent .mat-button-focus-overlay, .mat-icon-button.mat-accent .mat-button-focus-overlay, .mat-button-focus-overlay{
     background-color: rgba(73, 182, 96, 0.26) !important;
 }
@@ -142,7 +151,7 @@ width: auto !important;
 .tab-mat-card .ui-datatable .ui-widget-header{
     background: #ffffff !important; /*new */
     margin-bottom: 15px;
-    border: 1px solid lightgray;
+    border: 1px solid #e6e9ec;
     padding: 4px;
 }
 .tab-mat-card .ui-datatable .ui-datatable-thead>tr>th, 
@@ -155,10 +164,10 @@ width: auto !important;
     border-width: 0px;
 }
 .tab-mat-card .ui-datatable-tablewrapper{
-    border: 1px solid lightgray;
+    border: 1px solid #e6e9ec;
 }
 .tab-mat-card .ui-datatable-thead tr{
-    border-bottom: 1px solid lightgrey;
+    border-bottom: 1px solid #e6e9ec;
     height: 45px;
 }
 .tab-mat-card .ui-datatable th.ui-state-default{
@@ -223,7 +232,7 @@ width: auto !important;
 .tab-mat-card .ui-datatable .ui-paginator{
     padding: 5px !important;
     text-align: right !important;
-    border-top: 1px solid lightgray;
+    border-top: 1px solid #e6e9ec;
 }
 .tab-mat-card .ui-dropdown .ui-dropdown-label{
     text-align: left !important;

@@ -71,4 +71,26 @@
     display: none;
   }
 
+  .recent-list{
+    display: inline-flex;
+    width: 100%;
+  }
+  .recent-list .recent-image{
+    padding: 5px;
+  }
+  .recent-list .recent-image img{
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+  }
+  .recent-list .recent-content{
+    font-size: 15px;
+    font-weight: 600;
+    color: #536979;
+    margin-top: 5px;
+  }
+  .recent-list .recent-content .recent-time{
+    font-size: 11px;
+    font-weight: 500;
+  }  
   

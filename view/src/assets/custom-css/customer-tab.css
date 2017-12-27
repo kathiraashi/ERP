@@ -1,3 +1,11 @@
+.cus-name{
+    font-size: 18px;
+    font-weight: 800;
+    color: #6c7986;
+    text-transform: uppercase;
+    font-family: 'Rubik', sans-serif;
+}
+
 .tab-style-2 .ui-tabview.ui-widget-content{
     padding: 0px;
 }
@@ -5,7 +13,7 @@
 .tab-style-2 .ui-tabview.ui-tabview-top>.ui-tabview-nav{
     padding: 0px;
     border-radius: 0px;
-    background-color: #49b660;
+    background-color: #536979;
     margin-left: 2px;
     width: 100%;
 }
@@ -14,9 +22,9 @@
     padding: 0px;
     margin: 0px;
     color: #ffffff;
-    background-color: #49b660;
+    background-color: #536979;
     top: 0px;
-    border-right: 1px solid #19a737;
+    border-right: 1px solid #4c5c68;
     width: 11.1%;
 }
 .tab-style-2  .ui-tabview .ui-tabview-nav > li.ui-state-default a{
@@ -26,14 +34,14 @@
 }
 
 .tab-style-2 .ui-tabview .ui-tabview-nav > li:not(.ui-state-active):not(.ui-state-disabled):hover{
-    background-color: #536979;
+    background-color: #49b660;
     border-radius: 0px; 
 }
 .tab-style-2 .ui-tabview .ui-tabview-nav li:not(.ui-state-active):not(.ui-state-disabled):hover a{
     color: #ffffff;
 }
 .tab-style-2  .ui-tabview .ui-tabview-nav > li.ui-state-active{
-    background-color: #536979;
+    background-color: #49b660;
     border-radius: 0px;
 }
 .tab-style-2  .ui-tabview .ui-tabview-nav > li.ui-state-active a{
@@ -43,12 +51,16 @@
 
 .ui-tabview .ui-tabview-panel{
     padding: 10px 0px;
+    background-color: #f1f4f7;
 }
 
 
 .custom_calender_1 .ui-calendar{
 width: 100%;
-margin-top: 42px;
+margin-top: 0px;
+}
+.custom_calender_1 .ui-calendar .ui-widget-content{
+    border: 1px solid rgb(235, 237, 239) !important;
 }
 .custom_calender_1 .ui-datepicker.ui-datepicker-inline{
     width:100%;
@@ -83,4 +95,139 @@ margin-top: 42px;
     top: 3px;
     height: 35px;
     width: 35px;
+}
+
+.customer-stylish-card{
+    height: 100px;
+    padding: 5px 0px 0px 0px !important;
+}
+
+.customer-stylish-card.card-1{
+    background: linear-gradient(229deg, #fd9a77, #fb827a);
+}
+.customer-stylish-card.card-2{
+    background: linear-gradient(229deg, #8edead, #43c6ac);
+}
+.customer-stylish-card.card-3{
+    background: linear-gradient(248deg, #348ac7, #7474bf);
+}
+.customer-stylish-card.card-4{
+    background: linear-gradient(67deg, #f15f79, #b24592);
+}
+
+.customer-stylish-card .stylish-card-top{
+    width:100%;
+    height: 65px;
+    display: inline-flex;
+}
+.customer-stylish-card .stylish-card-bottom{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #ffffff;
+}
+.customer-stylish-card.card-1 .stylish-card-bottom{
+    background-color: #d24330;
+}
+.customer-stylish-card.card-2 .stylish-card-bottom{
+    background-color: #049870;
+}
+.customer-stylish-card.card-3 .stylish-card-bottom{
+    background-color: #3957b5;
+}
+.customer-stylish-card.card-4 .stylish-card-bottom{
+    background-color: #af1437;
+}
+.customer-stylish-card .stylish-card-top .icon-style{
+    height: 55px;   
+}
+.customer-stylish-card .stylish-card-top .icon-style mat-icon{
+    font-size: 40px;
+    width: 50px;
+    line-height: 65px
+}
+.customer-stylish-card .stylish-card-top .text-style{
+    height: 55px;
+    text-align: center;
+}
+.customer-stylish-card .stylish-card-top .text-style .heading-style{
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+.customer-stylish-card .stylish-card-top .text-style .value-style{
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.customer-stylish-card.card-1 .stylish-card-top .icon-style mat-icon,
+.customer-stylish-card.card-1 .stylish-card-top .text-style .heading-style
+{
+    color: #d24330;
+}
+.customer-stylish-card.card-2 .stylish-card-top .icon-style mat-icon,
+.customer-stylish-card.card-2 .stylish-card-top .text-style .heading-style{
+    color: #049870;
+}
+.customer-stylish-card.card-3 .stylish-card-top .icon-style mat-icon,
+.customer-stylish-card.card-3 .stylish-card-top .text-style .heading-style{
+    color: #3957b5;
+}
+.customer-stylish-card.card-4 .stylish-card-top .icon-style mat-icon,
+.customer-stylish-card.card-4 .stylish-card-top .text-style .heading-style{
+    color: #af1437;
+}
+
+.customer-expansion-header{
+    height: 45px !important;
+    padding: 0px 10px !important;
+    border-bottom: 1px solid lightgray;
+}
+.customer-details-title{
+    font-weight: 700;
+    font-size: 16px;
+    margin:0px;
+    line-height: 45px;
+    color: rgb(57, 66, 74);
+    font-family: 'Open Sans', sans-serif ;
+}
+.customer-details-value{
+    font-weight:600;
+    font-size: 14px;
+    margin:0px;
+    line-height: 45px;
+    color: rgba(82, 105, 121, 0.76);
+    font-family: 'Open Sans', sans-serif ;
+
+}
+.customer-details-value.notes{
+    line-height: 25px;
+    padding-top: 15px;
+    text-align: justify;
+}
+.customer-details-value.address{
+    line-height: 25px;
+}
+agm-map{
+    height: 100%;
+    width: 100%;
+}
+agm-map .agm-map-container-inner{
+    height: 250px !important;
+    margin-top: 5px;
+}
+
+.create-schedule-header{
+    font-weight: 700;
+    font-size: 18px;
+    margin:0px;
+    line-height: 45px;
+    text-align: center;
+    color: green;
+    font-family: 'Open Sans', sans-serif ;
+    border-bottom: 1px solid lightgray;
 }

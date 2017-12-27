@@ -49,6 +49,9 @@ export class CustomersViewComponent implements OnInit {
   Statuses = [ 'Status 1', 'Status 2', 'Status 3'];
   Priorities = [ 'Priority 1', 'Priority 2', 'Priority 3'];
 
+  companyNames = [ 'Company Name 1', 'Company Name 2', 'Company Name 3'];
+  Contacts = [ 'Contact 1', 'Contact 2', 'Contact 3'];
+
   constructor(  public dialog: MatDialog,
                 private formBuilder: FormBuilder,
                 private modalService: BsModalService,

@@ -1,22 +1,37 @@
 <p-growl [value]="msgs"></p-growl>
 
-<div class="page">
+<div class="page" style="margin-top:137px">
 
-    <div class="page-identity">
+    <div class="page-identity" style="position:fixed; margin-top:-42px;">
       <div class="page-name">
         <h5> </h5>
       </div>
-      <div class="page-track">
+      <div class="page-track" style="width:47%">
         <ul>
           <li> Customers </li>
         </ul>
       </div>
     </div>
 
-    <mat-card class="example-card" style="padding:20px 0px;background-color:#ecf0f5b5;box-shadow:none;">
-      <div class="row" style="margin-top:-15px;margin-bottom:15px;">
-        <div class="col-sm-12"> 
+    <mat-card class="example-card" style="padding:0px 0px 30px 0px;background-color:#f1f4f7;box-shadow:none;">
+      <div class="row" style="margin-top:0px;margin-bottom:15px;">
+        <div class="col-sm-8"> 
           <button type="button" mat-button class="color-success" style="font-weight:600" routerLink="/crmCreatCustomers" > + Create </button> 
+        </div>
+        <div class="col-sm-4">
+            <div style="width:100%;display:inline-flex">
+                <div style="float:left;width:85%">
+                    <mat-form-field class="search-field" style="width:100%;height:44px; margin-top:-10px;">
+                        <input matInput type="text" placeholder="Search" />
+                        <button mat-button matSuffix mat-icon-button aria-label="Search" style="width:30px;height:30px">
+                            <mat-icon style="font-size:25px;width:30px;">search</mat-icon>
+                        </button>
+                    </mat-form-field> 
+                </div>
+                <div style="float:left;width:15%;text-align:center;height:35px">
+                    <button mat-button mat-icon-button > <mat-icon style="font-size:28px;margin-top:8px;color:#546a77;width:30px">filter_list</mat-icon> </button>
+                </div>
+            </div>
         </div>
       </div>
       <div class="row">
