@@ -68,7 +68,8 @@
 }
 .home-header .header-two .menus .menu-list a:hover, 
 .home-header .header-two .menus .menu-list a:active, 
-.home-header .header-two .menus .menu-list a:focus{
+.home-header .header-two .menus .menu-list a:focus,
+.home-header .header-two .menus .menu-list.active>a{
     color: #ffffff;
     line-height: 40px;
     background-color:#4f6a7a;
@@ -103,7 +104,8 @@
 }
 .home-header .tree-menus .tree-view .tree-list a:hover,
 .home-header .tree-menus .tree-view .tree-list a:active,
-.home-header .tree-menus .tree-view .tree-list a:focus{
+.home-header .tree-menus .tree-view .tree-list a:focus,
+.home-header .tree-menus .tree-view .tree-list.active>a{
     color: #ffffff;
     background-color: #4f6a7a;
 }

@@ -6,7 +6,7 @@
     </div>
     <div class="header-two">
       <ul class="menus">
-        <li class="menu-list">
+        <li class="menu-list" [routerLinkActive]="['active']">
           <a routerLink="/dashboard">
             <span style="display:flex">
               <span class="pull-left" style="line-height:30px;margin-top:8px;">
@@ -16,7 +16,7 @@
             </span>
           </a>
         </li>
-        <li class="menu-list">
+        <li class="menu-list" [routerLinkActive]="['active']">
           <a class="tree-menus" > 
             <span style="display:flex" >
               <span class="pull-left" style="line-height:30px;margin-top:8px">
@@ -25,7 +25,7 @@
               <span class="pull-left"> &nbsp; CRM </span> 
             </span>
             <ul class="tree-view">
-              <li class="tree-list"><a routerLink="/crmCustomersList"> Customers </a></li>
+              <li class="tree-list" [routerLinkActive]="['active']"><a routerLink="/crmCustomersList"> Customers </a></li>
             </ul>
           </a>
         </li>
@@ -51,7 +51,7 @@
             </ul>
           </a>
         </li> -->
-        <li class="menu-list">
+        <li class="menu-list" [routerLinkActive]="['active']">
           <a routerLink="/ui" > 
             <span style="display:flex">
               <span class="pull-left" style="line-height:30px;margin-top:10px;">
@@ -61,7 +61,7 @@
             </span>
           </a>
         </li>
-        <li class="menu-list">
+        <li class="menu-list" [routerLinkActive]="['active']">
           <a routerLink="/products">
             <span style="display:flex">
               <span class="pull-left" style="line-height:30px;margin-top:10px;">
@@ -71,7 +71,7 @@
             </span>
           </a>
         </li>
-        <li class="menu-list">
+        <li class="menu-list" [routerLinkActive]="['active']">
           <a class="tree-menus">
             <span style="display:flex">
               <span class="pull-left" style="line-height:30px;margin-top:10px;">
@@ -80,15 +80,15 @@
               <span class="pull-left"> &nbsp; Settings </span> 
             </span>
             <ul class="tree-view">
-              <li class="tree-list"><a routerLink="/companySettings"> Company Settings </a></li>
-              <li class="tree-list"><a routerLink="/crmSettings"> CRM Settings </a></li>
-              <li class="tree-list"><a routerLink="/leadsSettings"> Leads Settings </a></li>
-              <li class="tree-list"><a routerLink="/purchaseSettings"> Purchase Settings </a></li>
-              <li class="tree-list"><a routerLink="/accountsSettings"> Accounts Settings </a></li>
-              <li class="tree-list"><a routerLink="/hrmsSettings"> HRMS Settings </a></li>
-              <li class="tree-list"><a routerLink="/hrSettings"> HR Settings </a></li>
-              <li class="tree-list"><a routerLink="/inventorySettings"> Inventory Settings </a></li>
-              <li class="tree-list"><a routerLink="/productSettings"> Product Settings </a></li>
+              <li class="tree-list" [routerLinkActive]="['active']"><a routerLink="/companySettings"> Company Settings </a></li>
+              <li class="tree-list" [routerLinkActive]="['active']"><a routerLink="/crmSettings"> CRM Settings </a></li>
+              <li class="tree-list" [routerLinkActive]="['active']"><a routerLink="/leadsSettings"> Leads Settings </a></li>
+              <li class="tree-list" [routerLinkActive]="['active']"><a routerLink="/purchaseSettings"> Purchase Settings </a></li>
+              <li class="tree-list" [routerLinkActive]="['active']"><a routerLink="/accountsSettings"> Accounts Settings </a></li>
+              <li class="tree-list" [routerLinkActive]="['active']"><a routerLink="/hrmsSettings"> HRMS Settings </a></li>
+              <li class="tree-list" [routerLinkActive]="['active']"><a routerLink="/hrSettings"> HR Settings </a></li>
+              <li class="tree-list" [routerLinkActive]="['active']"><a routerLink="/inventorySettings"> Inventory Settings </a></li>
+              <li class="tree-list" [routerLinkActive]="['active']"><a routerLink="/productSettings"> Product Settings </a></li>
             </ul>
           </a>
         </li>
