@@ -10,8 +10,10 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class ContactFormComponent implements OnInit {
 
-  CustomerForm: FormGroup;
+  ContactForm: FormGroup;
   ContactRoles = [ 'ContactRole 1', 'ContactRole 2', 'ContactRole 3'];
+  disabled = false ;
+  floatLabel = 'auto';
   values;
   
     constructor(
@@ -20,27 +22,44 @@ export class ContactFormComponent implements OnInit {
       @Inject(MAT_DIALOG_DATA) private data:any ) { }
   
     ngOnInit() {
-      this.CustomerForm = this.formBuilder.group({ 
-        name: ['', Validators.compose([  ])],
-        mobile: ['', Validators.compose([  ])],
-        phone: ['', Validators.compose([  ])],
-        email: ['', Validators.compose([  ])],
-        jobTitle: ['', Validators.compose([  ])],
-        contactRole: ['', Validators.compose([  ])],
-        notes: ['', Validators.compose([  ])]
-      });
-
-      if (this.data.type == 'Edit') {
-        this.CustomerForm.setValue({
-          name : this.data.value.vin,
-          mobile : this.data.value.year,
-          phone : this.data.value.color,
-          email : this.data.value.vin,
-          jobTitle : this.data.value.brand,
-          contactRole : 'ContactRole 3',
-          notes : this.data.value.vin
+      if (this.data.type == 'Add') {
+        this.ContactForm = new FormGroup({
+          name: new FormControl('', Validators.required),
+          mobile: new FormControl('', Validators.required),
+          phone: new FormControl('',  Validators.required),
+          email: new FormControl('',  Validators.required),
+          jobTitle: new FormControl('', Validators.required),
+          contactRole: new FormControl('', Validators.required),
+          notes: new FormControl('', Validators.required)
         });
       }
+
+      if (this.data.type == 'Edit') {
+        this.ContactForm = new FormGroup({
+          name: new FormControl(this.data.value.vin, Validators.required),
+          mobile: new FormControl(this.data.value.year, Validators.required),
+          phone: new FormControl(this.data.value.color,  Validators.required),
+          email: new FormControl(this.data.value.vin,  Validators.required),
+          jobTitle: new FormControl(this.data.value.brand, Validators.required),
+          contactRole: new FormControl('ContactRole 3', Validators.required),
+          notes: new FormControl(this.data.value.vin, Validators.required)
+        });
+      }
+
+      if (this.data.type == 'View') {
+        this.ContactForm = new FormGroup({
+          name: new FormControl({value: this.data.value.vin, disabled: true}, Validators.required),
+          mobile: new FormControl({value: this.data.value.year, disabled: true}, Validators.required),
+          phone: new FormControl({value: this.data.value.color, disabled: true}, Validators.required),
+          email: new FormControl({value: this.data.value.vin, disabled: true}, Validators.required),
+          jobTitle: new FormControl({value: this.data.value.brand, disabled: true}, Validators.required),
+          contactRole: new FormControl({value:'ContactRole 3', disabled: true}, Validators.required),
+          notes: new FormControl({value: this.data.value.vin, disabled: true}, Validators.required)
+        });
+        this.disabled = true ;
+        this.floatLabel = 'never';
+      }
+
     }
   
     close() {
@@ -48,7 +67,7 @@ export class ContactFormComponent implements OnInit {
     }
 
     submit() {
-      this.dialogRef.close(this.CustomerForm.value);
+      this.dialogRef.close(this.ContactForm.value);
     }
 
 }

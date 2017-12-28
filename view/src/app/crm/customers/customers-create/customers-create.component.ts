@@ -4,11 +4,11 @@ import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { DefaultUrlHandlingStrategy } from '@angular/router/src/url_handling_strategy';
 
 @Component({
-  selector: 'app-customers-creat',
-  templateUrl: './customers-creat.component.html',
-  styleUrls: ['./customers-creat.component.css']
+  selector: 'app-customers-create',
+  templateUrl: './customers-create.component.html',
+  styleUrls: ['./customers-create.component.css']
 })
-export class CustomersCreatComponent implements OnInit {
+export class CustomersCreateComponent implements OnInit {
 
   //form
   CreatCustomerForm: FormGroup;

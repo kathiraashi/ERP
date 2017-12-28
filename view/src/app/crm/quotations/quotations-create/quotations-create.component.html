@@ -1,0 +1,22 @@
+<p-growl [value]="msgs"></p-growl>
+
+<div class="page" style="margin-top:137px">
+
+    <div class="page-identity" style="position:fixed; margin-top:-42px;">
+      <div class="page-name">
+        <h5> </h5>
+      </div>
+      <div class="page-track" style="width:47%">
+        <ul>
+          <li><a routerLink="/crmQuotationsList"> Quotations </a></li>
+          <li><i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
+          <li> Create Quotation </li>
+        </ul>
+      </div>
+    </div>
+
+    <mat-card class="example-card tab-mat-card" style="padding:20px 0px 30px 0px;background-color:#f1f4f7;box-shadow:none;">
+        <p-steps class="steps-style-1" [model]="Steps" [(activeIndex)]="activeIndex"  styleClass="steps-custom"></p-steps>
+    </mat-card>
+
+</div>

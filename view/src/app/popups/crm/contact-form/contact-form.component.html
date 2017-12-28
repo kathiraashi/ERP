@@ -1,63 +1,75 @@
-<form [formGroup]="CustomerForm" (ngSubmit)="submit()">
-  <h1 mat-dialog-title style="text-align:center;margin-top:-20px;margin-bottom:0px"> {{data.Header}} </h1>
+<form [formGroup]="ContactForm" (ngSubmit)="submit()">
+  <h1 mat-dialog-title class="pop-up-title"> {{data.Header}} </h1>
   <hr style="margin-top:10px;">
   <mat-dialog-content style="overflow:initial">
     <div class="form-group row">
       <div class="col-sm-6" style="margin-bottom:20px;">
           <div class="example-container">
-              <mat-form-field>
+              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
                   <input matInput type="text" formControlName="name" placeholder=" Name ">
+                  <span *ngIf="disabled" matPrefix> <b> Name : </b></span>
               </mat-form-field>
           </div>
       </div>
       <div class="col-sm-6" style="margin-bottom:20px;">
           <div class="example-container">
-              <mat-form-field>
+              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
                   <input matInput type="text" formControlName="mobile" placeholder="Mobile">
+                  <span *ngIf="disabled" matPrefix> <b> Mobile : </b></span>
               </mat-form-field>
           </div>
       </div>
       <div class="col-sm-6" style="margin-bottom:20px;">
           <div class="example-container">
-              <mat-form-field>
+              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
                   <input matInput type="text" formControlName="phone" placeholder="Phone">
+                  <span *ngIf="disabled" matPrefix> <b> Phone : </b></span>
               </mat-form-field>
           </div>
       </div>
       <div class="col-sm-6" style="margin-bottom:20px;">
           <div class="example-container">
-              <mat-form-field>
+              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
                   <input matInput type="text" formControlName="email" placeholder="E-mail">
+                  <span *ngIf="disabled" matPrefix> <b> E-mail : </b></span>
               </mat-form-field>
           </div>
       </div>
       <div class="col-sm-6" style="margin-bottom:20px;">
           <div class="example-container">
-              <mat-form-field>
+              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
                   <input matInput type="text" formControlName="jobTitle" placeholder="Job Title">
+                  <span *ngIf="disabled" matPrefix> <b> Job Title : </b></span>
               </mat-form-field>
           </div>
       </div>
       <div class="col-sm-6" style="margin-bottom: 20px">
           <div class="example-container">
-              <mat-form-field>
+              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
                   <mat-select formControlName="contactRole" placeholder="Contact Role">
                       <mat-option *ngFor="let ContactRole of ContactRoles" [value]="ContactRole">{{ContactRole}}</mat-option>
                   </mat-select>
+                  <span *ngIf="disabled" matPrefix> <b> Contact Role : </b></span>
               </mat-form-field>
           </div>
       </div>
       <div class="col-sm-6" style="margin-bottom:20px;">
           <div class="example-container">
-              <mat-form-field>
-                  <textarea matInput type="text" formControlName="notes" placeholder=" Notes "></textarea>
+              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                  <textarea matInput type="text" formControlName="notes" [disabled]="disabled" placeholder=" Notes "></textarea>
+                  <span *ngIf="disabled" matPrefix> <b> Notes : </b></span>
               </mat-form-field>
           </div>
       </div>
     </div>
   </mat-dialog-content>
-  <mat-dialog-actions>
-    <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
-    <button type="submit" mat-raised-button color="accent" > Submit </button>
+  <mat-dialog-actions class="pull-right"> 
+      <div *ngIf="!disabled">
+        <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
+        <button type="submit" mat-raised-button color="accent" > Submit </button>
+      </div>
+      <div *ngIf="disabled" >
+        <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
+      </div>
   </mat-dialog-actions>
 </form>

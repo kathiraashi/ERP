@@ -39,9 +39,13 @@ import { ProductSettingsComponent } from './settings/product-settings/product-se
 import { ProductsComponent } from './products/products/products.component';
 import { ProductsAddComponent } from './products/products-add/products-add.component';
 import { CustomersListComponent } from './crm/customers/customers-list/customers-list.component';
-import { CustomersCreatComponent } from './crm/customers/customers-creat/customers-creat.component';
+import { CustomersCreateComponent } from './crm/customers/customers-create/customers-create.component';
 import { CustomersViewComponent } from './crm/customers/customers-view/customers-view.component';
 import { ContactFormComponent } from './popups/crm/contact-form/contact-form.component';
+import { ActivityFormComponent } from './popups/crm/activity-form/activity-form.component';
+import { QuotationsCreateComponent } from './crm/quotations/quotations-create/quotations-create.component';
+import { QuotationsListComponent } from './crm/quotations/quotations-list/quotations-list.component';
+import { QuotationsViewComponent } from './crm/quotations/quotations-view/quotations-view.component';
 
 
 @NgModule({
@@ -64,9 +68,13 @@ import { ContactFormComponent } from './popups/crm/contact-form/contact-form.com
     ProductsComponent,
     ProductsAddComponent,
     CustomersListComponent,
-    CustomersCreatComponent,
+    CustomersCreateComponent,
     CustomersViewComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    ActivityFormComponent,
+    QuotationsCreateComponent,
+    QuotationsListComponent,
+    QuotationsViewComponent
   ],
   imports: [
     CommonModule,
@@ -89,6 +97,6 @@ import { ContactFormComponent } from './popups/crm/contact-form/contact-form.com
   ],
   providers: [CarService],
   bootstrap: [AppComponent],
-  entryComponents: [ExampleComponent, ContactFormComponent]
+  entryComponents: [ExampleComponent, ContactFormComponent, ActivityFormComponent]
 })
 export class AppModule { }

@@ -10,6 +10,7 @@
 
 /* Custom css */
 @import '../src/assets/custom-css/customer-tab.css';
+@import '../src/assets/custom-css/steps.css';
 
 
 body{
@@ -35,14 +36,38 @@ body{
 .mat-focused .mat-form-field-label{
     color: #49b660 !important;
 }
+mat-form-field.availabel-prefix .mat-form-field-prefix{
+    width: 120px !important;
+    color: #49b660;
+  }
+mat-form-field.availabel-prefix .mat-input-element:disabled{
+    color: #536777;
+    font-weight: 600;
+    font-size: 15px;
+}
+mat-form-field.availabel-prefix .mat-select-disabled .mat-select-value{
+    color: #536777;
+    font-weight: 600;
+    font-size: 15px;
+}
+mat-form-field.availabel-prefix.mat-form-field-disabled .mat-form-field-label{
+    color: #536777;
+    font-weight: 600;
+    font-size: 15px;
+}
+mat-form-field.availabel-prefix .mat-select-disabled .mat-select-arrow-wrapper>.mat-select-arrow{
+    opacity: 0 ;
+}
 .mat-form-field-ripple{
     background-color: #49b660;
 }
 .mat-checkbox-ripple.mat-ripple>*{
     background-color:transparent !important;
 }
-.mat-button.mat-accent .mat-button-focus-overlay, .mat-icon-button.mat-accent .mat-button-focus-overlay, .mat-button-focus-overlay{
+.mat-button.mat-accent .mat-button-focus-overlay, 
+.mat-icon-button.mat-accent .mat-button-focus-overlay{
     background-color: rgba(73, 182, 96, 0.26) !important;
+    color: #49b660;
 }
 .mat-button.mat-primary, .mat-icon-button.mat-primary{
     color: #49b660;

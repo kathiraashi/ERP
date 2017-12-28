@@ -86,12 +86,12 @@
                                 </div>
                             </div>
                             <div class="col-sm-12" style="height:40px;padding-right:0px">
-                                <h5 style="line-height:40px;margin-bottom:0px;"> <span class="cus-name"> Customer Name </span>
-                                    <button type="button" mat-icon-button color="" >
+                                <h5 style="line-height:45px;margin-bottom:0px;"> <span class="cus-name" style="font-family:sans-serif;font-size:20px;color:black"> Customer Name </span>
+                                    <button type="button" mat-icon-button color="primary" >
                                         <mat-icon>create</mat-icon>
                                     </button>
                                     <span class="pull-right">
-                                        <button type="button" mat-button class="color-success" style="font-weight:600" [matMenuTriggerFor]="createList" >
+                                        <button type="button" mat-button color="accent" class="color-success" style="font-weight:600" [matMenuTriggerFor]="createList" >
                                             + Create
                                         </button> 
                                     </span>
@@ -186,7 +186,7 @@
                                     <p-header>
                                         <div class="row">
                                             <div class="col-sm-4 text-left">
-                                                <button mat-button class="color-success" style="font-weight:600" (click)="ContactAdd()"> + Create </button> 
+                                                <button mat-button class="color-success" color="accent" style="font-weight:600" (click)="ContactAdd()"> + Create </button> 
                                             </div>
                                             <div class="col-sm-3"></div>
                                             <div class="col-sm-5 text-left"> 
@@ -226,15 +226,64 @@
                                         <ng-template let-car="rowData" pTemplate="body">
                                                 <div class="button-row tabel-action">
                                                     <button mat-mini-fab class="bg-color-info" color="accent" (click)="ContactEdit(car)" > <mat-icon>border_color</mat-icon> </button>
-                                                    <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
+                                                    <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ContactView(car)" > <mat-icon>visibility</mat-icon> </button>
                                                     <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
                                                 </div>
                                         </ng-template>
                                     </p-column>
                                 </p-dataTable> 
                             </p-tabPanel>
-                            <p-tabPanel header="Activity" >
-                                After a break of more than  15 years,
+                            <p-tabPanel header="Activity" class="tab-mat-card">
+                                <p-dataTable [value]="cars" [globalFilter]="ActivitiesFilter" sortMode="multiple" [rows]="5" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[5,10,25,50]">
+                                    <p-header>
+                                        <div class="row">
+                                            <div class="col-sm-4 text-left">
+                                                <button mat-button class="color-success" color="accent" style="font-weight:600" (click)="ActivityAdd()"> + Create </button> 
+                                            </div>
+                                            <div class="col-sm-3"></div>
+                                            <div class="col-sm-5 text-left"> 
+                                                <div style="width:100%;display:inline-flex">
+                                                    <div style="float:left;width:85%">
+                                                        <mat-form-field class="search-field" style="width:100%;height:44px; margin-top:-10px;">
+                                                            <input matInput type="text" #ActivitiesFilter placeholder="Search" />
+                                                            <button mat-button matSuffix mat-icon-button aria-label="Search">
+                                                                <mat-icon style="font-size:25px">search</mat-icon>
+                                                            </button>
+                                                        </mat-form-field> 
+                                                    </div>
+                                                    <div style="float:left;width:15%;text-align:center;height:35px">
+                                                        <button mat-button mat-icon-button > <mat-icon style="font-size:28px;margin-top:8px;color:#546a77">filter_list</mat-icon> </button>
+                                                    </div>
+                                                </div>         
+                                            </div>
+                                        </div> 
+                                    </p-header>
+                                    <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" >
+                                        <ng-template let-col let-i="rowIndex" pTemplate="body">
+                                            <span >{{i+1}}</span>
+                                        </ng-template> 
+                                    </p-column>
+                                    <p-column field="vin" header="Vin" [sortable]="true" ></p-column>
+                                    <p-column field="brand" header="Brand" [sortable]="true" ></p-column>
+                                    <p-column field="year" header="Year" [sortable]="true" ></p-column>
+                                    <p-column field="color" header="Color" [sortable]="true" >
+                                        <ng-template let-col let-car="rowData" pTemplate="body">
+                                            <span [style.color]="car[col.field]">{{car[col.field]}}</span>
+                                        </ng-template>
+                                    </p-column>
+                                    <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
+                                        <ng-template pTemplate="header">
+                                                Action
+                                        </ng-template>
+                                        <ng-template let-car="rowData" pTemplate="body">
+                                                <div class="button-row tabel-action">
+                                                    <button mat-mini-fab class="bg-color-info" color="accent" (click)="ActivityEdit(car)" > <mat-icon>border_color</mat-icon> </button>
+                                                    <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ActivityView(car)" > <mat-icon>visibility</mat-icon> </button>
+                                                    <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                                </div>
+                                        </ng-template>
+                                    </p-column>
+                                </p-dataTable> 
                             </p-tabPanel>
                             <p-tabPanel header="Quote" >
                                 The story begins as Don Vito Corleone, the head of a New York Mafia family,
@@ -324,169 +373,6 @@
 
 
 <!-- Models -->
-
-    <!-- CRM Customers Activity Add Model -->
-    <div class="modal fade" bsModal #ActivityAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <form class="md-float-material" [formGroup]="ActivityAddForm" (submit)="ActivityAddFormSubmit()" >
-                    <div class="modal-header">
-                        <h4 class="modal-title pull-left">Add Activity </h4>
-                        <button type="button" class="close pull-right" aria-label="Close" (click)="ActivityAdd.hide()">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group row">
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="activityDate"  placeholder=" Activity Date " bsDatepicker>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom: 20px">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <mat-select formControlName="contactPerson" placeholder="Contact Person">
-                                            <mat-option *ngFor="let ContactPerson of ContactPersons" [value]="ContactPerson">{{ContactPerson}}</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="subject" placeholder="Subject" >
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom: 20px">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <mat-select formControlName="activityType" placeholder=" Activity Type ">
-                                            <mat-option *ngFor="let ActivityType of ActivityTypes" [value]="ActivityType">{{ActivityType}}</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom: 20px">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <mat-select formControlName="status" placeholder=" Status ">
-                                            <mat-option *ngFor="let Status of Statuses" [value]="Status">{{Status}}</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom: 20px">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <mat-select formControlName="priority" placeholder=" Priority ">
-                                            <mat-option *ngFor="let Priority of Priorities" [value]="Priority">{{Priority}}</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <textarea matInput type="text" formControlName="notes" placeholder=" Notes "></textarea>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" mat-raised-button class="bg-color-warning" color="accent" (click)="ActivityAdd.hide()"> Close </button>
-                        <button type="submit" mat-raised-button color="accent" (click)="ActivityAdd.hide()"> Submit </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- CRM Customers Activity Edit Model -->
-    <div class="modal fade" bsModal #ActivityEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <form class="md-float-material" [formGroup]="ActivityEditForm" (submit)="ActivityEditFormSubmit()" >
-                    <div class="modal-header">
-                        <h4 class="modal-title pull-left">Edit Activity </h4>
-                        <button type="button" class="close pull-right" aria-label="Close" (click)="ActivityEdit.hide()">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group row">
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="activityDate"  placeholder=" Activity Date " bsDatepicker>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom: 20px">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <mat-select formControlName="contactPerson" placeholder="Contact Person">
-                                            <mat-option *ngFor="let ContactPerson of ContactPersons" [value]="ContactPerson">{{ContactPerson}}</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="subject" placeholder="Subject" >
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom: 20px">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <mat-select formControlName="activityType" placeholder=" Activity Type ">
-                                            <mat-option *ngFor="let ActivityType of ActivityTypes" [value]="ActivityType">{{ActivityType}}</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom: 20px">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <mat-select formControlName="status" placeholder=" Status ">
-                                            <mat-option *ngFor="let Status of Statuses" [value]="Status">{{Status}}</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom: 20px">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <mat-select formControlName="priority" placeholder=" Priority ">
-                                            <mat-option *ngFor="let Priority of Priorities" [value]="Priority">{{Priority}}</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <textarea matInput type="text" formControlName="notes" placeholder=" Notes "></textarea>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" mat-raised-button class="bg-color-warning" color="accent" (click)="ActivityEdit.hide()"> Close </button>
-                        <button type="submit"mat-raised-button color="accent" (click)="ActivityEdit.hide()"> Submit </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <!-- CRM Customers Delete Confirmation Model -->
     <ng-template #DeleteConfirm>

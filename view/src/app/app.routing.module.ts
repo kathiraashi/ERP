@@ -19,16 +19,18 @@ import { ProductsComponent } from './products/products/products.component';
 import { ProductsAddComponent } from './products/products-add/products-add.component';
 //crm
 import { CustomersListComponent } from './crm/customers/customers-list/customers-list.component';
-import { CustomersCreatComponent } from './crm/customers/customers-creat/customers-creat.component';
+import { CustomersCreateComponent } from './crm/customers/customers-create/customers-create.component';
 import { CustomersViewComponent } from './crm/customers/customers-view/customers-view.component';
-
+import { QuotationsCreateComponent } from './crm/quotations/quotations-create/quotations-create.component';
+import { QuotationsListComponent } from './crm/quotations/quotations-list/quotations-list.component';
+import { QuotationsViewComponent } from './crm/quotations/quotations-view/quotations-view.component';
 
 const appRoutes: Routes = [
     { path: '',                     component: LoginComponent,                  data: { animation: { value: 'login', } }               },
     { path: 'login',                component: LoginComponent,                  data: { animation: { value: 'login', } }               },
     { path: 'dashboard',            component: DashboardComponent,              data: { animation: { value: 'dashboard', } }           },
     { path: 'ui',                   component: UiComponent,                     data: { animation: { value: 'ui', } }                  },
-    //Settings
+//Settings
     { path: 'crmSettings',          component: CrmSettingsComponent,            data: { animation: { value: 'crmSettings', } }         },
     { path: 'companySettings',      component: CompanySettingsComponent,        data: { animation: { value: 'companySettings', } }     },
     { path: 'leadsSettings',        component: LeadsSettingsComponent,          data: { animation: { value: 'leadsSettings', } }       },
@@ -38,13 +40,17 @@ const appRoutes: Routes = [
     { path: 'hrSettings',           component: HrSettingsComponent,             data: { animation: { value: 'hrSettings', } }          },
     { path: 'inventorySettings',    component: InventorySettingsComponent,      data: { animation: { value: 'hrmsSettings', } }        },
     { path: 'productSettings',      component: ProductSettingsComponent,        data: { animation: { value: 'productSettings', } }     },
-    //Products
+//Products
     { path: 'products',             component: ProductsComponent,               data: { animation: { value: 'products', } }            },
     { path: 'productsAdd',          component: ProductsAddComponent,            data: { animation: { value: 'productsAdd', } }         },
-    //crm
+//crm
     { path: 'crmCustomersList',     component: CustomersListComponent,          data: { animation: { value: 'crmCustomersList', } }    },
-    { path: 'crmCreatCustomers',    component: CustomersCreatComponent,         data: { animation: { value: 'crmCreatCustomers', } }   },
-    { path: 'crmViewCustomers',     component: CustomersViewComponent,          data: { animation: { value: 'crmViewCustomers', } }    }
+    { path: 'crmCreatCustomers',    component: CustomersCreateComponent,        data: { animation: { value: 'crmCreatCustomers', } }   },
+    { path: 'crmViewCustomers',     component: CustomersViewComponent,          data: { animation: { value: 'crmViewCustomers', } }    },
+    
+    { path: 'crmQuotationsList',    component: QuotationsListComponent,         data: { animation: { value: 'crmQuotationsList', } }   },
+    { path: 'crmCreateQuotations',  component: QuotationsCreateComponent,       data: { animation: { value: 'crmCreateQuotations', } } },
+    { path: 'crmViewQuotations',    component: QuotationsViewComponent,         data: { animation: { value: 'crmViewQuotations', } }   }
     
   ];
   
