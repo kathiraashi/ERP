@@ -18,7 +18,8 @@ import { AppRoutingModule } from './app.routing.module';
 import { MaterialModule } from './material.module';
 import { PrimengModule } from './primeng.module';
 
-import { CarService } from './service/carservice'
+import { CarService } from './service/carservice';
+import { CustomService } from './service/custome';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -46,6 +47,7 @@ import { ActivityFormComponent } from './popups/crm/activity-form/activity-form.
 import { QuotationsCreateComponent } from './crm/quotations/quotations-create/quotations-create.component';
 import { QuotationsListComponent } from './crm/quotations/quotations-list/quotations-list.component';
 import { QuotationsViewComponent } from './crm/quotations/quotations-view/quotations-view.component';
+import { QuoteProductFormComponent } from './popups/crm/quote-product-form/quote-product-form.component';
 
 
 @NgModule({
@@ -74,7 +76,8 @@ import { QuotationsViewComponent } from './crm/quotations/quotations-view/quotat
     ActivityFormComponent,
     QuotationsCreateComponent,
     QuotationsListComponent,
-    QuotationsViewComponent
+    QuotationsViewComponent,
+    QuoteProductFormComponent
   ],
   imports: [
     CommonModule,
@@ -95,8 +98,8 @@ import { QuotationsViewComponent } from './crm/quotations/quotations-view/quotat
     TextMaskModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyD9sVX8Wudcp2N1Qp23aED0q2pVwehbnGs'})
   ],
-  providers: [CarService],
+  providers: [CarService, CustomService],
   bootstrap: [AppComponent],
-  entryComponents: [ExampleComponent, ContactFormComponent, ActivityFormComponent]
+  entryComponents: [ExampleComponent, ContactFormComponent, ActivityFormComponent, QuoteProductFormComponent]
 })
 export class AppModule { }

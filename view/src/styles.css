@@ -9,6 +9,7 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik');
 
 /* Custom css */
+@import '../src/assets/custom-css/custom-margin-padding.css';
 @import '../src/assets/custom-css/customer-tab.css';
 @import '../src/assets/custom-css/steps.css';
 

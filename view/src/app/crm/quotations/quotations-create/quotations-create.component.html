@@ -15,8 +15,204 @@
       </div>
     </div>
 
-    <mat-card class="example-card tab-mat-card" style="padding:20px 0px 30px 0px;background-color:#f1f4f7;box-shadow:none;">
-        <p-steps class="steps-style-1" [model]="Steps" [(activeIndex)]="activeIndex"  styleClass="steps-custom"></p-steps>
+    <mat-card class="example-card mb-30" style="padding:0px 20px 0px 20px;">
+        <mat-horizontal-stepper linear class="steps-style-1 ">
+          <mat-step [stepControl]="QuoteForm">
+            <form [formGroup]="QuoteForm">
+              <ng-template matStepLabel>Company Details</ng-template>
+              <div class="row mt-40">
+                  <div class="col-sm-4 mb-30" >
+                    <div class="example-container">
+                      <mat-form-field >
+                          <input matInput type="text" formControlName="date" placeholder="Date" bsDatepicker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 mb-30">
+                    <div class="example-container">
+                      <mat-form-field>
+                          <mat-select formControlName="companyName" placeholder="Company Name">
+                              <mat-option *ngFor="let CompanyName of CompanyNames" [value]="CompanyName">{{CompanyName}}</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 mb-30">
+                    <div class="example-container">
+                      <mat-form-field>
+                          <mat-select formControlName="contactPerson" placeholder="Contact Person">
+                              <mat-option *ngFor="let ContactPerson of ContactPersons" [value]="ContactPerson">{{ContactPerson}}</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 mb-30">
+                    <div class="example-container">
+                      <mat-form-field >
+                          <input matInput type="text" formControlName="quoteRefNo" placeholder="Quote Refrence Number">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 mb-30">
+                    <div class="example-container">
+                      <mat-form-field >
+                          <input matInput type="text" formControlName="validTill" placeholder="Valid Till" bsDatepicker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 mb-30">
+                    <div class="example-container">
+                      <mat-form-field>
+                          <mat-select formControlName="opportunityName" placeholder="Opportunity Name">
+                              <mat-option *ngFor="let OpportunityName of OpportunityNames" [value]="OpportunityName">{{OpportunityName}}</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 mb-30">
+                    <div class="example-container">
+                      <mat-form-field>
+                          <mat-select formControlName="employeeName" placeholder="Employee Name">
+                              <mat-option *ngFor="let EmployeeName of EmployeeNames" [value]="EmployeeName">{{EmployeeName}}</mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+              </div>
+              <hr>
+              <div class="pull-right">
+                <button mat-raised-button color="accent" matStepperNext> Next </button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step>
+             <ng-template matStepLabel>Product Details</ng-template>
+              <div class="row">
+                  <div class="col-sm-12 text-right mb-10">
+                      <button type="button" mat-raised-button color="accent" (click)="addpriceListAdd()" (click)="priceListForm.show()" > Add New Product </button> 
+                  </div>
+
+                  <div class="col-sm-12" >
+                    <p-dataTable [value]="cars" sortMode="multiple">
+                        <p-headerColumnGroup>
+                            <p-row>
+                                <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" ></p-column>
+                                <p-column header="Product" [style]="{'width':'20%','text-align':'center'}"></p-column>
+                                <p-column header="Description" [style]="{'width':'22%','text-align':'center'}"></p-column>
+                                <p-column header="Price" [style]="{'text-align':'center'}"></p-column>
+                                <p-column header="Quantity" [style]="{'text-align':'center'}"></p-column>
+                                <p-column header="Tax" [style]="{'text-align':'center'}"></p-column>
+                                <p-column header="Total" [style]="{'text-align':'center'}"></p-column>
+                                <p-column header="Action" [style]="{'text-align':'center'}"></p-column>
+                            </p-row>
+                        </p-headerColumnGroup>
+
+                            <p-column> <ng-template let-i="rowIndex" pTemplate="body"> {{i+1}} </ng-template> </p-column>
+                            <p-column> <ng-template let-car="rowData" pTemplate="body">  {{car['brand']}}  </ng-template> </p-column>
+                            <p-column> <ng-template let-car="rowData" pTemplate="body">  {{car['vin']}} {{car['vin']}} {{car['vin']}}  </ng-template> </p-column>
+                            <p-column> <ng-template let-car="rowData" pTemplate="body">  {{car['year']}}  </ng-template> </p-column>
+                            <p-column> <ng-template let-car="rowData" pTemplate="body">  {{car['year']}}  </ng-template> </p-column>
+                            <p-column> <ng-template let-car="rowData" pTemplate="body">  {{car['color']}}  </ng-template> </p-column>
+                            <p-column> <ng-template let-car="rowData" pTemplate="body">  {{car['year']}}  </ng-template> </p-column>
+                            <p-column> 
+                                <ng-template let-rowId="rowIndex" pTemplate="body"> 
+                                    <div class="button-row tabel-action">
+                                        <button type="button" mat-mini-fab class="bg-color-info" color="accent" (click)="priceListEdit(rowId)" (click)="priceListForm.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button type="button" mat-mini-fab class="bg-color-danger" color="accent" (click)="deleteId(rowId)"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                    </div> 
+                                </ng-template> 
+                            </p-column>
+                    </p-dataTable>
+                  </div>
+              </div>
+              <div class="pull-right">
+                <hr>
+                <button class="bg-color-warning" mat-raised-button mat-button color="accent" matStepperPrevious>Back</button>
+                <button mat-raised-button mat-button color="accent" matStepperNext>Next</button>
+              </div>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            You are now done.
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
     </mat-card>
+
+
+
+
+
+        <!-- Account Settings Payment Terms Edit Model -->
+        <div class="modal fade" bsModal #priceListForm="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg" >
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h4 class="modal-title pull-left">Edit Payment Terms</h4>
+                      <button type="button" class="close pull-right" aria-label="Close" (click)="priceListForm.hide()">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <form class="md-float-material" [formGroup]="priceListAddForm" (submit)="formSubmit()">
+                  <div class="modal-body">
+                      <div class="form-group row">
+                              
+                          <div class="col-sm-6" style="margin-bottom:20px;">
+                              <div class="example-container">
+                                  <mat-form-field>
+                                      <input matInput formControlName="vin" type="text" [(ngModel)]="car.vin"  placeholder="vin">
+                                  </mat-form-field>
+                              </div>
+                          </div>
+  
+                          <div class="col-sm-6" style="margin-bottom:20px;">
+                              <div class="example-container">
+                                  <mat-form-field>
+                                      <input matInput formControlName="year" type="text" [(ngModel)]="car.year"  placeholder="year">
+                                  </mat-form-field>
+                              </div>
+                          </div>
+  
+                          <div class="col-sm-6" style="margin-bottom:20px;">
+                              <div class="example-container">
+                                  <mat-form-field>
+                                      <input matInput formControlName="color" type="text" [(ngModel)]="car.color"  placeholder="color">
+                                  </mat-form-field>
+                              </div>
+                          </div>
+  
+                          <div class="col-sm-6" style="margin-bottom:20px;">
+                              <div class="example-container">
+                                  <mat-form-field>
+                                      <input matInput formControlName="brand" type="text" [(ngModel)]="car.brand"  placeholder="brand">
+                                  </mat-form-field>
+                              </div>
+                          </div>
+  
+  
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" mat-raised-button class="bg-color-danger" color="accent" (click)="priceListForm.hide()"> close </button>
+                      <button type="submit" mat-raised-button color="accent" (click)="priceListForm.hide()"> Submit </button>
+                  </div> 
+                  </form>
+              </div>
+          </div>
+      </div>
+  
+  
+          <!-- Account Settings Delete Confirmation Model -->
+          <ng-template #DeleteConfirm>
+              <div class="modal-body text-center">
+                  <p>Are You Sure You Whant To Delete This Data ?</p>
+                  <button type="button" mat-raised-button class="bg-color-warning" color="accent" (click)="declineDelete()" >No</button>
+                  <button type="button" mat-raised-button color="accent" class="btn btn-default" (click)="confirmDelete(deleterowId)" >Yes</button>
+              </div>
+          </ng-template>
+
+          
 
 </div>
