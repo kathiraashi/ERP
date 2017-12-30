@@ -1,72 +1,94 @@
 <form [formGroup]="QuoteProductForm" (ngSubmit)="submit()">
-  <h1 mat-dialog-title class="pop-up-title"> {{data.Header}} </h1>
-  <hr style="margin-top:10px;">
-  <mat-dialog-content style="overflow:initial">
-    <div class="form-group row">
-      <div class="col-sm-6" style="margin-bottom:30px;">
-          <div class="example-container">
-              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
-                <input matInput type="text" placeholder="Product" (ngModelChange)="somethingChanged($event)" formControlName="product" [matAutocomplete]="productauto">
-                <mat-autocomplete #productauto="matAutocomplete">
-                  <mat-option *ngFor="let product of products" [value]="product.id">
-                    {{ product.product_name }}
-                  </mat-option>
-                </mat-autocomplete>
-                <span *ngIf="disabled" matPrefix> <b> Product : </b></span>
-              </mat-form-field>
-          </div>
-      </div>
-      <div class="col-sm-6" style="margin-bottom:30px;">
-          <div class="example-container">
-              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
-                  <input matInput type="text" formControlName="price" placeholder="Price">
-                  <span *ngIf="disabled" matPrefix> <b> Price : </b></span>
-              </mat-form-field>
-          </div>
-      </div>
-      <div class="col-sm-6" style="margin-bottom:30px;">
-          <div class="example-container">
-              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
-                  <input matInput type="text" formControlName="quantity" placeholder="Quantity">
-                  <span *ngIf="disabled" matPrefix> <b> Quantity : </b></span>
-              </mat-form-field>
-          </div>
-      </div>
-      <div class="col-sm-6" style="margin-bottom: 30px">
-          <div class="example-container">
-              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
-                  <mat-select formControlName="tax" placeholder="Taxes">
-                      <mat-option *ngFor="let tax of taxes" [value]="tax.tax_name">{{tax.tax_name}}</mat-option>
-                  </mat-select>
-                  <span *ngIf="disabled" matPrefix> <b> Taxes : </b></span>
-              </mat-form-field>
-          </div>
-      </div>
-      <div class="col-sm-6" style="margin-bottom:30px;">
-        <div class="example-container">
-            <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
-                <input matInput type="text" formControlName="total" placeholder="Total">
-                <span *ngIf="disabled" matPrefix> <b> Total : </b></span>
-            </mat-form-field>
+    <h1 mat-dialog-title class="pop-up-title"> {{data.Header}} </h1>
+    <hr style="margin-top:10px;">
+    <mat-dialog-content style="overflow:initial">
+        <div class="form-group row">
+            <div class="col-sm-6" style="margin-bottom:30px;">
+                <div class="example-container">
+                    <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                        <input matInput type="text" placeholder="Product" (ngModelChange)="productsSearchKey($event)" formControlName="product" [matAutocomplete]="productauto">
+                        <mat-autocomplete #productauto="matAutocomplete">
+                            <mat-option *ngFor="let product of productslist" [value]="product.product_name" (click)="SelectProduct(product.id)">
+                                {{ product.product_name }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <span *ngIf="disabled" matPrefix> <b> Product : </b></span>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom:30px;">
+                <div class="example-container">
+                    <mat-form-field [floatLabel]="floatLabel">
+                        <textarea matInput type="text" formControlName="description" placeholder="Description"></textarea>
+                        <span *ngIf="disabled" matPrefix> <b> Description : </b></span>
+                    </mat-form-field>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col-sm-6" style="margin-bottom:30px;">
-      <div class="example-container">
-          <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
-              <input matInput type="text" formControlName="discount" placeholder="discount">
-              <span *ngIf="disabled" matPrefix> <b> Discount : </b></span>
-          </mat-form-field>
-      </div>
-    </div>
-    </div>
-  </mat-dialog-content>
-  <mat-dialog-actions class="pull-right"> 
-      <div *ngIf="!disabled">
-        <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
-        <button type="submit" mat-raised-button color="accent" > Submit </button>
-      </div>
-      <div *ngIf="disabled" >
-        <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
-      </div>
-  </mat-dialog-actions>
+        <div class="form-group row">
+            <div class="col-sm-6" style="margin-bottom:30px;">
+                <div class="example-container">
+                    <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                        <input matInput type="text" formControlName="price" (input)="calculate()" placeholder="Price">
+                        <span *ngIf="disabled" matPrefix> <b> Price : </b></span>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom:30px;">
+                <div class="example-container">
+                    <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                        <input matInput type="text" formControlName="quantity" (input)="calculate()" placeholder="Quantity">
+                        <span *ngIf="disabled" matPrefix> <b> Quantity : </b></span>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6" style="margin-bottom: 30px">
+                <div class="example-container">
+                    <mat-form-field class="demo-chip-list">
+                        <mat-chip-list #chipList>
+                            <mat-chip *ngFor="let selectedTax of selectedTaxes" [selectable]="selectable"
+                                    [removable]="removable" (remove)="selectedTaxRemove(selectedTax)"> {{selectedTax.tax_name}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+                            <input type="text" matInput placeholder="Taxes" #taxSearchValue [matChipInputFor]="chipList"  (ngModelChange)="taxSearchKey($event)" formControlName="tax" [matAutocomplete]="taxauto">
+                            <mat-autocomplete #taxauto="matAutocomplete">
+                                <mat-option *ngFor="let tax of taxesList" [value]="tax.tax_name" (click)="taxSearchValue.value=''" (click)="SelectTax(tax.id)">
+                                    {{ tax.tax_name }}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-chip-list>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-6" style="margin-bottom:30px;">
+                <div class="example-container">
+                    <mat-form-field floatLabel class="availabel-prefix">
+                        <input matInput type="text" formControlName="total" placeholder="">
+                        <span matPrefix> <b> Total Rs. </b></span>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6" style="margin-bottom:30px;">
+                <div class="example-container">
+                    <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                        <input matInput type="text" formControlName="discount" placeholder="discount">
+                        <span *ngIf="disabled" matPrefix> <b> Discount : </b></span>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="pull-right"> 
+        <div *ngIf="!disabled">
+            <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
+            <button type="submit" mat-raised-button color="accent" > Submit </button>
+        </div>
+        <div *ngIf="disabled" >
+            <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
+        </div>
+    </mat-dialog-actions>
 </form>

@@ -91,7 +91,7 @@ export class QuotationsCreateComponent implements OnInit {
 // Forms Popups
     //Quotation Product Add
         QuoteProductAdd() {
-          let QuoteProductDialogRef = this.dialog.open(QuoteProductFormComponent, { data: { Header:'Quotation Product Add Form', type:'Add' } });
+          let QuoteProductDialogRef = this.dialog.open(QuoteProductFormComponent, { width:'75%', data: { Header:'Quotation Product Add Form', type:'Add' } });
           QuoteProductDialogRef.afterClosed().subscribe(result => console.log(result));
         }//QuoteProductAdd
         QuoteProductEdit(id) {
