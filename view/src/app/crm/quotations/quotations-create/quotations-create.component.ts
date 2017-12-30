@@ -124,7 +124,7 @@ export class QuotationsCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.carService.getCarsSmall().then(cars => this.cars = cars);
+    // this.carService.getCarsSmall().then(cars => this.cars = cars);
   }
 
 

@@ -17,7 +17,7 @@
 
     <mat-card class="example-card mb-30" style="padding:0px 20px 0px 20px;">
         <mat-horizontal-stepper linear class="steps-style-1 ">
-          <mat-step [stepControl]="QuoteForm">
+          <!-- <mat-step [stepControl]="QuoteForm">
             <form [formGroup]="QuoteForm">
               <ng-template matStepLabel>Company Details</ng-template>
               <div class="row mt-40">
@@ -84,12 +84,12 @@
                 <button mat-raised-button color="accent" matStepperNext> Next </button>
               </div>
             </form>
-          </mat-step>
+          </mat-step> -->
           <mat-step>
              <ng-template matStepLabel>Product Details</ng-template>
               <div class="row">
                   <div class="col-sm-12 text-right mb-10">
-                      <button type="button" mat-raised-button color="accent" (click)="addpriceListAdd()" (click)="priceListForm.show()" > Add New Product </button> 
+                      <button type="button" mat-raised-button color="accent" (click)="QuoteProductAdd()" > Add New Product </button> 
                   </div>
 
                   <div class="col-sm-12" >

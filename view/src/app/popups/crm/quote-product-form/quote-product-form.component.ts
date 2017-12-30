@@ -1,6 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA  } from '@angular/material';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
+import {startWith} from 'rxjs/operators/startWith';
+import {map} from 'rxjs/operators/map';
 
 //custome datas
 import { CustomService } from '../../../service/custome';
@@ -14,6 +17,7 @@ export class QuoteProductFormComponent implements OnInit {
 
   QuoteProductForm: FormGroup;
   products=[];
+  //products = [ 'Product 1', 'Product 2', 'Product 3', 'Product 4', 'Product 5'];
   taxes=[];
   values;
   
@@ -23,6 +27,7 @@ export class QuoteProductFormComponent implements OnInit {
       private dialogRef: MatDialogRef<QuoteProductFormComponent>,
       @Inject(MAT_DIALOG_DATA) private data:any ) { }
   
+
     ngOnInit() {
       this.customeService.getProductCustom().then(product => this.products = product);
       this.customeService.getTaxCustom().then(tax => this.taxes = tax);
@@ -51,9 +56,11 @@ export class QuoteProductFormComponent implements OnInit {
           discount: new FormControl(this.data.value.vin, Validators.required)
         });
       }
+  }
 
+  somethingChanged(value){
+      console.log(value);
     }
-  
     close() {
       this.dialogRef.close();
     }

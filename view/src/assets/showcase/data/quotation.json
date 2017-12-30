@@ -1,15 +1,15 @@
 {
     "data": [
-        {"id": "1", "Product_id": "3", "product_name": "Redmi Note 4", "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.", "type": "Sold"},
-        {"id": "2", "Product_id": "4", "product_name": "Asus ZenFone 5", "description": "ipsum dolor sit amet consectetur adipisicing elit Lorem .", "type": "Purchased"},
-        {"id": "3", "product_name": "Nokia 6", "description": "dolor sit amet consectetur adipisicing elit Lorem ipsum .", "type": "Sold"},
-        {"id": "4", "product_name": "Samsung Guru", "description": "sit amet consectetur adipisicing elit Lorem ipsum dolor .", "type": "Purchased"},
-        {"id": "5", "product_name": "Redmi 5A", "description": "amet consectetur adipisicing elit Lorem ipsum dolor sit .", "type": "Sold"},
-        {"id": "6", "product_name": "Apple Iphone 5", "description": "consectetur adipisicing elit Lorem ipsum dolor sit amet .", "type": "Purchased"},
-        {"id": "7", "product_name": "Nokia 8", "description": " adipisicing elit Lorem ipsum dolor sit amet consectetur.", "type": "Sold"},
-        {"id": "8", "product_name": "Redmi New", "description": " elit Lorem ipsum dolor sit amet consectetur adipisicing.", "type": "Purchased"},
-        {"id": "9", "product_name": "Micromax 121", "description": "ipsum dolor sit amet consectetur adipisicing elit Lorem .", "type": "Sold"},
-        {"id": "10", "product_name": "Samsung Note 2", "description": "dolor sit amet consectetur adipisicing elit Lorem ipsum .", "type": "Purchased"}
+        {"id": "1", "Product_id": "1", "product_name": "Redmi Note 4", "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.", "type": "Sold"},
+        {"id": "2", "Product_id": "2", "product_name": "Asus ZenFone 5", "description": "ipsum dolor sit amet consectetur adipisicing elit Lorem .", "type": "Purchased"},
+        {"id": "3", "Product_id": "3", "product_name": "Nokia 6", "description": "dolor sit amet consectetur adipisicing elit Lorem ipsum .", "type": "Sold"},
+        {"id": "4", "Product_id": "4", "product_name": "Samsung Guru", "description": "sit amet consectetur adipisicing elit Lorem ipsum dolor .", "type": "Purchased"},
+        {"id": "5", "Product_id": "5", "product_name": "Redmi 5A", "description": "amet consectetur adipisicing elit Lorem ipsum dolor sit .", "type": "Sold"},
+        {"id": "6", "Product_id": "6", "product_name": "Apple Iphone 5", "description": "consectetur adipisicing elit Lorem ipsum dolor sit amet .", "type": "Purchased"},
+        {"id": "7", "Product_id": "7", "product_name": "Nokia 8", "description": " adipisicing elit Lorem ipsum dolor sit amet consectetur.", "type": "Sold"},
+        {"id": "8", "Product_id": "8", "product_name": "Redmi New", "description": " elit Lorem ipsum dolor sit amet consectetur adipisicing.", "type": "Purchased"},
+        {"id": "9", "Product_id": "9", "product_name": "Micromax 121", "description": "ipsum dolor sit amet consectetur adipisicing elit Lorem .", "type": "Sold"},
+        {"id": "10", "Product_id": "10", "product_name": "Samsung Note 2", "description": "dolor sit amet consectetur adipisicing elit Lorem ipsum .", "type": "Purchased"}
 
     ]
 }
