@@ -92,8 +92,8 @@
                       <button type="button" mat-raised-button color="accent" (click)="QuoteProductAdd()" > Add New Product </button> 
                   </div>
 
-                  <div class="col-sm-12" >
-                    <p-dataTable [value]="cars" sortMode="multiple">
+                  <div class="col-sm-12 tab-mat-card" >
+                    <p-dataTable [value]="products" sortMode="multiple">
                         <p-headerColumnGroup>
                             <p-row>
                                 <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" ></p-column>
@@ -107,17 +107,45 @@
                             </p-row>
                         </p-headerColumnGroup>
 
-                            <p-column> <ng-template let-i="rowIndex" pTemplate="body"> {{i+1}} </ng-template> </p-column>
-                            <p-column> <ng-template let-car="rowData" pTemplate="body">  {{car['brand']}}  </ng-template> </p-column>
-                            <p-column> <ng-template let-car="rowData" pTemplate="body">  {{car['vin']}} {{car['vin']}} {{car['vin']}}  </ng-template> </p-column>
-                            <p-column> <ng-template let-car="rowData" pTemplate="body">  {{car['year']}}  </ng-template> </p-column>
-                            <p-column> <ng-template let-car="rowData" pTemplate="body">  {{car['year']}}  </ng-template> </p-column>
-                            <p-column> <ng-template let-car="rowData" pTemplate="body">  {{car['color']}}  </ng-template> </p-column>
-                            <p-column> <ng-template let-car="rowData" pTemplate="body">  {{car['year']}}  </ng-template> </p-column>
+                            <p-column> 
+                                <ng-template let-i="rowIndex" pTemplate="body">
+                                     {{i+1}} 
+                                </ng-template>
+                            </p-column>
+                            <p-column> 
+                                <ng-template let-product="rowData" pTemplate="body">  
+                                    {{product['product']}}  
+                                </ng-template> 
+                            </p-column>
+                            <p-column> 
+                                <ng-template let-product="rowData" pTemplate="body"> 
+                                     {{product['description']}}  
+                                </ng-template> 
+                            </p-column>
+                            <p-column> 
+                                <ng-template let-product="rowData" pTemplate="body">  
+                                    {{product['price']}}  
+                                </ng-template> 
+                            </p-column>
+                            <p-column> 
+                                <ng-template let-product="rowData" pTemplate="body">  
+                                    {{product['quantity']}}  
+                                </ng-template> 
+                            </p-column>
+                            <p-column> 
+                                <ng-template let-product="rowData" pTemplate="body"> 
+                                    <span *ngFor="let tax of product['tax']"> {{tax.tax_name}}, </span>  
+                                </ng-template> </p-column>
+                            <p-column> 
+                                <ng-template let-product="rowData" pTemplate="body">  
+                                    {{product['price'] * product['quantity'] }}  
+                                    <h6 *ngIf="product['discount'] != ''"> Discount : {{ product['discount'] }} % </h6>
+                                </ng-template> 
+                            </p-column>
                             <p-column> 
                                 <ng-template let-rowId="rowIndex" pTemplate="body"> 
                                     <div class="button-row tabel-action">
-                                        <button type="button" mat-mini-fab class="bg-color-info" color="accent" (click)="priceListEdit(rowId)" (click)="priceListForm.show()" > <mat-icon>border_color</mat-icon> </button>
+                                        <button type="button" mat-mini-fab class="bg-color-info" color="accent" (click)="QuoteProductEdit(rowId)" > <mat-icon>border_color</mat-icon> </button>
                                         <button type="button" mat-mini-fab class="bg-color-danger" color="accent" (click)="deleteId(rowId)"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div> 
                                 </ng-template> 
@@ -141,75 +169,13 @@
         </mat-horizontal-stepper>
     </mat-card>
 
-
-
-
-
-        <!-- Account Settings Payment Terms Edit Model -->
-        <div class="modal fade" bsModal #priceListForm="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog modal-lg" >
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h4 class="modal-title pull-left">Edit Payment Terms</h4>
-                      <button type="button" class="close pull-right" aria-label="Close" (click)="priceListForm.hide()">
-                      <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <form class="md-float-material" [formGroup]="priceListAddForm" (submit)="formSubmit()">
-                  <div class="modal-body">
-                      <div class="form-group row">
-                              
-                          <div class="col-sm-6" style="margin-bottom:20px;">
-                              <div class="example-container">
-                                  <mat-form-field>
-                                      <input matInput formControlName="vin" type="text" [(ngModel)]="car.vin"  placeholder="vin">
-                                  </mat-form-field>
-                              </div>
-                          </div>
   
-                          <div class="col-sm-6" style="margin-bottom:20px;">
-                              <div class="example-container">
-                                  <mat-form-field>
-                                      <input matInput formControlName="year" type="text" [(ngModel)]="car.year"  placeholder="year">
-                                  </mat-form-field>
-                              </div>
-                          </div>
-  
-                          <div class="col-sm-6" style="margin-bottom:20px;">
-                              <div class="example-container">
-                                  <mat-form-field>
-                                      <input matInput formControlName="color" type="text" [(ngModel)]="car.color"  placeholder="color">
-                                  </mat-form-field>
-                              </div>
-                          </div>
-  
-                          <div class="col-sm-6" style="margin-bottom:20px;">
-                              <div class="example-container">
-                                  <mat-form-field>
-                                      <input matInput formControlName="brand" type="text" [(ngModel)]="car.brand"  placeholder="brand">
-                                  </mat-form-field>
-                              </div>
-                          </div>
-  
-  
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" mat-raised-button class="bg-color-danger" color="accent" (click)="priceListForm.hide()"> close </button>
-                      <button type="submit" mat-raised-button color="accent" (click)="priceListForm.hide()"> Submit </button>
-                  </div> 
-                  </form>
-              </div>
-          </div>
-      </div>
-  
-  
-          <!-- Account Settings Delete Confirmation Model -->
+        <!-- Account Settings Delete Confirmation Model -->
           <ng-template #DeleteConfirm>
               <div class="modal-body text-center">
                   <p>Are You Sure You Whant To Delete This Data ?</p>
                   <button type="button" mat-raised-button class="bg-color-warning" color="accent" (click)="declineDelete()" >No</button>
-                  <button type="button" mat-raised-button color="accent" class="btn btn-default" (click)="confirmDelete(deleterowId)" >Yes</button>
+                  <button type="button" mat-raised-button color="accent" class="btn btn-default" (click)="confirmDelete(deleterowIndex)" >Yes</button>
               </div>
           </ng-template>
 

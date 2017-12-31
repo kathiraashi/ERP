@@ -37,6 +37,9 @@ body{
 .mat-focused .mat-form-field-label{
     color: #49b660 !important;
 }
+.mat-chip:not(.mat-basic-chip)+.mat-chip:not(.mat-basic-chip){
+    margin:3px 0px 0px 1px !important;
+}
 mat-form-field.availabel-prefix .mat-form-field-prefix{
     width: 120px !important;
     color: #49b660;

@@ -9,9 +9,6 @@ import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
-//custome Modules
-import { Car } from '../../../domain/car';
-import { CarService} from '../../../service/carservice';
 
 //popups
 import { QuoteProductFormComponent } from '../../../popups/crm/quote-product-form/quote-product-form.component'
@@ -24,32 +21,18 @@ import { QuoteProductFormComponent } from '../../../popups/crm/quote-product-for
 })
 export class QuotationsCreateComponent implements OnInit {
 
-
-    // datatable primng
-    cars=[];
-    cols: any[];
-    displayDialog: boolean;
-    car: Car = new PrimeCar();
-    newCar: boolean;
     msgs: Message[] = [];
-    rowId;
-    deleterowId;
-  
-  
     //modal 
     modalRef: BsModalRef;
-  
-    //form
-    ProductAddForm: FormGroup;
-    priceListAddForm: FormGroup;
-    AttributeForm: FormGroup;
-    descriptionForm: FormGroup;
-
 
   QuoteForm: FormGroup;
 
   // material dialog 
   QuoteProductDialogRef: MatDialogRef<QuoteProductFormComponent>;
+  products = [];
+  product;
+  updateIndex;
+  deleterowIndex
 
   CompanyNames = [ 'Company Name 1', 'Company Name 2', 'Company Name 3'];
   ContactPersons = [ 'Contact Person 1', 'Contact Person 2', 'Contact Person 3'];
@@ -60,9 +43,8 @@ export class QuotationsCreateComponent implements OnInit {
                 public dialog: MatDialog,
                 private formBuilder: FormBuilder,
                 private modalService: BsModalService,
-                private carService: CarService,
-                private messageService: MessageService,
-                private _fb: FormBuilder ) { this.createForm(); }
+                private messageService: MessageService
+              ) { this.createForm(); }
 
                 
 
@@ -76,13 +58,6 @@ export class QuotationsCreateComponent implements OnInit {
         opportunityName: new FormControl('', Validators.required),
         employeeName: new FormControl('', Validators.required)
       });
-
-      this.priceListAddForm= this.formBuilder.group({ 
-        vin: ['', Validators.compose([ Validators.required ])],
-        year:  ['', Validators.compose([ Validators.required ])],
-        color: ['', Validators.compose([ Validators.required ])],
-        brand:  ['', Validators.compose([ Validators.required ])]
-      });
       
   }
 
@@ -92,36 +67,29 @@ export class QuotationsCreateComponent implements OnInit {
     //Quotation Product Add
         QuoteProductAdd() {
           let QuoteProductDialogRef = this.dialog.open(QuoteProductFormComponent, { width:'75%', data: { Header:'Quotation Product Add Form', type:'Add' } });
-          QuoteProductDialogRef.afterClosed().subscribe(result => console.log(result));
+          QuoteProductDialogRef.afterClosed().subscribe(result => this.newproductAdd(result));
         }//QuoteProductAdd
-        QuoteProductEdit(id) {
-          this.car = this.cars[id];
-          let QuoteProductDialogRef = this.dialog.open(QuoteProductFormComponent, { data: { Header:'Quotation Product Edit Form', type:'Edit', value:this.car } });
-          QuoteProductDialogRef.afterClosed().subscribe(result => console.log(result));
+        QuoteProductEdit(index) {
+          this.product = this.products[index];
+          this.updateIndex = index;
+          let QuoteProductDialogRef = this.dialog.open(QuoteProductFormComponent, { width:'75%', data: { Header:'Quotation Product Edit Form', type:'Edit', value:this.product } });
+          QuoteProductDialogRef.afterClosed().subscribe(result => this.updateproductAdd(result));
         }//QuoteProductEdit
 
+        newproductAdd(result){
+          console.log(result);
+          if(result !== "Closed"){
+            this.products.push( Object.assign({}, result));
+            this.products = this.products.slice();
+          }
+        }
+        updateproductAdd(result){
+          if(result !== "Closed"){
+            this.products[this.updateIndex] = result;
+            this.products = this.products.slice();
+          }
+       }
 
-   //price List
-   addpriceListAdd(){
-    this.car = new PrimeCar();
-    this.newCar = true;
-  }
-  priceListEdit(id){
-    this.rowId = id;
-    this.car = this.cars[id];
-    console.log(this.car);
-    this.newCar = false;
-  }
-  formSubmit(){
-    let cars = [...this.cars];
-    if(!this.newCar){
-      this.cars[this.rowId]=this.car;
-    }else{
-     this.cars= cars;
-     this.cars.push( Object.assign({}, this.car));
-     this.cars=this.cars.slice();
-    }  
-  }
 
   ngOnInit() {
     // this.carService.getCarsSmall().then(cars => this.cars = cars);
@@ -131,38 +99,30 @@ export class QuotationsCreateComponent implements OnInit {
   onsubmit(){
     console.log('submit');
   }
-  
 
-  
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
+  
+
   deleteId(rowid){
-    this.deleterowId = rowid;
+    this.deleterowIndex = rowid;
   }
 
   confirmDelete(rowid): void {
-    this.cars = this.cars.filter((val,i) => i!=rowid);
+    this.products = this.products.filter((val,i) => i!=rowid);
     this.modalRef.hide();
-    this.deleterowId = '';
     this.msgs = [];
-    this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
+    this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Deleted'});
   }
 
   declineDelete(): void {
-    this.deleterowId = '';
     this.modalRef.hide();
     this.msgs = [];
-    this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Declined'});
+    this.msgs.push({severity:'success', summary:'Alert Message', detail:'Declined'});
   }
 
 }
 
-
-
-
-class PrimeCar implements Car {
-  constructor(public vin?, public year?, public color?, public brand?) {}
-}
 

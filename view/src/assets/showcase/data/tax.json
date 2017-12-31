@@ -9,9 +9,9 @@
         {"id": "7", "tax_name": "High CGST", "notes": " adipisicing elit Lorem ipsum dolor sit amet consectetur.", "tax_scope": "Sales", "amount":"2", "tax_computation":"Percentage Of (Price + Tax)"},
         {"id": "8", "tax_name": "High SGST", "notes": " elit Lorem ipsum dolor sit amet consectetur adipisicing.", "tax_scope": "Sales", "amount":"2", "tax_computation":"Percentage Of (Price + Tax)"},
         {"id": "9", "tax_name": "High IGST", "notes": "ipsum dolor sit amet consectetur adipisicing elit Lorem .", "tax_scope": "Sales", "amount":"2", "tax_computation":"Percentage Of (Price + Tax)"},
-        {"id": "10", "tax_name": "Mediam CGST", "notes": "dolor sit amet consectetur adipisicing elit Lorem ipsum .", "tax_scope": "Purchase", "amount":"2", "tax_computation":"Percentage Of Price Tax Included)"},
-        {"id": "11", "tax_name": "Mediam SGST", "notes": "dolor sit amet consectetur adipisicing elit Lorem ipsum .", "tax_scope": "Purchase", "amount":"2", "tax_computation":"Percentage Of Price Tax Included)"},
-        {"id": "12", "tax_name": "Mediam IGST", "notes": "dolor sit amet consectetur adipisicing elit Lorem ipsum .", "tax_scope": "Purchase", "amount":"2", "tax_computation":"Percentage Of Price Tax Included)"}
+        {"id": "10", "tax_name": "Mediam CGST", "notes": "dolor sit amet consectetur adipisicing elit Lorem ipsum .", "tax_scope": "Purchase", "amount":"2", "tax_computation":"Percentage Of Price Tax Included"},
+        {"id": "11", "tax_name": "Mediam SGST", "notes": "dolor sit amet consectetur adipisicing elit Lorem ipsum .", "tax_scope": "Purchase", "amount":"2", "tax_computation":"Percentage Of Price Tax Included"},
+        {"id": "12", "tax_name": "Mediam IGST", "notes": "dolor sit amet consectetur adipisicing elit Lorem ipsum .", "tax_scope": "Purchase", "amount":"2", "tax_computation":"Percentage Of Price Tax Included"}
 
     ]
 }

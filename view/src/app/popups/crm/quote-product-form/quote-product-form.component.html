@@ -19,32 +19,30 @@
             <div class="col-sm-6" style="margin-bottom:30px;">
                 <div class="example-container">
                     <mat-form-field [floatLabel]="floatLabel">
-                        <textarea matInput type="text" formControlName="description" placeholder="Description"></textarea>
+                        <textarea matInput type="text" formControlName="description" disabled placeholder="Description"></textarea>
                         <span *ngIf="disabled" matPrefix> <b> Description : </b></span>
                     </mat-form-field>
                 </div>
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-6" style="margin-bottom:30px;">
+            <div class="col-sm-4">
                 <div class="example-container">
-                    <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
-                        <input matInput type="text" formControlName="price" (input)="calculate()" placeholder="Price">
-                        <span *ngIf="disabled" matPrefix> <b> Price : </b></span>
+                    <mat-form-field [floatLabel]="floatLabel" >
+                        <input matInput type="number" formControlName="price" (input)="calculate()" placeholder="Price">
+                        <span matPrefix> <b style="color:#3b4b56"> Rs. &nbsp; </b></span>
                     </mat-form-field>
                 </div>
             </div>
-            <div class="col-sm-6" style="margin-bottom:30px;">
+            <div class="col-sm-4">
                 <div class="example-container">
                     <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
-                        <input matInput type="text" formControlName="quantity" (input)="calculate()" placeholder="Quantity">
+                        <input matInput type="number" min="1" formControlName="quantity" (input)="calculate()" placeholder="Quantity">
                         <span *ngIf="disabled" matPrefix> <b> Quantity : </b></span>
                     </mat-form-field>
                 </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-6" style="margin-bottom: 30px">
+            <div class="col-sm-4">
                 <div class="example-container">
                     <mat-form-field class="demo-chip-list">
                         <mat-chip-list #chipList>
@@ -52,7 +50,7 @@
                                     [removable]="removable" (remove)="selectedTaxRemove(selectedTax)"> {{selectedTax.tax_name}}
                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                             </mat-chip>
-                            <input type="text" matInput placeholder="Taxes" #taxSearchValue [matChipInputFor]="chipList"  (ngModelChange)="taxSearchKey($event)" formControlName="tax" [matAutocomplete]="taxauto">
+                            <input type="text" matInput placeholder="Taxes" #taxSearchValue [matChipInputFor]="chipList"  (ngModelChange)="taxSearchKey()" formControlName="tax" [matAutocomplete]="taxauto">
                             <mat-autocomplete #taxauto="matAutocomplete">
                                 <mat-option *ngFor="let tax of taxesList" [value]="tax.tax_name" (click)="taxSearchValue.value=''" (click)="SelectTax(tax.id)">
                                     {{ tax.tax_name }}
@@ -62,29 +60,44 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div class="col-sm-6" style="margin-bottom:30px;">
+        </div>
+        <div class="form-group row">
+            <div *ngIf="!discountDisabled" class="col-sm-1">
+                <div class="example-container" style="margin-top:25px;">
+                    <button type="button" style="height: 35px;padding: 0px; width: 100px;" mat-raised-button class="bg-color-success" (click)="clickEvent()"  color="accent" > Add Discount </button>
+                </div>
+            </div>
+            <div class="col-sm-3" >
+                <div class="example-container" *ngIf="discountDisabled">
+                    <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                        <input matInput type="number" min="0" #DiscountValue formControlName="discount" (input)="calculate()" placeholder="discount">
+                        <span matSuffix> <b style="color:#3b4b56"> &nbsp; %  </b></span>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div *ngIf="discountDisabled" class="col-sm-1">
+                <div class="example-container">
+                    <button style="height:40px;width:40px;margin-top:10px;" mat-mini-fab class="bg-color-danger" (click)="clickEvent()"  color="accent" >
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6" >
                 <div class="example-container">
                     <mat-form-field floatLabel class="availabel-prefix">
-                        <input matInput type="text" formControlName="total" placeholder="">
+                        <input matInput type="text" formControlName="completetotal" placeholder="">
                         <span matPrefix> <b> Total Rs. </b></span>
                     </mat-form-field>
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-sm-6" style="margin-bottom:30px;">
-                <div class="example-container">
-                    <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
-                        <input matInput type="text" formControlName="discount" placeholder="discount">
-                        <span *ngIf="disabled" matPrefix> <b> Discount : </b></span>
-                    </mat-form-field>
-                </div>
-            </div>
-        </div>
     </mat-dialog-content>
+    <hr>
     <mat-dialog-actions class="pull-right"> 
         <div *ngIf="!disabled">
-            <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
+            <button type="button" mat-raised-button class="bg-color-warning" (click)="close()" color="accent" > Close </button>
             <button type="submit" mat-raised-button color="accent" > Submit </button>
         </div>
         <div *ngIf="disabled" >
