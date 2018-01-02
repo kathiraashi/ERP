@@ -8,7 +8,7 @@
                     <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
                         <input matInput type="text" placeholder="Product" (ngModelChange)="productsSearchKey($event)" formControlName="product" [matAutocomplete]="productauto">
                         <mat-autocomplete #productauto="matAutocomplete">
-                            <mat-option *ngFor="let product of productslist" [value]="product.product_name" (click)="SelectProduct(product.id)">
+                            <mat-option *ngFor="let product of productslist" [value]="product.product_name" (onSelectionChange)="SelectProduct(product.id)" >
                                 {{ product.product_name }}
                             </mat-option>
                         </mat-autocomplete>
@@ -18,9 +18,8 @@
             </div>
             <div class="col-sm-6" style="margin-bottom:30px;">
                 <div class="example-container">
-                    <mat-form-field [floatLabel]="floatLabel">
-                        <textarea matInput type="text" formControlName="description" disabled placeholder="Description"></textarea>
-                        <span *ngIf="disabled" matPrefix> <b> Description : </b></span>
+                    <mat-form-field [floatLabel]="!floatLabel" style="margin-top:-17px;">
+                        <textarea matInput type="text" formControlName="description" placeholder="Description"></textarea>
                     </mat-form-field>
                 </div>
             </div>
@@ -44,7 +43,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="example-container">
-                    <mat-form-field class="demo-chip-list">
+                    <mat-form-field class="demo-chip-list" style="margin-top:-7px;">
                         <mat-chip-list #chipList>
                             <mat-chip *ngFor="let selectedTax of selectedTaxes" [selectable]="selectable"
                                     [removable]="removable" (remove)="selectedTaxRemove(selectedTax)"> {{selectedTax.tax_name}}
@@ -52,7 +51,7 @@
                             </mat-chip>
                             <input type="text" matInput placeholder="Taxes" #taxSearchValue [matChipInputFor]="chipList"  (ngModelChange)="taxSearchKey()" formControlName="tax" [matAutocomplete]="taxauto">
                             <mat-autocomplete #taxauto="matAutocomplete">
-                                <mat-option *ngFor="let tax of taxesList" [value]="tax.tax_name" (click)="taxSearchValue.value=''" (click)="SelectTax(tax.id)">
+                                <mat-option *ngFor="let tax of taxesList" [value]="tax.tax_name" (onSelectionChange)="taxSearchValue.value=''" (onSelectionChange)="SelectTax(tax.id)">
                                     {{ tax.tax_name }}
                                 </mat-option>
                             </mat-autocomplete>
@@ -70,8 +69,8 @@
             <div class="col-sm-3" >
                 <div class="example-container" *ngIf="discountDisabled">
                     <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
-                        <input matInput type="number" min="0" #DiscountValue formControlName="discount" (input)="calculate()" placeholder="discount">
-                        <span matSuffix> <b style="color:#3b4b56"> &nbsp; %  </b></span>
+                        <input matInput type="number" min="0" max="99" #DiscountValue formControlName="discount" (input)="calculate()" placeholder="Discount ( % )" style="width:45px;">
+                        <span matSuffix> <b style="color:#3b4b56"> <span *ngIf="discountAmount > 0"> Rs.{{ discountAmount }} </span>  </b></span>
                     </mat-form-field>
                 </div>
             </div>
@@ -84,7 +83,23 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-6" >
+            <div class="col-sm-4" >
+                <div class="example-container">
+                    <mat-form-field floatLabel class="availabel-prefix">
+                        <input matInput type="text" formControlName="subtotal" placeholder="">
+                        <span matPrefix> <b> Sub Total Rs. </b></span>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-4" >
+                <div class="example-container">
+                    <mat-form-field floatLabel class="availabel-prefix">
+                        <input matInput type="text" formControlName="completetax" placeholder="">
+                        <span matPrefix> <b> Total Tax Rs. </b></span>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-4" >
                 <div class="example-container">
                     <mat-form-field floatLabel class="availabel-prefix">
                         <input matInput type="text" formControlName="completetotal" placeholder="">
