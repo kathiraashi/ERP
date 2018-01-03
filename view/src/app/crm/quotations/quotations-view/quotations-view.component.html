@@ -24,7 +24,7 @@
                   <span class="cus-name" style="line-height:45px"> QuoteA1B2C3 </span>
               </div>
               <div class="col-sm-4 text-right" style="border-bottom:1px solid lightgray;line-height:45px">
-                  <button mat-button class="color-success" style="font-weight:600" routerLink="/crmCreateQuotations"> <mat-icon>border_color</mat-icon> Edit </button> 
+                  <button mat-button class="color-success" style="font-weight:600" (click)="EditeQuote()"> <mat-icon>border_color</mat-icon> Edit </button> 
               </div>
             </div>    
             <div class="row">
@@ -58,11 +58,6 @@
                 </div>
             </div>
           </mat-card>
-        </div>
-        <div class="col-sm-12">
-            <button mat-button class="color-success" style="position: absolute; right: 0px;top: 8px;z-index: 2;"> 
-               <mat-icon style="font-size: 30px;">playlist_add</mat-icon>
-            </button>
         </div>
         <div class="col-sm-12" style="padding-right:0px;padding-top:10px;">
             <p-tabView class="tab-style-2 threetabs">

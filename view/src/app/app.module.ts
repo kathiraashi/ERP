@@ -50,6 +50,9 @@ import { QuotationsCreateComponent } from './crm/quotations/quotations-create/qu
 import { QuotationsListComponent } from './crm/quotations/quotations-list/quotations-list.component';
 import { QuotationsViewComponent } from './crm/quotations/quotations-view/quotations-view.component';
 import { QuoteProductFormComponent } from './popups/crm/quote-product-form/quote-product-form.component';
+import { SaleOrdersListComponent } from './crm/sale-orders/sale-orders-list/sale-orders-list.component';
+import { SaleOrdersCreateComponent } from './crm/sale-orders/sale-orders-create/sale-orders-create.component';
+import { SaleOrdersViewComponent } from './crm/sale-orders/sale-orders-view/sale-orders-view.component';
 
 
 @NgModule({
@@ -79,7 +82,10 @@ import { QuoteProductFormComponent } from './popups/crm/quote-product-form/quote
     QuotationsCreateComponent,
     QuotationsListComponent,
     QuotationsViewComponent,
-    QuoteProductFormComponent
+    QuoteProductFormComponent,
+    SaleOrdersListComponent,
+    SaleOrdersCreateComponent,
+    SaleOrdersViewComponent
   ],
   imports: [
     CommonModule,

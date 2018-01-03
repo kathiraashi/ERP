@@ -80,8 +80,13 @@
                   </div>
               </div>
               <hr>
-              <div class="pull-right">
-                <button mat-raised-button color="accent" matStepperNext> Next </button>
+              <div class="row">
+                  <div class="col-sm-6 text-left">
+                        <button class="bg-color-danger" mat-raised-button mat-button color="accent" matStepperPrevious (click)="onsubmit()"> Cancel </button>
+                  </div>
+                  <div class="col-sm-6 text-right">
+                        <button mat-raised-button color="accent" matStepperNext> Next </button>
+                  </div>
               </div>
             </form>
           </mat-step>
@@ -181,10 +186,15 @@
                   </div>
               </div>
              <hr>
-              <div class="pull-right">
-                <button class="bg-color-warning" mat-raised-button mat-button color="accent" matStepperPrevious>Back</button>
-                <button mat-raised-button mat-button color="accent" matStepperNext>Next</button>
-              </div>
+             <div class="row">
+                <div class="col-sm-6 text-left">
+                    <button class="bg-color-danger" mat-raised-button mat-button color="accent" matStepperPrevious (click)="onsubmit()"> Cancel </button>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <button class="bg-color-warning" mat-raised-button mat-button color="accent" matStepperPrevious>Back</button>
+                    <button mat-raised-button mat-button color="accent" matStepperNext>Next</button>
+                </div>
+            </div>
           </mat-step>
           <mat-step>
             <ng-template matStepLabel>Done</ng-template>
@@ -201,17 +211,20 @@
                             </div>
                         </div>
                         <div class="col-sm-9">
-                            <p-editor formControlName="terms" [(ngModel)]="termsValue" [style]="{'height':'220px'}" > 123 123 </p-editor>
+                            <p-editor formControlName="terms" [(ngModel)]="termsValue" [style]="{'height':'220px'}" ></p-editor>
                         </div>
                     </div>
                 </form>
-            <div>
-            <hr>
-            <div class="pull-right">
-                <button class="bg-color-warning" mat-raised-button mat-button color="accent" matStepperPrevious>Back</button>
-                <button type="button" mat-raised-button mat-button color="accent"> Submit </button>
-            </div>
-            </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-6 text-left">
+                        <button class="bg-color-danger" mat-raised-button mat-button color="accent" matStepperPrevious (click)="onsubmit()"> Cancel </button>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <button class="bg-color-warning" mat-raised-button mat-button color="accent" matStepperPrevious>Back</button>
+                        <button type="button" mat-raised-button mat-button color="accent" (click)="onsubmit()"> Submit </button>
+                    </div>
+                </div>   
           </mat-step>
         </mat-horizontal-stepper>
     </mat-card>

@@ -178,9 +178,9 @@ width: auto !important;
 }
 
 .tab-mat-card .ui-datatable .ui-widget-header{
-    background: #ffffff !important; /*new */
-    margin-bottom: 15px;
-    border: 1px solid #e6e9ec;
+    background: transparent !important; /*new */
+    margin-bottom: 10px;
+    border: 1px solid transparent;
     padding: 4px;
 }
 .tab-mat-card .ui-datatable .ui-datatable-thead>tr>th, 
@@ -188,6 +188,9 @@ width: auto !important;
 .tab-mat-card .ui-datatable .ui-datatable-data>tr>td{
     border-width: 0px ;
     text-align: center;
+}
+.tab-mat-card.style-new .ui-datatable .ui-datatable-data>tr>td{
+    vertical-align: baseline;
 }
 .tab-mat-card .ui-datatable .ui-widget-content{
     border-width: 0px;

@@ -8,12 +8,12 @@ import { CarService} from '../../../service/carservice';
 import { DataSharedService } from '../../../service/DataSharedService';
 
 @Component({
-  selector: 'app-quotations-list',
-  templateUrl: './quotations-list.component.html',
-  styleUrls: ['./quotations-list.component.css']
+  selector: 'app-sale-orders-list',
+  templateUrl: './sale-orders-list.component.html',
+  styleUrls: ['./sale-orders-list.component.css']
 })
-export class QuotationsListComponent implements OnInit {
-  
+export class SaleOrdersListComponent implements OnInit {
+
   cars: Car[];
   selectedCar1: Car;
 
@@ -32,5 +32,4 @@ export class QuotationsListComponent implements OnInit {
     this.sharedService.saveData(data);
     this.router.navigate(['crmCreateQuotations']);
   }
-
 }

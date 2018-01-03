@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl,  FormArray} from '@angular/forms';
 import { DefaultUrlHandlingStrategy } from '@angular/router/src/url_handling_strategy';
+import { Router, ActivatedRoute } from '@angular/router';
 
 //Feture Modules
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -9,6 +10,8 @@ import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
+//services
+import { DataSharedService } from '../../../service/DataSharedService';
 
 //popups
 import { QuoteProductFormComponent } from '../../../popups/crm/quote-product-form/quote-product-form.component'
@@ -55,10 +58,13 @@ export class QuotationsCreateComponent implements OnInit {
   QuoteTermsOptions = [ 'QuoteTermsOption-One', 'QuoteTermsOption-Two', 'QuoteTermsOption-Three', 'QuoteTermsOption-Four'];
 
   constructor( 
+                private sharedService:DataSharedService,
                 public dialog: MatDialog,
                 private formBuilder: FormBuilder,
                 private modalService: BsModalService,
-                private messageService: MessageService
+                private messageService: MessageService,
+                private route: ActivatedRoute, 
+                private router: Router
               ) { this.createForm(); }
 
                 
@@ -166,7 +172,13 @@ export class QuotationsCreateComponent implements OnInit {
 
 
   onsubmit(){
-    console.log('submit');
+   let returnPage = this.sharedService.GetreturnPage();
+   if(returnPage !== ""){
+    this.sharedService.SetreturnPage("");
+    this.router.navigate([returnPage]);
+   }else{
+    this.router.navigate(['crmQuotationsList']);
+   }
   }
 
   openModal(template: TemplateRef<any>) {

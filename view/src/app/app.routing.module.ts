@@ -24,6 +24,9 @@ import { CustomersViewComponent } from './crm/customers/customers-view/customers
 import { QuotationsCreateComponent } from './crm/quotations/quotations-create/quotations-create.component';
 import { QuotationsListComponent } from './crm/quotations/quotations-list/quotations-list.component';
 import { QuotationsViewComponent } from './crm/quotations/quotations-view/quotations-view.component';
+import { SaleOrdersListComponent } from './crm/sale-orders/sale-orders-list/sale-orders-list.component';
+import { SaleOrdersCreateComponent } from './crm/sale-orders/sale-orders-create/sale-orders-create.component';
+import { SaleOrdersViewComponent } from './crm/sale-orders/sale-orders-view/sale-orders-view.component';
 
 const appRoutes: Routes = [
     { path: '',                     component: LoginComponent,                  data: { animation: { value: 'login', } }               },
@@ -50,7 +53,11 @@ const appRoutes: Routes = [
     
     { path: 'crmQuotationsList',    component: QuotationsListComponent,         data: { animation: { value: 'crmQuotationsList', } }   },
     { path: 'crmCreateQuotations',  component: QuotationsCreateComponent,       data: { animation: { value: 'crmCreateQuotations', } } },
-    { path: 'crmViewQuotations',    component: QuotationsViewComponent,         data: { animation: { value: 'crmViewQuotations', } }   }
+    { path: 'crmViewQuotations',    component: QuotationsViewComponent,         data: { animation: { value: 'crmViewQuotations', } }   },
+
+    { path: 'crmSaleOrdersList',    component: SaleOrdersListComponent,         data: { animation: { value: 'crmSaleOrdersList', } }   },
+    { path: 'crmCreateSaleOrders',  component: SaleOrdersCreateComponent,       data: { animation: { value: 'crmCreateSaleOrders', } } },
+    { path: 'crmViewSaleOrders',    component: SaleOrdersViewComponent,         data: { animation: { value: 'crmViewSaleOrders', } }   }
     
   ];
   

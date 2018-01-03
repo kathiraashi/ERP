@@ -8,13 +8,13 @@
       </div>
       <div class="page-track" style="width:47%">
         <ul>
-          <li> Quotations </li>
+          <li> Sale Orders </li>
         </ul>
       </div>
     </div>
 
     <mat-card class="example-card tab-mat-card style-new" style="padding:0px 0px 30px 0px;background-color:#f1f4f7;box-shadow:none;">
-        <p-dataTable [value]="cars" [globalFilter]="QuoteFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+        <p-dataTable [value]="cars" [globalFilter]="SaleOrderFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
             <p-header>
                 <div class="row">
                     <div class="col-sm-4 text-left">
@@ -25,7 +25,7 @@
                         <div style="width:100%;display:inline-flex">
                             <div style="float:left;width:85%">
                                 <mat-form-field class="search-field" style="width:100%;height:44px; margin-top:-10px;">
-                                    <input matInput type="text" #QuoteFilter placeholder="Search" />
+                                    <input matInput type="text" #SaleOrderFilter placeholder="Search" />
                                     <button mat-button matSuffix mat-icon-button aria-label="Search">
                                         <mat-icon style="font-size:25px">search</mat-icon>
                                     </button>
@@ -41,25 +41,29 @@
             <p-headerColumnGroup>
                 <p-row>
                     <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" ></p-column>
+                    <p-column header="Sale Order Details" [style]="{'min-width':'17%','text-align':'center'}"></p-column>
                     <p-column header="Quote Details" [style]="{'min-width':'17%','text-align':'center'}"></p-column>
                     <p-column header="Company Details" [style]="{'min-width':'22%','text-align':'center'}"></p-column>
-                    <p-column header="Contact Details" [style]="{'text-align':'center'}"></p-column>
                     <p-column header="Created By" [style]="{'text-align':'center'}"></p-column>
-                    <p-column header="Status" [style]="{'text-align':'center'}"></p-column>
                     <p-column header="Action" [style]="{'text-align':'center'}"></p-column>
                 </p-row>
             </p-headerColumnGroup>
-            
             <p-column>
                 <ng-template let-col let-i="rowIndex" pTemplate="body">
                     <span >{{i+1}}</span>
                 </ng-template> 
             </p-column>
+            <p-column >
+                <ng-template let-car="rowData" pTemplate="body">
+                    <h6 class="tbl-value-1" > <b>  SaleOrder-{{car['vin']}} </b> </h6>
+                    <h6 class="tbl-value-4" >  ContactPerson@gmail.com </h6>
+                    <h6 class="tbl-value-3" > Create Date : 12/07/2017 </h6>
+                </ng-template>
+            </p-column>
             <p-column>
                 <ng-template let-car="rowData" pTemplate="body" >
                     <h6 class="tbl-value-1" (click)="ViewQuote(car)"> <b> Quote-{{car['vin']}}</b> </h6>
                     <h6 class="tbl-value-3" >  Valid Till : 12/01/{{car['year']}}  </h6>
-                    <h6 class="tbl-value-3" > Last Modified : 12/07/2017 </h6>
                 </ng-template>
             </p-column>
             <p-column >
@@ -69,19 +73,8 @@
                 </ng-template>
             </p-column>
             <p-column >
-                <ng-template let-car="rowData" pTemplate="body">
-                    <h6 class="tbl-value-1" (click)="ViewContact(car)"> <b> Contact Name </b> </h6>
-                    <h6 class="tbl-value-4" >  ContactPerson@gmail.com </h6>
-                </ng-template>
-            </p-column>
-            <p-column >
                 <ng-template let-car="rowData" pTemplate="body" >
                     <h6 class="tbl-value-5"> <b> Admin Name </b> </h6>
-                </ng-template>
-            </p-column>
-            <p-column>
-                <ng-template let-car="rowData" pTemplate="body">
-                    <span [style.color]="car['color']">{{car['color']}}</span>
                 </ng-template>
             </p-column>
             <p-column styleClass="col-button" [style]="{'text-align':'center'}" >

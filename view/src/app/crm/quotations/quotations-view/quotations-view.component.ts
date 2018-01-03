@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 //custome Modules
 import { Car} from '../../../domain/car';
 import { CarService} from '../../../service/carservice';
 
 import { DataSharedService } from '../../../service/DataSharedService';
+
 @Component({
   selector: 'app-quotations-view',
   templateUrl: './quotations-view.component.html',
@@ -21,11 +23,15 @@ export class QuotationsViewComponent implements OnInit {
     dialogVisible: boolean;
     data;
 
-  constructor(private sharedService:DataSharedService, private carService: CarService,) { }
+  constructor(private sharedService:DataSharedService, private carService: CarService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.id = this.sharedService.getData();
     this.carService.getCarsSmall().then(cars => this.cars = cars);
+  }
+
+  EditeQuote(){
+    this.sharedService.SetreturnPage('crmViewQuotations');
+    this.router.navigate(['crmCreateQuotations']);
   }
 
 }
