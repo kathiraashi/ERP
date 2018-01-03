@@ -1,3 +1,161 @@
-<p>
-  quotations-view works!
-</p>
+<p-growl [value]="msgs"></p-growl>
+
+<div class="page" style="margin-top:137px">
+
+    <div class="page-identity" style="position:fixed; margin-top:-42px;">
+      <div class="page-name">
+        <h5> </h5>
+      </div>
+      <div class="page-track" style="width:47%">
+        <ul>
+          <li><a routerLink="/crmQuotationsList"> Quotations </a></li>
+          <li><i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
+          <li> Quotations View </li>
+        </ul>
+      </div>
+    </div>
+
+    <mat-card class="example-card" style="padding:0px 0px 30px 0px;background-color:#f1f4f7;box-shadow:none;">
+      <div class="row">
+        <div class="col-sm-12" style="padding-right:10px;">
+          <mat-card style="padding:0px 15px 15px 15px;">
+            <div class="row">
+              <div class="col-sm-8" style="border-bottom:1px solid lightgray">
+                  <span class="cus-name" style="line-height:45px"> QuoteA1B2C3 </span>
+              </div>
+              <div class="col-sm-4 text-right" style="border-bottom:1px solid lightgray;line-height:45px">
+                  <button mat-button class="color-success" style="font-weight:600" routerLink="/crmCreateQuotations"> <mat-icon>border_color</mat-icon> Edit </button> 
+              </div>
+            </div>    
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4"> <h5 class="customer-details-title">Date  </h5> </div>
+                        <div class="col-sm-8"> <h5 class="customer-details-value">03/01/2018 </h5> </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"> <h5 class="customer-details-title">Company Name </h5> </div>
+                        <div class="col-sm-8"> <h5 class="customer-details-value">Company Name </h5> </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"> <h5 class="customer-details-title"> Contact person </h5> </div>
+                        <div class="col-sm-8"> <h5 class="customer-details-value"> Contact person Name </h5> </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"> <h5 class="customer-details-title"> Valid Till </h5> </div>
+                        <div class="col-sm-8"> <h5 class="customer-details-value"> 05/01/2018 </h5> </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4"> <h5 class="customer-details-title"> Opportunity </h5> </div>
+                        <div class="col-sm-8"> <h5 class="customer-details-value">  Opportunity Name  </h5> </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"> <h5 class="customer-details-title">Employee Name </h5> </div>
+                        <div class="col-sm-8"> <h5 class="customer-details-value"> Employee Name  </h5> </div>
+                    </div>
+                </div>
+            </div>
+          </mat-card>
+        </div>
+        <div class="col-sm-12">
+            <button mat-button class="color-success" style="position: absolute; right: 0px;top: 8px;z-index: 2;"> 
+               <mat-icon style="font-size: 30px;">playlist_add</mat-icon>
+            </button>
+        </div>
+        <div class="col-sm-12" style="padding-right:0px;padding-top:10px;">
+            <p-tabView class="tab-style-2 threetabs">
+                <p-tabPanel header="Product Details" class="tab-mat-card">
+                    <p-dataTable [value]="cars" sortMode="multiple">
+                        <p-headerColumnGroup>
+                            <p-row>
+                                <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" ></p-column>
+                                <p-column header="Product" [style]="{'width':'20%','text-align':'center'}"></p-column>
+                                <p-column header="Description" [style]="{'width':'20%','text-align':'center'}"></p-column>
+                                <p-column header="Price" [style]="{'text-align':'center'}"></p-column>
+                                <p-column header="Quantity" [style]="{'text-align':'center'}"></p-column>
+                                <p-column header="Tax" [style]="{'text-align':'center'}"></p-column>
+                                <p-column header="Discount" [style]="{'text-align':'center'}"></p-column>
+                                <p-column header="Total" [style]="{'min-width':'12%','text-align':'center'}"></p-column>
+                            </p-row>
+                        </p-headerColumnGroup>
+
+                            <p-column> 
+                                <ng-template let-i="rowIndex" pTemplate="body">
+                                      {{i+1}} 
+                                </ng-template>
+                            </p-column>
+                            <p-column> 
+                                <ng-template let-car="rowData" pTemplate="body">  
+                                    {{car['brand']}}  
+                                </ng-template> 
+                            </p-column>
+                            <p-column> 
+                                <ng-template let-car="rowData" pTemplate="body"> 
+                                    <div style="max-height:80px; overflow-Y:auto;"><small> {{car['vin']}} {{car['vin']}} {{car['vin']}}</small> </div> 
+                                </ng-template> 
+                            </p-column>
+                            <p-column> 
+                                <ng-template let-car="rowData" pTemplate="body">  
+                                    {{car['year']}}  
+                                </ng-template> 
+                            </p-column>
+                            <p-column> 
+                                <ng-template let-i="rowIndex" pTemplate="body">  
+                                    {{i+5}}   
+                                </ng-template> 
+                            </p-column>
+                            <p-column> 
+                                <ng-template let-car="rowData" pTemplate="body"> 
+                                    <div style="max-height:80px; overflow-Y:auto;"><small> {{car['color']}},{{car['color']}} </small> </div>
+                                </ng-template> 
+                            </p-column>
+                            <p-column > 
+                                <ng-template let-i="rowIndex" pTemplate="body"> 
+                                    <span> {{i+5}}% </span> <br>  
+                                    <span style="font-size:13px;">(Rs.{{i*5}})</span> <br>  
+                                </ng-template> 
+                            </p-column>
+                            <p-column> 
+                                <ng-template let-i="rowIndex" pTemplate="body">  
+                                  Rs. {{i*100}}
+                                </ng-template> 
+                            </p-column>
+                        <p-footer>
+                            <div class="row">
+                                <div class="col-sm-10 text-right">  <b>Sub Total : </b> </div>
+                                <div class="col-sm-2"> Rs. 10000.00 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-10 text-right">  <b> Total Tax : </b> </div>
+                                <div class="col-sm-2"> Rs. 100.00 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-10 text-right">  <b> Discount Total : </b> </div>
+                                <div class="col-sm-2"> Rs. 100.00 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-10 text-right">  <b> Total : </b> </div>
+                                <div class="col-sm-2"> Rs. 10000.00 </div>
+                            </div>
+                        </p-footer>
+
+                    </p-dataTable>
+                </p-tabPanel>
+                
+                <p-tabPanel header="Quote Terms ">
+                  <mat-card class="example-card" style="padding:10px;"> 
+                    <div class="row">
+                      <div class="col-sm-12 text-center">
+                        <h1 class="cus-name"> Quote Terms And Conditions </h1>
+                      </div>
+                    </div>
+                  </mat-card>
+                </p-tabPanel>
+            </p-tabView>
+        </div>
+      </div>
+    </mat-card>
+
+</div>

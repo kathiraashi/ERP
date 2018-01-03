@@ -21,6 +21,8 @@ import { PrimengModule } from './primeng.module';
 import { CarService } from './service/carservice';
 import { CustomService } from './service/custome';
 
+import { DataSharedService } from './service/DataSharedService';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
@@ -98,7 +100,7 @@ import { QuoteProductFormComponent } from './popups/crm/quote-product-form/quote
     TextMaskModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyD9sVX8Wudcp2N1Qp23aED0q2pVwehbnGs'})
   ],
-  providers: [CarService, CustomService],
+  providers: [DataSharedService, CarService, CustomService ],
   bootstrap: [AppComponent],
   entryComponents: [ExampleComponent, ContactFormComponent, ActivityFormComponent, QuoteProductFormComponent]
 })

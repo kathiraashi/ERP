@@ -10,15 +10,20 @@
     padding: 0px;
 }
 
+.tab-style-2.threetabs .ui-tabview.ui-tabview-top>.ui-tabview-nav{
+    background-color: #f1f4f7;
+}
+
 .tab-style-2 .ui-tabview.ui-tabview-top>.ui-tabview-nav{
     padding: 0px;
     border-radius: 0px;
     background-color: #536979;
-    margin-left: 2px;
+    margin-left: 0px;
     width: 100%;
 }
 .tab-style-2  .ui-tabview .ui-tabview-nav > li.ui-state-default{
     border: none;
+    border-radius: unset;
     padding: 0px;
     margin: 0px;
     color: #ffffff;
@@ -27,6 +32,15 @@
     border-right: 1px solid #4c5c68;
     width: 11.1%;
 }
+.tab-style-2.threetabs .ui-tabview .ui-tabview-nav > li.ui-state-default{
+    width: 16%;
+    background-color: transparent;
+    border-right: 1px solid transparent;
+}
+.tab-style-2.threetabs  .ui-tabview .ui-tabview-nav > li.ui-state-default a{
+    color: #536979 ;
+}
+
 .tab-style-2  .ui-tabview .ui-tabview-nav > li.ui-state-default a{
     color: #ffffff ;
     width: 100%;
@@ -41,11 +55,16 @@
     color: #ffffff;
 }
 .tab-style-2  .ui-tabview .ui-tabview-nav > li.ui-state-active{
-    background-color: #49b660;
+    background-color: #49b660 !important;
     border-radius: 0px;
 }
 .tab-style-2  .ui-tabview .ui-tabview-nav > li.ui-state-active a{
-    color: #ffffff;
+    color: #ffffff !important;
+}
+
+.tab-style-2.threetabs .ui-tabview .ui-tabview-panel{
+    padding: 10px 10px 8px 0px;
+    background-color: #f1f4f7;
 }
 
 
