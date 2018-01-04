@@ -18,7 +18,7 @@
             <p-header>
                 <div class="row">
                     <div class="col-sm-4 text-left">
-                        <button mat-button class="color-success" style="font-weight:600" routerLink="/crmCreateQuotations"> + Create </button> 
+                        <button mat-button class="color-success" style="font-weight:600" [matMenuTriggerFor]="create"> + Create </button> 
                     </div>
                     <div class="col-sm-3"></div>
                     <div class="col-sm-5 text-left"> 
@@ -45,6 +45,7 @@
                     <p-column header="Quote Details" [style]="{'min-width':'17%','text-align':'center'}"></p-column>
                     <p-column header="Company Details" [style]="{'min-width':'22%','text-align':'center'}"></p-column>
                     <p-column header="Created By" [style]="{'text-align':'center'}"></p-column>
+                    <p-column header="Total Value" [style]="{'text-align':'center'}"></p-column>
                     <p-column header="Action" [style]="{'text-align':'center'}"></p-column>
                 </p-row>
             </p-headerColumnGroup>
@@ -56,19 +57,18 @@
             <p-column >
                 <ng-template let-car="rowData" pTemplate="body">
                     <h6 class="tbl-value-1" > <b>  SaleOrder-{{car['vin']}} </b> </h6>
-                    <h6 class="tbl-value-4" >  ContactPerson@gmail.com </h6>
                     <h6 class="tbl-value-3" > Create Date : 12/07/2017 </h6>
                 </ng-template>
             </p-column>
             <p-column>
                 <ng-template let-car="rowData" pTemplate="body" >
-                    <h6 class="tbl-value-1" (click)="ViewQuote(car)"> <b> Quote-{{car['vin']}}</b> </h6>
+                    <h6 class="tbl-value-1" > <b> Quote-{{car['vin']}}</b> </h6>
                     <h6 class="tbl-value-3" >  Valid Till : 12/01/{{car['year']}}  </h6>
                 </ng-template>
             </p-column>
             <p-column >
                 <ng-template let-car="rowData" pTemplate="body">
-                    <h6 class="tbl-value-1" (click)="ViewCustomer(car)"> <b> Customer Name </b> </h6>
+                    <h6 class="tbl-value-1" > <b> Customer Name </b> </h6>
                     <h6 class="tbl-value-3" >  ganapathy, coimboture, Tamil Nadu </h6>
                 </ng-template>
             </p-column>
@@ -76,6 +76,11 @@
                 <ng-template let-car="rowData" pTemplate="body" >
                     <h6 class="tbl-value-5"> <b> Admin Name </b> </h6>
                 </ng-template>
+            </p-column>
+            <p-column>
+                <ng-template let-col let-i="rowIndex" pTemplate="body">
+                    <h6 class="tbl-value-5"> <b> Rs. {{i + 50 * 50}} </b> </h6>
+                </ng-template> 
             </p-column>
             <p-column styleClass="col-button" [style]="{'text-align':'center'}" >
                 <ng-template let-car="rowData" pTemplate="body">
@@ -91,20 +96,69 @@
 
 <!-- Dropdown Actions -->
 <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="EditQuote(car)" >
+    <button mat-menu-item >
         <mat-icon>border_color</mat-icon>
-        <span>Edit Quote</span>
+        <span>Edit Sale Order</span>
     </button>
-    <button mat-menu-item (click)="ViewQuote(car)" >
+    <button mat-menu-item >
         <mat-icon>remove_red_eye</mat-icon>
-        <span>View Quote</span>
-    </button>
-    <button mat-menu-item>
-        <mat-icon>autorenew</mat-icon>
-        <span>Revise Quot</span>
+        <span>View Sale Order</span>
     </button>
     <button mat-menu-item>
         <mat-icon>assignment_turned_in</mat-icon>
-        <span> Sales Order </span>
+        <span> Create Invoice </span>
     </button>
 </mat-menu>
+
+<!-- Dropdown Actions -->
+<mat-menu #create="matMenu">
+    <button mat-menu-item  routerLink="/crmCreateQuotations" >
+        <mat-icon>library_add</mat-icon>
+        <span>Create Quote</span>
+    </button>
+    <button mat-menu-item (click)="createSale()" (click)="CreateSlaeOrder.show()">
+        <mat-icon>note_add</mat-icon>
+        <span>Create Sale Order</span>
+    </button>
+</mat-menu>
+
+
+<!-- HR Settings Employee Category Add Model -->
+<div class="modal fade" bsModal #CreateSlaeOrder="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left"> Sale Order Create </h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="CreateSlaeOrder.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-sm-6" style="margin-bottom:20px;">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <mat-select placeholder=" Select Customer Name" #CustomerSelect (change)="SelectCustomer(CustomerSelect.value)">
+                                        <mat-option *ngFor="let customer of customers" [value]="customer" >{{customer}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="margin-bottom:20px;">
+                            <div class="example-container">
+                                <mat-form-field>
+                                    <mat-select [disabled]="ShowQuotes" placeholder=" Quote Ref No ">
+                                        <mat-option *ngFor="let quote of quotes" [value]="quote" >{{quote}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="CreateSlaeOrder.hide()"> Close </button>
+                    <button mat-raised-button color="accent" (click)="goToSaleCreate()" (click)="CreateSlaeOrder.hide()"> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
