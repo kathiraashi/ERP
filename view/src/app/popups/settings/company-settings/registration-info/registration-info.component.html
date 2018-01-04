@@ -1,0 +1,52 @@
+<form [formGroup]="RegistrationInfoForm" (ngSubmit)="submit()">
+    <h1 mat-dialog-title class="pop-up-title"> {{data.Header}} </h1>
+    <hr style="margin-top:10px;">
+    <mat-dialog-content style="overflow:initial">
+      <div class="form-group row">
+        <div class="col-sm-6" style="margin-bottom:20px;">
+            <div class="example-container">
+                <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                    <mat-select formControlName="registrationType" #selectOption placeholder=" Registration Types" (change)="RegTypeStatusAddForm(selectOption.value)">
+                        <mat-option *ngFor="let registrationType of registrationTypes" [value]="registrationType">{{registrationType}}</mat-option>
+                    </mat-select>
+                    <span *ngIf="disabled" matPrefix> <b> Registration Type : </b></span>
+                </mat-form-field>
+            </div>
+        </div>
+        <div *ngIf="AddFormOthers" class="col-sm-6" style="margin-bottom:20px;">
+            <div class="example-container">
+                <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                    <input matInput type="text" formControlName="SpecifyRegistrationType" placeholder=" Specify The Registration Type ">
+                    <span *ngIf="disabled" matPrefix> <b> Specify The Registration Type : </b></span>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-sm-6" style="margin-bottom:20px;">
+            <div class="example-container">
+                <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                    <input matInput type="text" formControlName="incorporatedDate" placeholder="Incorporated Date" bsDatepicker>
+                    <span *ngIf="disabled" matPrefix> <b> Incorporated Date : </b></span>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-sm-6" style="margin-bottom:20px;">
+            <div class="example-container">
+                <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                    <input matInput type="text" formControlName="number" placeholder=" Number ">
+                    <span *ngIf="disabled" matPrefix> <b> Number : </b></span>
+                </mat-form-field>
+            </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="pull-right"> 
+        <div *ngIf="!disabled">
+          <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
+          <button type="submit" mat-raised-button color="accent" > Submit </button>
+        </div>
+        <div *ngIf="disabled" >
+          <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
+        </div>
+    </mat-dialog-actions>
+  </form>
+  

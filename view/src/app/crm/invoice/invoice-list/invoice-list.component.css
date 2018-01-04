@@ -1,0 +1,29 @@
+.tbl-value-1{
+    text-align:left;
+    color:#4f6a7a;
+    margin:5px 0px;
+    cursor:pointer
+}
+.tbl-value-2{
+    text-align:left;
+    font-size:15px;
+    margin:5px 0px;
+    font-weight:600;
+    color:#6e7d86c9;
+    cursor:pointer
+}
+.tbl-value-3{
+    text-align:left;
+    font-size:14px;
+    margin:5px 0px;
+    color: #6e7d86c9;
+}
+.tbl-value-4{
+    text-align:left;
+    font-size:14px;
+    margin:5px 0px;
+    color:#6e7d86c9;
+}
+.tbl-value-5{
+    color: #4f6a7a;
+}

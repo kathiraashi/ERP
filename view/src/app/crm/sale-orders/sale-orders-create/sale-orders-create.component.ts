@@ -22,7 +22,7 @@ export class SaleOrdersCreateComponent implements OnInit {
   PO_confirm_Show = false;
   email_confirm_Show = false;
   phone_confirm_Show = false;
-
+  showDiscount = true;
   SaleOrderForm: FormGroup;
   DummyValidateForm: FormGroup;
 

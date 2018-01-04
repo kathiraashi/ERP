@@ -1,7 +1,6 @@
 // default modules
 import { Component, OnInit, TemplateRef  } from '@angular/core';
 import { DefaultUrlHandlingStrategy } from '@angular/router/src/url_handling_strategy';
-import { filter } from 'rxjs/operators';
 
 //Feture Modules
 import { BsModalService } from 'ngx-bootstrap/modal';

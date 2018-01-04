@@ -41,7 +41,8 @@ body{
     margin:3px 0px 0px 1px !important;
 }
 mat-form-field.availabel-prefix .mat-form-field-prefix{
-    width: 120px !important;
+    min-width: 120px !important;
+    margin-right: 5px;
     color: #49b660;
   }
 mat-form-field.availabel-prefix .mat-input-element:disabled{

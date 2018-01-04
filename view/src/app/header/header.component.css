@@ -3,7 +3,7 @@
     height: 90px;
     position: fixed;
     top: 0px;
-    z-index: 1001;
+    z-index: 1002;
 }
 .home-header .header-one{
     width: 100%;
@@ -145,7 +145,7 @@
 
   
 
-  .YslideAnimateDown{
+  /* .YslideAnimateDown{
     -webkit-animation: downslide 1.5s linear;
     -webkit-animation-fill-mode: forwards;
     animation: downslide 1.5s linear;
@@ -177,4 +177,4 @@
   @keyframes upslide {
     0% { transform: translateY(0%); }
     100% { transform: translateY(-110%); }
-  }
+  } */

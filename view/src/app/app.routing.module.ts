@@ -27,6 +27,9 @@ import { QuotationsViewComponent } from './crm/quotations/quotations-view/quotat
 import { SaleOrdersListComponent } from './crm/sale-orders/sale-orders-list/sale-orders-list.component';
 import { SaleOrdersCreateComponent } from './crm/sale-orders/sale-orders-create/sale-orders-create.component';
 import { SaleOrdersViewComponent } from './crm/sale-orders/sale-orders-view/sale-orders-view.component';
+import { InvoiceCreateComponent } from './crm/invoice/invoice-create/invoice-create.component';
+import { InvoiceListComponent } from './crm/invoice/invoice-list/invoice-list.component';
+import { InvoiceViewComponent } from './crm/invoice/invoice-view/invoice-view.component';
 
 const appRoutes: Routes = [
     { path: '',                     component: LoginComponent,                  data: { animation: { value: 'login', } }               },
@@ -57,7 +60,11 @@ const appRoutes: Routes = [
 
     { path: 'crmSaleOrdersList',    component: SaleOrdersListComponent,         data: { animation: { value: 'crmSaleOrdersList', } }   },
     { path: 'crmCreateSaleOrders',  component: SaleOrdersCreateComponent,       data: { animation: { value: 'crmCreateSaleOrders', } } },
-    { path: 'crmViewSaleOrders',    component: SaleOrdersViewComponent,         data: { animation: { value: 'crmViewSaleOrders', } }   }
+    { path: 'crmViewSaleOrders',    component: SaleOrdersViewComponent,         data: { animation: { value: 'crmViewSaleOrders', } }   },
+
+    { path: 'crmInvoiceList',       component: InvoiceListComponent,            data: { animation: { value: 'crmInvoiceList', } }      },
+    { path: 'crmCreateInvoice',     component: InvoiceCreateComponent,          data: { animation: { value: 'crmCreateInvoice', } }    },
+    { path: 'crmViewInvoice',       component: InvoiceViewComponent,            data: { animation: { value: 'crmViewInvoice', } }      }
     
   ];
   

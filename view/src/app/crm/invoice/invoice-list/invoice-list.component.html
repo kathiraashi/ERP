@@ -8,13 +8,13 @@
       </div>
       <div class="page-track" style="width:47%">
         <ul>
-          <li> Sale Orders </li>
+          <li> Invoice </li>
         </ul>
       </div>
     </div>
 
     <mat-card class="example-card tab-mat-card style-new" style="padding:0px 0px 30px 0px;background-color:#f1f4f7;box-shadow:none;">
-        <p-dataTable [value]="cars" [globalFilter]="SaleOrderFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
+        <p-dataTable [value]="cars" [globalFilter]="InvoiceFilter" sortMode="multiple" [rows]="10" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,25,50,100]">
             <p-header>
                 <div class="row">
                     <div class="col-sm-4 text-left">
@@ -25,7 +25,7 @@
                         <div style="width:100%;display:inline-flex">
                             <div style="float:left;width:85%">
                                 <mat-form-field class="search-field" style="width:100%;height:44px; margin-top:-10px;">
-                                    <input matInput type="text" #SaleOrderFilter placeholder="Search" />
+                                    <input matInput type="text" #InvoiceFilter placeholder="Search" />
                                     <button mat-button matSuffix mat-icon-button aria-label="Search">
                                         <mat-icon style="font-size:25px">search</mat-icon>
                                     </button>
@@ -41,8 +41,8 @@
             <p-headerColumnGroup>
                 <p-row>
                     <p-column header="S.No" [style]="{'width':'60px','text-align':'center'}" ></p-column>
-                    <p-column header="Sale Order Details" [style]="{'min-width':'17%','text-align':'center'}"></p-column>
-                    <p-column header="Quote Details" [style]="{'min-width':'17%','text-align':'center'}"></p-column>
+                    <p-column header="Invoice Details" [style]="{'min-width':'17%','text-align':'center'}"></p-column>
+                    <p-column header="Quote & Sale Order Details" [style]="{'min-width':'28%','text-align':'center'}"></p-column>
                     <p-column header="Company Details" [style]="{'min-width':'22%','text-align':'center'}"></p-column>
                     <p-column header="Created By" [style]="{'text-align':'center'}"></p-column>
                     <p-column header="Total Value" [style]="{'text-align':'center'}"></p-column>
@@ -56,14 +56,15 @@
             </p-column>
             <p-column >
                 <ng-template let-car="rowData" pTemplate="body">
-                    <h6 class="tbl-value-1" routerLink ="/crmViewSaleOrders" > <b>  SaleOrder-{{car['vin']}} </b> </h6>
+                    <h6 class="tbl-value-1" routerLink ="/crmViewInvoice" > <b>  Invoice-{{car['vin']}} </b> </h6>
+                    <h6 class="tbl-value-3" > Invoice Date : 12/07/2017 </h6>
                     <h6 class="tbl-value-3" > Create Date : 12/07/2017 </h6>
                 </ng-template>
             </p-column>
             <p-column>
                 <ng-template let-car="rowData" pTemplate="body" >
                     <h6 class="tbl-value-1" routerLink ="/crmViewQuotations" > <b> Quote-{{car['vin']}}</b> </h6>
-                    <h6 class="tbl-value-3" >  Valid Till : 12/01/{{car['year']}}  </h6>
+                    <h6 class="tbl-value-1" routerLink ="/crmViewSaleOrders" > <b> Sale Order-{{car['vin']}}</b> </h6>
                 </ng-template>
             </p-column>
             <p-column >
@@ -94,37 +95,10 @@
 </div>
 
 
-<!-- Dropdown Actions -->
-<mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink ="/crmCreateSaleOrders" >
-        <mat-icon>border_color</mat-icon>
-        <span>Edit Sale Order</span>
-    </button>
-    <button mat-menu-item routerLink ="/crmViewSaleOrders">
-        <mat-icon>remove_red_eye</mat-icon>
-        <span>View Sale Order</span>
-    </button>
-    <button mat-menu-item>
-        <mat-icon>assignment_turned_in</mat-icon>
-        <span> Create Invoice </span>
-    </button>
-</mat-menu>
-
-<!-- Dropdown Actions -->
-<mat-menu #create="matMenu">
-    <button mat-menu-item  routerLink="/crmCreateQuotations" >
-        <mat-icon>library_add</mat-icon>
-        <span>Create Quote</span>
-    </button>
-    <button mat-menu-item (click)="createSale()" (click)="CreateSlaeOrder.show()">
-        <mat-icon>note_add</mat-icon>
-        <span>Create Sale Order</span>
-    </button>
-</mat-menu>
 
 
-<!-- Sale Order Create Model -->
-<div class="modal fade" bsModal #CreateSlaeOrder="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- Invoice Create Model -->
+<div class="modal fade" bsModal #CreateInvoice="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -162,3 +136,42 @@
         </div>
     </div>
 </div>
+
+
+
+
+<!-- Dropdown Actions -->
+<mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink ="/crmCreateInvoice" >
+        <mat-icon>border_color</mat-icon>
+        <span>Edit Invoice </span>
+    </button>
+    <button mat-menu-item routerLink ="/crmViewInvoice">
+        <mat-icon>remove_red_eye</mat-icon>
+        <span>View Invoice </span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon>assignment_turned_in</mat-icon>
+        <span> Create Payment </span>
+    </button>
+</mat-menu>
+
+<!-- Dropdown Actions -->
+<mat-menu #create="matMenu">
+    <button mat-menu-item routerLink="/crmCreateQuotations" >
+        <mat-icon>library_add</mat-icon>
+        <span>Create Quote</span>
+    </button>
+    <button mat-menu-item routerLink="/crmSaleOrdersList" >
+        <mat-icon>assignment_turned_in</mat-icon>
+        <span>Create Sale Order</span>
+    </button>
+    <button mat-menu-item (click)="createInvoice()" (click)="CreateInvoice.show()">
+        <mat-icon>note_add</mat-icon>
+        <span>Create Invoice</span>
+    </button>
+    <button mat-menu-item routerLink="/crmCreateQuotations" >
+        <mat-icon>note_add</mat-icon>
+        <span>Create Direct Invoice </span>
+    </button>
+</mat-menu>

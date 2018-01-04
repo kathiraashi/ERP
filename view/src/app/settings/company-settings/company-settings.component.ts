@@ -1,6 +1,5 @@
 // default modules
 import { Component, OnInit, TemplateRef  } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { DefaultUrlHandlingStrategy } from '@angular/router/src/url_handling_strategy';
 
 //Feture Modules
@@ -8,10 +7,18 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 //custome Modules
 import { Car} from '../../domain/car';
 import { CarService} from '../../service/carservice';
+
+//popups
+import { CompanyInfoComponent } from '../../popups/settings/company-settings/company-info/company-info.component';
+import { ContactInfoComponent } from '../../popups/settings/company-settings/contact-info/contact-info.component';
+import { DepartmentsComponent } from '../../popups/settings/company-settings/departments/departments.component';
+import { BranchesComponent } from '../../popups/settings/company-settings/branches/branches.component';
+import { RegistrationInfoComponent } from '../../popups/settings/company-settings/registration-info/registration-info.component';
 
 @Component({
   selector: 'app-company-settings',
@@ -25,55 +32,98 @@ export class CompanySettingsComponent implements OnInit {
   // datatable primng
   cars: Car[];
   cols: any[];
-  noRows;
-  selectedCar: Car;
   dialogVisible: boolean;
   msgs: Message[] = [];
+
+  data;
 
 
   //modal 
   modalRef: BsModalRef;
-
-  //form
-  CompanyInfoEditForm: FormGroup;
-  ContactInfoAddForm: FormGroup;
-  ContactInfoEditForm: FormGroup;
-  DepartmentsAddForm: FormGroup;
-  DepartmentsEditForm: FormGroup;
-  BranchesAddForm: FormGroup;
-  BranchesEditForm: FormGroup;
-  RegistrationInfoAddForm: FormGroup;
-  RegistrationInfoEditForm: FormGroup;
-
-  comTypes = [ 'Company Type-One', 'Company Type-Two', 'Company Type-Three', 'Company Type-Four', 'Company Type-Five'];
-  busTypes = [ 'Type Of Busioness-One', 'Type Of Busioness-Two', 'Type Of Busioness-Three', 'Type Of Busioness-Four', 'Type Of Busioness-Five'];
-  departments = [ 'Department-One', 'Department-Two', 'Department-Three', 'Department-Four'];
-  registrationTypes = [ 'CST', 'TIN', 'GST', 'PAN', 'Service Tax', 'Others'];
-  AddFormOthers = false;
-  EditFormOthers = false;
   vin;
 
-  constructor(  private formBuilder: FormBuilder,
+  constructor(  public dialog: MatDialog,
                 private modalService: BsModalService,
                 private carService: CarService,
                 private messageService: MessageService 
-              ) {
-                 this.createForm();
-                 this.noRows = '10';
-                } //constructor
+              ) { }  
+
+
+// material dialog 
+  CompanyInfoDialogRef: MatDialogRef<CompanyInfoComponent>;
+  ContactInfoDialogRef: MatDialogRef<ContactInfoComponent>;
+  DepartmentsDialogRef: MatDialogRef<DepartmentsComponent>;
+  BranchesDialogRef: MatDialogRef<BranchesComponent>;
+  RegistrationInfoDialogRef: MatDialogRef<RegistrationInfoComponent>;
 
   ngOnInit() {
      this.carService.getCarsMedium().then(cars => this.cars = cars);
   }//ngOnInit
 
-  EditCar(car: Car) {
-    this.vin = car.vin;
-  }//EditCar
 
-  ViewCar(car: Car) {
-    this.msgs = [];
-    this.msgs.push({severity:'info', summary:'Car Select', detail:'Vin: ' + car.vin});
-  }//ViewCar
+  // Forms Popups
+
+      //Company Info
+          EditCompanyInfo(car: Car) {
+            console.log(car);
+            let CompanyInfoDialogRef = this.dialog.open(CompanyInfoComponent, { data: { Header:'Company Info Edit Form', type:'Edit', value:car } });
+            CompanyInfoDialogRef.afterClosed().subscribe(result => console.log(result));
+          }//ContactEdit
+
+      //Contact Info
+          AddContactInfo() {
+            let ContactInfoDialogRef = this.dialog.open(ContactInfoComponent, { width:'60%', data: { Header:'Contact Info Creat Form', type:'Add' } });
+            ContactInfoDialogRef.afterClosed().subscribe(result => console.log(result));
+          }//AddContactInfo
+          EditContactInfo(car: Car) {
+            let ContactInfoDialogRef = this.dialog.open(ContactInfoComponent, { width:'60%', data: { Header:'Contact Info Edit Form', type:'Edit', value:car } });
+            ContactInfoDialogRef.afterClosed().subscribe(result => console.log(result));
+          }//EditContactInfo
+          ViewContactInfo(car: Car) {
+            let ContactInfoDialogRef = this.dialog.open(ContactInfoComponent, { width:'60%', data: { Header:'Contact Info View', type:'View', value:car } });
+          }//ViewContactInfo
+
+      //Departments
+          AddDepartments() {
+            let DepartmentsDialogRef = this.dialog.open(DepartmentsComponent, { width:'60%', data: { Header:'Department Creat Form', type:'Add' } });
+            DepartmentsDialogRef.afterClosed().subscribe(result => console.log(result));
+          }//AddDepartments
+          EditDepartments(car: Car) {
+            let DepartmentsDialogRef = this.dialog.open(DepartmentsComponent, { width:'60%', data: { Header:'Departments Edit Form', type:'Edit', value:car } });
+            DepartmentsDialogRef.afterClosed().subscribe(result => console.log(result));
+          }//EditDepartments
+          ViewDepartments(car: Car) {
+            let DepartmentsDialogRef = this.dialog.open(DepartmentsComponent, { width:'60%', data: { Header:'Department View', type:'View', value:car } });
+          }//ViewDepartments
+
+      //Branches
+          AddBranches() {
+            let BranchesDialogRef = this.dialog.open(BranchesComponent, { width:'60%', data: { Header:'Branches Creat Form', type:'Add' } });
+            BranchesDialogRef.afterClosed().subscribe(result => console.log(result));
+          }//AddBranches
+          EditBranches(car: Car) {
+            let BranchesDialogRef = this.dialog.open(BranchesComponent, { width:'60%', data: { Header:'Branches Edit Form', type:'Edit', value:car } });
+            BranchesDialogRef.afterClosed().subscribe(result => console.log(result));
+          }//EditBranches
+          ViewBranches(car: Car) {
+            let BranchesDialogRef = this.dialog.open(BranchesComponent, { width:'60%', data: { Header:'Branches View', type:'View', value:car } });
+          }//ViewBranches
+
+      //Registration Info
+          AddRegistrationInfo() {
+            let RegistrationInfoDialogRef = this.dialog.open(RegistrationInfoComponent, { width:'60%', data: { Header:'Registration Info Creat Form', type:'Add' } });
+            RegistrationInfoDialogRef.afterClosed().subscribe(result => console.log(result));
+          }//AddBranches
+          EditRegistrationInfo(car: Car) {
+            let RegistrationInfoDialogRef = this.dialog.open(RegistrationInfoComponent, { width:'60%', data: { Header:'Registration Info Edit Form', type:'Edit', value:car } });
+            RegistrationInfoDialogRef.afterClosed().subscribe(result => console.log(result));
+          }//EditBranches
+          ViewRegistrationInfo(car: Car) {
+            let RegistrationInfoDialogRef = this.dialog.open(RegistrationInfoComponent, { width:'60%', data: { Header:'Registration Info View', type:'View', value:car } });
+          }//ViewBranches
+
+
+
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
@@ -96,80 +146,6 @@ export class CompanySettingsComponent implements OnInit {
     // console.log(e.index);
     // console.log(e.originalEvent.target.innerText);
   }
-
-
-  createForm(){
-
-    this.CompanyInfoEditForm= this.formBuilder.group({ 
-      image: ['', Validators.compose([ Validators.required ])],
-      companyName: ['', Validators.compose([ Validators.required ])],
-      pnoneNumber: ['', Validators.compose([ Validators.required ])],
-      eMail: ['', Validators.compose([ Validators.required ])],
-      website: ['', Validators.compose([ Validators.required ])],
-      companyType: ['', Validators.compose([ Validators.required ])],
-      TypeOfBusiness: ['', Validators.compose([ Validators.required ])],
-      address: ['', Validators.compose([ Validators.required ])]
-    });
-    this.ContactInfoAddForm = this.formBuilder.group({ 
-      conPersonName: ['', Validators.compose([ Validators.required ])],
-      mobileNumber: ['', Validators.compose([ Validators.required ])] ,
-      eMail: ['', Validators.compose([ Validators.required ])]
-    });
-    this.ContactInfoEditForm= this.formBuilder.group({ 
-      conPersonName: ['', Validators.compose([ Validators.required ])],
-      mobileNumber: ['', Validators.compose([ Validators.required ])] ,
-      eMail: ['', Validators.compose([ Validators.required ])]
-    });
-    this.DepartmentsAddForm = this.formBuilder.group({  
-      departmrntName: ['', Validators.compose([ Validators.required ])],
-      departmrntHead: ['', Validators.compose([ Validators.required ])]
-    });
-    this.DepartmentsEditForm = this.formBuilder.group({ 
-      departmrntName: ['', Validators.compose([ Validators.required ])],
-      departmrntHead: ['', Validators.compose([ Validators.required ])]
-    });
-    this.BranchesAddForm = this.formBuilder.group({ 
-      branchName: ['', Validators.compose([ Validators.required ])],
-      branchHead: ['', Validators.compose([ Validators.required ])],
-      departments: ['', Validators.compose([ Validators.required ])],
-      address: ['', Validators.compose([ Validators.required ])]
-    });
-    this.BranchesEditForm = this.formBuilder.group({ 
-      branchName: ['', Validators.compose([ Validators.required ])],
-      branchHead: ['', Validators.compose([ Validators.required ])],
-      departments: ['', Validators.compose([ Validators.required ])],
-      address: ['', Validators.compose([ Validators.required ])] 
-    });
-    this.RegistrationInfoAddForm = this.formBuilder.group({ 
-      registrationType: ['', Validators.compose([ Validators.required ])],
-      incorporatedDate: ['', Validators.compose([ Validators.required ])],
-      number: ['', Validators.compose([ Validators.required ])],
-      SpecifyRegistrationType:['']
-    });
-    this.RegistrationInfoEditForm = this.formBuilder.group({ 
-      registrationType: ['', Validators.compose([ Validators.required ])],
-      incorporatedDate: ['', Validators.compose([ Validators.required ])],
-      number: ['', Validators.compose([ Validators.required ])],
-      SpecifyRegistrationType:['']
-    });
-
-  };//createForm
-  
-
-  RegTypeStatusAddForm(){
-    if(this.RegistrationInfoAddForm.get('registrationType').value == "Others" ){
-      this.AddFormOthers = true;
-    }else{
-      this.AddFormOthers = false;
-    }
-  };
-  RegTypeStatusEditForm(){
-    if(this.RegistrationInfoEditForm .get('registrationType').value == "Others" ){
-      this.EditFormOthers = true;
-    }else{
-      this.EditFormOthers = false;
-    }
-  };
 
 
 }
