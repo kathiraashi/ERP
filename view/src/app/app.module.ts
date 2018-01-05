@@ -52,6 +52,25 @@ import { RouterModule, Routes } from '@angular/router';
       import { QuotationTermsComponent } from './popups/settings/crm-settings/quotation-terms/quotation-terms.component';
       import { UniteOfMeasureComponent } from './popups/settings/crm-settings/unite-of-measure/unite-of-measure.component';
       import { OpportunityStatusComponent } from './popups/settings/crm-settings/opportunity-status/opportunity-status.component';
+    //leads Settings
+      import { LeadSourceComponent } from './popups/settings/leads-settings/lead-source/lead-source.component';
+    //Purchase Settings
+      import { VendorQuoteTermsComponent } from './popups/settings/purchase-settings/vendor-quote-terms/vendor-quote-terms.component';
+    //Account Settings 
+      import { TaxComponent } from './popups/settings/account-settings/tax/tax.component';
+      import { BankComponent } from './popups/settings/account-settings/bank/bank.component';
+      import { IncomeTypeComponent } from './popups/settings/account-settings/income-type/income-type.component';
+      import { PaymentTermsComponent } from './popups/settings/account-settings/payment-terms/payment-terms.component';
+    //hrms settings
+      import { LeaveTypeComponent } from './popups/settings/hrms-settings/leave-type/leave-type.component';
+      import { ExpensesTypeComponent } from './popups/settings/hrms-settings/expenses-type/expenses-type.component';
+    //hr settings
+      import { EmployeeCategoryComponent } from './popups/settings/hr-settings/employee-category/employee-category.component';
+      import { DepartmentComponent } from './popups/settings/hr-settings/department/department.component';
+      import { DesignationComponent } from './popups/settings/hr-settings/designation/designation.component';
+    //inventory settings
+      import { WarehouseComponent } from './popups/settings/inventory-settings/warehouse/warehouse.component';
+      import { InventoryUniteOfMeasureComponent } from './popups/settings/inventory-settings/inventory-unite-of-measure/inventory-unite-of-measure.component';
 
 
 //Components------------------------------------
@@ -149,7 +168,26 @@ import { RouterModule, Routes } from '@angular/router';
             ContactRoleComponent,
             QuotationTermsComponent,
             UniteOfMeasureComponent,
-            OpportunityStatusComponent
+            OpportunityStatusComponent,
+          //leads settings
+            LeadSourceComponent,
+          //purchase settings
+            VendorQuoteTermsComponent,
+          //account settings
+            TaxComponent,
+            BankComponent,
+            IncomeTypeComponent,
+            PaymentTermsComponent,
+          //hrms settings
+            LeaveTypeComponent,
+            ExpensesTypeComponent,
+          //hr settings
+            EmployeeCategoryComponent,
+            DepartmentComponent,
+            DesignationComponent,
+          //inventory settings
+            WarehouseComponent,
+            InventoryUniteOfMeasureComponent
   ],
   imports: [
         CommonModule,
@@ -197,7 +235,26 @@ import { RouterModule, Routes } from '@angular/router';
             ContactRoleComponent,
             QuotationTermsComponent,
             UniteOfMeasureComponent,
-            OpportunityStatusComponent
+            OpportunityStatusComponent,
+          //leads settings
+            LeadSourceComponent,
+          //purchase settings
+            VendorQuoteTermsComponent,
+          //account settings
+            TaxComponent,
+            BankComponent,
+            IncomeTypeComponent,
+            PaymentTermsComponent,
+          //hrms settings
+            LeaveTypeComponent,
+            ExpensesTypeComponent,
+          //hr settings
+            EmployeeCategoryComponent,
+            DepartmentComponent,
+            DesignationComponent,
+          //inventory settings
+            WarehouseComponent,
+            InventoryUniteOfMeasureComponent
 
   ]
 })

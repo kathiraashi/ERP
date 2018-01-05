@@ -26,7 +26,7 @@
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-button class="color-success" style="font-weight:600" (click)="LeadSourceAdd.show()"> + Create </button> 
+                                    <button mat-button class="color-success" style="font-weight:600" (click)="AddLeadSource()"> + Create </button> 
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5 text-left"> 
@@ -65,9 +65,9 @@
                             </ng-template>
                             <ng-template let-car="rowData" pTemplate="body">
                                     <div class="button-row tabel-action">
-                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="LeadSourceEdit.show()" > <mat-icon>border_color</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditLeadSource(car)" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewLeadSource(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="DeleteConfirmation(car)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -81,84 +81,3 @@
     </mat-card>
 </div>
   
-
-
-<!-- Models -->
-
-    <!-- Leads Settings Lead Source Add Model -->
-    <div class="modal fade" bsModal #LeadSourceAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <form class="md-float-material" [formGroup]="LeadSourceAddForm" (submit)="leadSourceAddSubmit()" >
-                    <div class="modal-header">
-                        <h4 class="modal-title pull-left">Add Lead Source </h4>
-                        <button type="button" class="close pull-right" aria-label="Close" (click)="LeadSourceAdd.hide()">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group row">
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="leadSource"  name="leadSource" placeholder="Lead Source">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="LeadSourceAddForm.controls.leadSource.errors?.required && LeadSourceAddForm.controls.leadSource.dirty" > Lead Source Name Is Required  </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" mat-raised-button class="bg-color-warning" color="accent" (click)="LeadSourceAdd.hide()"> Close </button>
-                        <button type="submit" mat-raised-button color="accent" (click)="LeadSourceAdd.hide()"> Submit </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Leads Settings Lead Source Edit Model -->
-    <div class="modal fade" bsModal #LeadSourceEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <form class="md-float-material" [formGroup]="LeadSourceEditForm" (submit)="leadSourceEditSubmit()" >
-                    <div class="modal-header">
-                        <h4 class="modal-title pull-left">Edit Lead Source</h4>
-                        <button type="button" class="close pull-right" aria-label="Close" (click)="LeadSourceEdit.hide()">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group row">       
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="leadSource"  name="leadSource" placeholder="Lead Source">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="LeadSourceEditForm.controls.leadSource.errors?.required && LeadSourceEditForm.controls.leadSource.dirty" > Lead Source Name Is Required  </div>
-                            </div> 
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" mat-raised-button class="bg-color-warning" color="accent" (click)="LeadSourceEdit.hide()"> Close </button>
-                        <button type="submit"mat-raised-button color="accent" (click)="LeadSourceEdit.hide()"> Submit </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Leads Settings Delete Confirmation Model -->
-    <ng-template #DeleteConfirm>
-        <div class="modal-body text-center">
-            <p>Are You Sure You Whant To Delete This Data ?</p>
-            <button type="button" mat-raised-button class="bg-color-warning" color="accent" (click)="declineDelete()" >No</button>
-            <button type="button" mat-raised-button color="accent" class="btn btn-default" (click)="confirmDelete()" >Yes</button>
-        </div>
-    </ng-template>
-
-
-
-    
-

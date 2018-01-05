@@ -1,17 +1,20 @@
 // default modules
 import { Component, OnInit, TemplateRef  } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { DefaultUrlHandlingStrategy } from '@angular/router/src/url_handling_strategy';
 
 //Feture Modules
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 //custome Modules
 import { Car} from '../../domain/car';
 import { CarService} from '../../service/carservice';
+
+//popups
+import { LeadSourceComponent } from '../../popups/settings/leads-settings/lead-source/lead-source.component';
+
+import { DeleteConfirmationComponent } from '../../popups/others/delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-leads-settings',
@@ -24,79 +27,61 @@ export class LeadsSettingsComponent implements OnInit {
   // datatable primng
   cars: Car[];
   cols: any[];
-  noRows;
-  selectedCar: Car;
-  dialogVisible: boolean;
   msgs: Message[] = [];
 
 
-  //modal 
-  modalRef: BsModalRef;
 
-  //form
-  LeadSourceAddForm: FormGroup;
-  LeadSourceEditForm: FormGroup;
-  vin;
+  constructor(  private carService: CarService,
+                private messageService: MessageService,
+                public dialog: MatDialog
+              ) { }
 
-  constructor(  private formBuilder: FormBuilder,
-                private modalService: BsModalService,
-                private carService: CarService,
-                private messageService: MessageService 
-              ) {
-                 this.createForm();
-                 this.noRows = '10';
-                } //constructor
+  // material dialog 
+  LeadSourceDialogRef: MatDialogRef<LeadSourceComponent>;
+
+  DeleteConfirmationDialogRef: MatDialogRef<DeleteConfirmationComponent>;
+
 
   ngOnInit() {
      this.carService.getCarsMedium().then(cars => this.cars = cars);
   }//ngOnInit
 
-  EditCar(car: Car) {
-    this.vin = car.vin;
-  }//EditCar
 
-  ViewCar(car: Car) {
-    this.msgs = [];
-    this.msgs.push({severity:'info', summary:'Car Select', detail:'Vin: ' + car.vin});
-  }//ViewCar
+    // Forms Popups
+      //Lead Source
+        AddLeadSource() {
+          let LeadSourceDialogRef = this.dialog.open(LeadSourceComponent, { width:'50%', data: { Header:'Lead Source Creat Form', type:'Add' } });
+          LeadSourceDialogRef.afterClosed().subscribe(result => console.log(result));
+        }
+        EditLeadSource(car: Car) {
+          let LeadSourceDialogRef = this.dialog.open(LeadSourceComponent, { width:'50%', data: { Header:'Lead Source Edit Form', type:'Edit', value:car } });
+          LeadSourceDialogRef.afterClosed().subscribe(result => console.log(result));
+        }
+        ViewLeadSource(car: Car) {
+          let LeadSourceDialogRef = this.dialog.open(LeadSourceComponent, { width:'50%', data: { Header:'Lead Source View', type:'View', value:car } });
+        }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
-  }
- 
-  confirmDelete(): void {
-    this.modalRef.hide();
-    this.msgs = [];
-    this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
-  }
- 
-  declineDelete(): void {
-    this.modalRef.hide();
-    this.msgs = [];
-    this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Declined'});
-  }
+      //Delete Confirmation
+        DeleteConfirmation(car: Car) {
+          let DeleteConfirmationDialogRef = this.dialog.open(DeleteConfirmationComponent, { width:'330px', disableClose:true,  data: { Header:'Delete Confirmation', value:car } });
+          DeleteConfirmationDialogRef.afterClosed().subscribe(result => this.returnDeleteConfirmation(result));
+        }
+
+
+        returnDeleteConfirmation(result){
+          if(result === "Yes"){
+            this.msgs = [];
+            this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
+          }else{
+            this.msgs = [];
+            this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Declined'})
+          }
+        }
 
 
   handleChange(e) {
     // console.log(e.index);
     // console.log(e.originalEvent.target.innerText);
-  }
-
-
-  createForm(){
-    this.LeadSourceAddForm = this.formBuilder.group({ leadSource: ['', Validators.compose([ Validators.required ])] });
-    this.LeadSourceEditForm = this.formBuilder.group({ leadSource: ['', Validators.compose([ Validators.required ])] });
-  };//createForm
-  
-
-  leadSourceEditSubmit(){
-    console.log(this.LeadSourceEditForm.value.leadSource);
-    this.LeadSourceEditForm.reset();
-  }
-
-  leadSourceAddSubmit(){
-    console.log(this.LeadSourceAddForm.value.leadSource);
-    this.LeadSourceAddForm.reset();
   }
 
 

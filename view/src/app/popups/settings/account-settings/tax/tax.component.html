@@ -1,0 +1,61 @@
+<form [formGroup]="TaxForm" (ngSubmit)="submit()">
+  <h1 mat-dialog-title class="pop-up-title"> {{data.Header}} </h1>
+  <hr style="margin-top:10px;">
+  <mat-dialog-content style="overflow:initial">
+    <div class="form-group row">
+      <div class="col-sm-6" style="margin-bottom:20px;">
+          <div class="example-container">
+              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                  <input matInput type="text" formControlName="taxName" placeholder=" Tax Name ">
+                  <span *ngIf="disabled" matPrefix> <b> Tax Name : </b></span>
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="col-sm-6" style="margin-bottom:20px;">
+          <div class="example-container">
+              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                  <mat-select formControlName="taxScope" placeholder=" Tax Scope">
+                      <mat-option *ngFor="let TaxScope of TaxScopes" [value]="TaxScope">{{TaxScope}}</mat-option>
+                  </mat-select>
+                  <span *ngIf="disabled" matPrefix> <b> Tax Scope : </b></span>
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="col-sm-6" style="margin-bottom:20px;">
+        <div class="example-container">
+            <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                <mat-select formControlName="taxComputation" placeholder=" Tax Computation">
+                    <mat-option *ngFor="let TaxComputation of TaxComputations" [value]="TaxComputation">{{TaxComputation}}</mat-option>
+                </mat-select>
+                <span *ngIf="disabled" matPrefix> <b> Tax Computation : </b></span>
+            </mat-form-field>
+        </div>
+      </div>
+      <div class="col-sm-6" style="margin-bottom:20px;">
+        <div class="example-container">
+            <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                <input matInput type="text" formControlName="amount" placeholder=" Amount ">
+                <span *ngIf="disabled" matPrefix> <b> Amount : </b></span>
+            </mat-form-field>
+        </div>
+      </div>
+      <div class="col-sm-6" style="margin-bottom:20px;">
+          <div class="example-container">
+              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                  <textarea matInput type="text" formControlName="notes" placeholder=" Notes "></textarea>
+                  <span *ngIf="disabled" matPrefix> <b> Notes : </b></span>
+              </mat-form-field>
+          </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions class="pull-right"> 
+      <div *ngIf="!disabled">
+        <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
+        <button type="submit" mat-raised-button color="accent" > Submit </button>
+      </div>
+      <div *ngIf="disabled" >
+        <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
+      </div>
+  </mat-dialog-actions>
+</form>

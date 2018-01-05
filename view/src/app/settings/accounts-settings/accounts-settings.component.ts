@@ -1,17 +1,23 @@
 // default modules
 import { Component, OnInit, TemplateRef  } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { DefaultUrlHandlingStrategy } from '@angular/router/src/url_handling_strategy';
 
 //Feture Modules
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 //custome Modules
 import { Car} from '../../domain/car';
 import { CarService} from '../../service/carservice';
+
+//popups
+import { TaxComponent } from '../../popups/settings/account-settings/tax/tax.component';
+import { BankComponent } from '../../popups/settings/account-settings//bank/bank.component';
+import { IncomeTypeComponent } from '../../popups/settings/account-settings/income-type/income-type.component';
+import { PaymentTermsComponent } from '../../popups/settings/account-settings/payment-terms/payment-terms.component'
+
+import { DeleteConfirmationComponent } from '../../popups/others/delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-accounts-settings',
@@ -25,121 +31,101 @@ export class AccountsSettingsComponent implements OnInit {
   // datatable primng
   cars: Car[];
   cols: any[];
-  noRows;
-  selectedCar: Car;
-  dialogVisible: boolean;
   msgs: Message[] = [];
 
 
-  //modal 
-  modalRef: BsModalRef;
-
-  //form
-  TaxAddForm: FormGroup;
-  TaxEditForm: FormGroup;
-  BankAddForm: FormGroup;
-  BankEditForm: FormGroup;
-  IncomeTypeAddForm: FormGroup;
-  IncomeTypeEditForm: FormGroup;
-  PaymentTermsAddForm: FormGroup;
-  PaymentTermsEditForm: FormGroup;
-
-  TaxScopes = [ 'Sales', 'Purchase' ];
-  TaxComputations = [ 'Fixed', 'Percentage Of Price', 'Percentage Of ( Price + Tax )' , 'Percentage Of Price Tax Included' ];
-  vin;
-
-  constructor(  private formBuilder: FormBuilder,
-                private modalService: BsModalService,
+  constructor(  public dialog: MatDialog,
                 private carService: CarService,
                 private messageService: MessageService 
-              ) {
-                 this.createForm();
-                 this.noRows = '10';
-                } //constructor
-
+              ) { } 
   ngOnInit() {
      this.carService.getCarsMedium().then(cars => this.cars = cars);
   }//ngOnInit
 
-  EditCar(car: Car) {
-    this.vin = car.vin;
-  }//EditCar
+  // material dialog 
+    TaxDialogRef: MatDialogRef<TaxComponent>;
+    BankDialogRef: MatDialogRef<BankComponent>;
+    IncomeTypeDialogRef: MatDialogRef<IncomeTypeComponent>;
+    PaymentTermsDialogRef: MatDialogRef<PaymentTermsComponent>;
 
-  ViewCar(car: Car) {
-    this.msgs = [];
-    this.msgs.push({severity:'info', summary:'Car Select', detail:'Vin: ' + car.vin});
-  }//ViewCar
+    DeleteConfirmationDialogRef: MatDialogRef<DeleteConfirmationComponent>;
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
-  }
- 
-  confirmDelete(): void {
-    this.modalRef.hide();
-    this.msgs = [];
-    this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
-  }
- 
-  declineDelete(): void {
-    this.modalRef.hide();
-    this.msgs = [];
-    this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Declined'});
-  }
+
+    // Forms Popups
+      //Tax
+        AddTax() {
+          let TaxDialogRef = this.dialog.open(TaxComponent, { width:'60%', data: { Header:'Tax Creat Form', type:'Add' } });
+          TaxDialogRef.afterClosed().subscribe(result => console.log(result));
+        }
+        EditTax(car: Car) {
+          let TaxDialogRef = this.dialog.open(TaxComponent, { width:'60%', data: { Header:'Tax Edit Form', type:'Edit', value:car } });
+          TaxDialogRef.afterClosed().subscribe(result => console.log(result));
+        }
+        ViewTax(car: Car) {
+          let TaxDialogRef = this.dialog.open(TaxComponent, { width:'60%', data: { Header:'Tax View', type:'View', value:car } });
+        }
+
+      //Bank
+        AddBank() {
+          let BankDialogRef = this.dialog.open(BankComponent, { width:'60%', data: { Header:'Bank Creat Form', type:'Add' } });
+          BankDialogRef.afterClosed().subscribe(result => console.log(result));
+        }
+        EditBank(car: Car) {
+          let BankDialogRef = this.dialog.open(BankComponent, { width:'60%', data: { Header:'Bank Edit Form', type:'Edit', value:car } });
+          BankDialogRef.afterClosed().subscribe(result => console.log(result));
+        }
+        ViewBank(car: Car) {
+          let BankDialogRef = this.dialog.open(BankComponent, { width:'60%', data: { Header:'Bank View', type:'View', value:car } });
+        }
+      
+      //Income Type
+        AddIncomeType() {
+          let IncomeTypeDialogRef = this.dialog.open(IncomeTypeComponent, { width:'60%', data: { Header:'Income Type Creat Form', type:'Add' } });
+          IncomeTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+        }
+        EditIncomeType(car: Car) {
+          let IncomeTypeDialogRef = this.dialog.open(IncomeTypeComponent, { width:'60%', data: { Header:'Income Type Edit Form', type:'Edit', value:car } });
+          IncomeTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+        }
+        ViewIncomeType(car: Car) {
+          let IncomeTypeDialogRef = this.dialog.open(IncomeTypeComponent, { width:'60%', data: { Header:'Income Type View', type:'View', value:car } });
+        }
+
+      //Payment Terms
+        AddPaymentTerms() {
+          let PaymentTermsDialogRef = this.dialog.open(PaymentTermsComponent, { width:'60%', data: { Header:'Payment Terms Creat Form', type:'Add' } });
+          PaymentTermsDialogRef.afterClosed().subscribe(result => console.log(result));
+        }
+        EditPaymentTerms(car: Car) {
+          let PaymentTermsDialogRef = this.dialog.open(PaymentTermsComponent, { width:'60%', data: { Header:'Payment Terms Edit Form', type:'Edit', value:car } });
+          PaymentTermsDialogRef.afterClosed().subscribe(result => console.log(result));
+        }
+        ViewPaymentTerms(car: Car) {
+          let PaymentTermsDialogRef = this.dialog.open(PaymentTermsComponent, { width:'60%', data: { Header:'Payment Terms View', type:'View', value:car } });
+        }
+
+    //Delete Confirmation
+      DeleteConfirmation(car: Car) {
+        let DeleteConfirmationDialogRef = this.dialog.open(DeleteConfirmationComponent, { width:'330px', disableClose:true,  data: { Header:'Delete Confirmation', value:car } });
+        DeleteConfirmationDialogRef.afterClosed().subscribe(result => this.returnDeleteConfirmation(result));
+      }
+
+
+      returnDeleteConfirmation(result){
+        if(result === "Yes"){
+          this.msgs = [];
+          this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
+        }else{
+          this.msgs = [];
+          this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Declined'})
+        }
+      }
 
 
   handleChange(e) {
     // console.log(e.index);
     // console.log(e.originalEvent.target.innerText);
   }
-
-
-  createForm(){
-
-    this.TaxAddForm= this.formBuilder.group({ 
-      taxName: ['', Validators.compose([ Validators.required ])],
-      taxScope: ['', Validators.compose([ Validators.required ])],
-      taxComputation: ['', Validators.compose([ Validators.required ])],
-      amount: ['', Validators.compose([ Validators.required ])],
-      notes: ['', Validators.compose([ Validators.required ])]
-    });
-    this.TaxEditForm = this.formBuilder.group({ 
-      taxName: ['', Validators.compose([ Validators.required ])],
-      taxScope: ['', Validators.compose([ Validators.required ])],
-      taxComputation: ['', Validators.compose([ Validators.required ])],
-      amount: ['', Validators.compose([ Validators.required ])],
-      notes: ['', Validators.compose([ Validators.required ])]
-    });
-    this.BankAddForm= this.formBuilder.group({ 
-      bankName: ['', Validators.compose([ Validators.required ])],
-      accountName: ['', Validators.compose([ Validators.required ])] ,
-      accountNo: ['', Validators.compose([ Validators.required ])],
-      ifscCode: ['', Validators.compose([ Validators.required ])] ,
-      address: ['', Validators.compose([ Validators.required ])]
-    });
-    this.BankEditForm = this.formBuilder.group({  
-      bankName: ['', Validators.compose([ Validators.required ])],
-      accountName: ['', Validators.compose([ Validators.required ])] ,
-      accountNo: ['', Validators.compose([ Validators.required ])],
-      ifscCode: ['', Validators.compose([ Validators.required ])] ,
-      address: ['', Validators.compose([ Validators.required ])]
-    });
-    this.IncomeTypeAddForm = this.formBuilder.group({ 
-      incomeType: ['', Validators.compose([ Validators.required ])]
-    });
-    this.IncomeTypeEditForm = this.formBuilder.group({ 
-      incomeType: ['', Validators.compose([ Validators.required ])]
-    });
-    this.PaymentTermsAddForm = this.formBuilder.group({ 
-      paymentTerm: ['', Validators.compose([ Validators.required ])],
-      active: ['', Validators.compose([ Validators.required ])]
-    });
-    this.PaymentTermsEditForm = this.formBuilder.group({ 
-      paymentTerm: ['', Validators.compose([ Validators.required ])],
-      active: ['', Validators.compose([ Validators.required ])]
-    });
-
-
-  };//createForm
 
 
 

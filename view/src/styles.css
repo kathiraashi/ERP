@@ -56,9 +56,10 @@ mat-form-field.availabel-prefix .mat-select-disabled .mat-select-value{
     font-size: 15px;
 }
 mat-form-field.availabel-prefix.mat-form-field-disabled .mat-form-field-label{
-    color: #536777;
+    display: none;
+    /* color: #536777;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 15px; */
 }
 mat-form-field.availabel-prefix .mat-select-disabled .mat-select-arrow-wrapper>.mat-select-arrow{
     opacity: 0 ;

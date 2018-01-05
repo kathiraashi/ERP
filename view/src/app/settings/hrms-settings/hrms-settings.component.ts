@@ -1,17 +1,21 @@
 // default modules
 import { Component, OnInit, TemplateRef  } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { DefaultUrlHandlingStrategy } from '@angular/router/src/url_handling_strategy';
 
 //Feture Modules
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 //custome Modules
 import { Car} from '../../domain/car';
 import { CarService} from '../../service/carservice';
+
+//popups
+import { LeaveTypeComponent } from '../../popups/settings/hrms-settings/leave-type/leave-type.component';
+import { ExpensesTypeComponent } from '../../popups/settings/hrms-settings/expenses-type/expenses-type.component';
+
+import { DeleteConfirmationComponent } from '../../popups/others/delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-hrms-settings',
@@ -24,78 +28,78 @@ export class HrmsSettingsComponent implements OnInit {
   // datatable primng
   cars: Car[];
   cols: any[];
-  noRows;
-  selectedCar: Car;
-  dialogVisible: boolean;
   msgs: Message[] = [];
 
 
-  //modal 
-  modalRef: BsModalRef;
-
-  //form
-  LeaveTypeAddForm: FormGroup;
-  LeaveTypeEditForm: FormGroup;
-  ExpensesTypeAddForm: FormGroup;
-  ExpensesTypeEditForm: FormGroup;
-  vin;
-
-  constructor(  private formBuilder: FormBuilder,
-                private modalService: BsModalService,
+  constructor(  public dialog: MatDialog,
                 private carService: CarService,
                 private messageService: MessageService 
-              ) {
-                 this.createForm();
-                 this.noRows = '10';
-                } //constructor
+              ) { }
+
+
+// material dialog 
+    LeaveTypeDialogRef: MatDialogRef<LeaveTypeComponent>;
+    ExpensesTypeDialogRef: MatDialogRef<ExpensesTypeComponent>;
+
+    DeleteConfirmationDialogRef: MatDialogRef<DeleteConfirmationComponent>;
+
 
   ngOnInit() {
      this.carService.getCarsMedium().then(cars => this.cars = cars);
   }//ngOnInit
 
-  EditCar(car: Car) {
-    this.vin = car.vin;
-  }//EditCar
 
-  ViewCar(car: Car) {
-    this.msgs = [];
-    this.msgs.push({severity:'info', summary:'Car Select', detail:'Vin: ' + car.vin});
-  }//ViewCar
+    // Forms Popups
+      //Leave Type
+      AddLeaveType() {
+        let LeaveTypeDialogRef = this.dialog.open(LeaveTypeComponent, { width:'60%', data: { Header:'Leave Type Creat Form', type:'Add' } });
+        LeaveTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+      }
+      EditLeaveType(car: Car) {
+        let LeaveTypeDialogRef = this.dialog.open(LeaveTypeComponent, { width:'60%', data: { Header:'Leave Type Edit Form', type:'Edit', value:car } });
+        LeaveTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+      }
+      ViewLeaveType(car: Car) {
+        let LeaveTypeDialogRef = this.dialog.open(LeaveTypeComponent, { width:'60%', data: { Header:'Leave Type View', type:'View', value:car } });
+      }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
-  }
- 
-  confirmDelete(): void {
-    this.modalRef.hide();
-    this.msgs = [];
-    this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
-  }
- 
-  declineDelete(): void {
-    this.modalRef.hide();
-    this.msgs = [];
-    this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Declined'});
-  }
+    //Expenses Type
+      AddExpensesType() {
+        let ExpensesTypeDialogRef = this.dialog.open(ExpensesTypeComponent, { width:'60%', data: { Header:'Expenses Type Creat Form', type:'Add' } });
+        ExpensesTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+      }
+      EditExpensesType(car: Car) {
+        let ExpensesTypeDialogRef = this.dialog.open(ExpensesTypeComponent, { width:'60%', data: { Header:'Expenses Type Edit Form', type:'Edit', value:car } });
+        ExpensesTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+      }
+      ViewExpensesType(car: Car) {
+        let ExpensesTypeDialogRef = this.dialog.open(ExpensesTypeComponent, { width:'60%', data: { Header:'Expenses Type View', type:'View', value:car } });
+      }
 
+
+    //Delete Confirmation
+      DeleteConfirmation(car: Car) {
+        let DeleteConfirmationDialogRef = this.dialog.open(DeleteConfirmationComponent, { width:'330px', disableClose:true,  data: { Header:'Delete Confirmation', value:car } });
+        DeleteConfirmationDialogRef.afterClosed().subscribe(result => this.returnDeleteConfirmation(result));
+      }
+
+
+      returnDeleteConfirmation(result){
+        if(result === "Yes"){
+          this.msgs = [];
+          this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
+        }else{
+          this.msgs = [];
+          this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Declined'})
+        }
+      }
+
+          
 
   handleChange(e) {
     // console.log(e.index);
     // console.log(e.originalEvent.target.innerText);
   }
-
-
-  createForm(){
-
-    this.LeaveTypeAddForm = this.formBuilder.group({ leaveType: ['', Validators.compose([ Validators.required ])] });
-    this.LeaveTypeEditForm= this.formBuilder.group({ leaveType: ['', Validators.compose([ Validators.required ])] });
-    this.ExpensesTypeAddForm = this.formBuilder.group({ expensesType: ['', Validators.compose([ Validators.required ])] });
-    this.ExpensesTypeEditForm= this.formBuilder.group({ expensesType: ['', Validators.compose([ Validators.required ])] });
-
-  };//createForm
-  
-
-
 
 
 }

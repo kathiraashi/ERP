@@ -1,0 +1,57 @@
+<form [formGroup]="BankForm" (ngSubmit)="submit()">
+  <h1 mat-dialog-title class="pop-up-title"> {{data.Header}} </h1>
+  <hr style="margin-top:10px;">
+  <mat-dialog-content style="overflow:initial">
+    <div class="form-group row">
+      <div class="col-sm-6" style="margin-bottom:20px;">
+          <div class="example-container">
+              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                  <input matInput type="text" formControlName="bankName" placeholder=" Bank Name ">
+                  <span *ngIf="disabled" matPrefix> <b> Bank Name  : </b></span>
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="col-sm-6" style="margin-bottom:20px;">
+          <div class="example-container">
+              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                  <input matInput type="text" formControlName="accountName" placeholder="Account Name">
+                  <span *ngIf="disabled" matPrefix> <b> Account Name : </b></span>
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="col-sm-6" style="margin-bottom:20px;">
+        <div class="example-container">
+            <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                <input matInput type="text" formControlName="accountNo" placeholder="Account No">
+                <span *ngIf="disabled" matPrefix> <b> Account No : </b></span>
+            </mat-form-field>
+        </div>
+      </div>
+      <div class="col-sm-6" style="margin-bottom:20px;">
+        <div class="example-container">
+            <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                <input matInput type="text" formControlName="ifscCode" placeholder=" IFSC Code ">
+                <span *ngIf="disabled" matPrefix> <b> IFSC Code : </b></span>
+            </mat-form-field>
+        </div>
+      </div>
+      <div class="col-sm-6" style="margin-bottom:20px;">
+          <div class="example-container">
+              <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
+                  <textarea matInput type="text" formControlName="address" placeholder=" Address "></textarea>
+                  <span *ngIf="disabled" matPrefix> <b> Address : </b></span>
+              </mat-form-field>
+          </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions class="pull-right"> 
+      <div *ngIf="!disabled">
+        <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
+        <button type="submit" mat-raised-button color="accent" > Submit </button>
+      </div>
+      <div *ngIf="disabled" >
+        <button type="button" mat-raised-button class="bg-color-warning" (click)="dialogRef.close()" color="accent" > Close </button>
+      </div>
+  </mat-dialog-actions>
+</form>

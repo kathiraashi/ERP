@@ -35,7 +35,7 @@ export class BranchesComponent implements OnInit {
         this.BranchesForm = new FormGroup({
           branchName: new FormControl(this.data.value.vin, Validators.required),
           branchHead: new FormControl(this.data.value.year, Validators.required),
-          departments: new FormControl('Department-One',  Validators.required),
+          departments: new FormControl('',  Validators.required),
           address: new FormControl(this.data.value.color,  Validators.required)
         });
       }
@@ -44,7 +44,7 @@ export class BranchesComponent implements OnInit {
         this.BranchesForm = new FormGroup({
           branchName: new FormControl({value: this.data.value.vin, disabled: true}, Validators.required),
           branchHead: new FormControl({value: this.data.value.year, disabled: true}, Validators.required),
-          departments: new FormControl({value: 'Department-One', disabled: true}, Validators.required),
+          departments: new FormControl({value: '', disabled: true}, Validators.required),
           address: new FormControl({value: this.data.value.vin, disabled: true}, Validators.required)
         });
         this.disabled = true ;

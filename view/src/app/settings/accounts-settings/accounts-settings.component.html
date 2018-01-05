@@ -26,7 +26,7 @@
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-button class="color-success" style="font-weight:600" (click)="TaxAdd.show()"> + Create </button> 
+                                    <button mat-button class="color-success" style="font-weight:600" (click)="AddTax()"> + Create </button> 
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5 text-left"> 
@@ -65,9 +65,9 @@
                             </ng-template>
                             <ng-template let-car="rowData" pTemplate="body">
                                     <div class="button-row tabel-action">
-                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="TaxEdit.show()" > <mat-icon>border_color</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditTax(car)" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewTax(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="DeleteConfirmation(car)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -83,7 +83,7 @@
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-button class="color-success" style="font-weight:600" (click)="BankAdd.show()"> + Create </button> 
+                                    <button mat-button class="color-success" style="font-weight:600" (click)="AddBank()"> + Create </button> 
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5 text-left"> 
@@ -122,9 +122,9 @@
                             </ng-template>
                             <ng-template let-car="rowData" pTemplate="body">
                                     <div class="button-row tabel-action">
-                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="BankEdit.show()" > <mat-icon>border_color</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditBank(car)" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewBank(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="DeleteConfirmation(car)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -140,7 +140,7 @@
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-button class="color-success" style="font-weight:600" (click)="IncomeTypeAdd.show()"> + Create </button> 
+                                    <button mat-button class="color-success" style="font-weight:600" (click)="AddIncomeType()"> + Create </button> 
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5 text-left"> 
@@ -179,9 +179,9 @@
                             </ng-template>
                             <ng-template let-car="rowData" pTemplate="body">
                                     <div class="button-row tabel-action">
-                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="IncomeTypeEdit.show()" > <mat-icon>border_color</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditIncomeType(car)" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewIncomeType(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="DeleteConfirmation(car)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -197,7 +197,7 @@
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-button class="color-success" style="font-weight:600" (click)="PaymentTermsAdd.show()"> + Create </button> 
+                                    <button mat-button class="color-success" style="font-weight:600" (click)="AddPaymentTerms()"> + Create </button> 
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5 text-left"> 
@@ -236,9 +236,9 @@
                             </ng-template>
                             <ng-template let-car="rowData" pTemplate="body">
                                     <div class="button-row tabel-action">
-                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="PaymentTermsEdit.show()" > <mat-icon>border_color</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditPaymentTerms(car)" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewPaymentTerms(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="DeleteConfirmation(car)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -251,457 +251,4 @@
         
     </mat-card>
 </div>
-  
-
-
-<!-- Models -->
-
-    <!-- Account Settings Tax Add Model -->
-    <div class="modal fade" bsModal #TaxAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Add Tax</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="TaxAdd.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="TaxAddForm" (submit) = onRgisterSubmit() >
-            
-                        <div class="form-group row">
-
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="taxName"  name="taxName"  placeholder="Tax Name">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-12 color-danger" *ngIf="TaxAddForm.controls.taxName.errors?.required && TaxAddForm.controls.taxName.dirty" > Tax Name Is Required  </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <mat-select formControlName="taxScope" placeholder=" Tax Scope ">
-                                            <mat-option *ngFor="let TaxScope of TaxScopes" [value]="TaxScope">{{TaxScope}}</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <mat-select formControlName="taxComputation" placeholder="Tax Computation">
-                                            <mat-option *ngFor="let TaxComputation of TaxComputations" [value]="TaxComputation">{{TaxComputation}}</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="amount"  name="amount"  placeholder="Amount">
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <textarea matInput formControlName="notes" name="notes" placeholder="Notes"></textarea>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-
-                        </div>
-    
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="TaxAdd.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="TaxAdd.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Account Settings Tax Edit Model -->
-    <div class="modal fade" bsModal #TaxEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Edit Tax</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="TaxEdit.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="TaxEditForm" (submit) = onRgisterSubmit() >
-            
-                        <div class="form-group row">
-
-                          <div class="col-sm-6" style="margin-bottom:20px;">
-                              <div class="example-container">
-                                  <mat-form-field>
-                                      <input matInput type="text" formControlName="taxName"  name="taxName"  placeholder="Tax Name">
-                                  </mat-form-field>
-                              </div>
-                              <div class="col-sm-12 color-danger" *ngIf="TaxEditForm.controls.taxName.errors?.required && TaxEditForm.controls.taxName.dirty" > Tax Name Is Required  </div>
-                          </div>
-                          <div class="col-sm-6" style="margin-bottom:20px;">
-                              <div class="example-container">
-                                  <mat-form-field>
-                                      <mat-select formControlName="taxScope" placeholder=" Tax Scope ">
-                                          <mat-option *ngFor="let TaxScope of TaxScopes" [value]="TaxScope">{{TaxScope}}</mat-option>
-                                      </mat-select>
-                                  </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="col-sm-6" style="margin-bottom:20px;">
-                              <div class="example-container">
-                                  <mat-form-field>
-                                      <mat-select formControlName="taxComputation" placeholder="Tax Computation">
-                                          <mat-option *ngFor="let TaxComputation of TaxComputations" [value]="TaxComputation">{{TaxComputation}}</mat-option>
-                                      </mat-select>
-                                  </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="col-sm-6" style="margin-bottom:20px;">
-                              <div class="example-container">
-                                  <mat-form-field>
-                                      <input matInput type="text" formControlName="amount"  name="amount"  placeholder="Amount">
-                                  </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="col-sm-6" style="margin-bottom:20px;">
-                              <div class="example-container">
-                                  <mat-form-field>
-                                      <textarea matInput formControlName="notes" name="notes" placeholder="Notes"></textarea>
-                                  </mat-form-field>
-                              </div>
-                          </div>
-                            
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="TaxEdit.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="TaxEdit.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Account Settings Bank Add Model -->
-    <div class="modal fade" bsModal #BankAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Add Bank</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="BankAdd.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="BankAddForm" (submit) = onCrmSubmit() >
-            
-                        <div class="form-group row">
-                                
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="bankName"  name="bankName" placeholder=" Bank Name ">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="BankAddForm.controls.bankName.errors?.required && BankAddForm.controls.bankName.dirty" > Bank Name Is Required  </div>
-                            </div>
-
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="accountName"  name="accountName" placeholder="Account Name">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="BankAddForm.controls.accountName.errors?.required && BankAddForm.controls.accountName.dirty" > Account Name Is Required  </div>
-                            </div>
-
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="accountNo"  name="accountNo" placeholder="Account No">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="BankAddForm.controls.accountNo.errors?.required && BankAddForm.controls.accountNo.dirty" > Account No Is Required  </div>
-                            </div>
-
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="ifscCode"  name="ifscCode" placeholder="IFC Code">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8 color-danger" *ngIf="BankAddForm.controls.ifscCode.errors?.required && BankAddForm.controls.ifscCode.dirty" > IFC Code Is Required  </div>
-                            </div>
-
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="address"  name="address" placeholder="Address">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="BankAddForm.controls.address.errors?.required && BankAddForm.controls.address.dirty" > Address Is Required  </div>
-                            </div>
-                            
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="BankAdd.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="BankAdd.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Account Settings Bank Edit Model -->
-    <div class="modal fade" bsModal #BankEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Edit Bank </h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="BankEdit.hide()">
-                      <span aria-hidden="true"> &times; </span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="BankEditForm" (submit) = onRgisterSubmit() >
-            
-                        <div class="form-group row">
-                                
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="bankName"  name="bankName" placeholder=" Bank Name ">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="BankEditForm.controls.bankName.errors?.required && BankEditForm.controls.bankName.dirty" > Bank Name Is Required  </div>
-                            </div>
-
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="accountName"  name="accountName" placeholder="Account Name">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="BankEditForm.controls.accountName.errors?.required && BankEditForm.controls.accountName.dirty" > Account Name Is Required  </div>
-                            </div>
-
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="accountNo"  name="accountNo" placeholder="Account No">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="BankEditForm.controls.accountNo.errors?.required && BankEditForm.controls.accountNo.dirty" > Account No Is Required  </div>
-                            </div>
-
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="ifscCode"  name="ifscCode" placeholder="IFC Code">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8 color-danger" *ngIf="BankEditForm.controls.ifscCode.errors?.required && BankEditForm.controls.ifscCode.dirty" > IFC Code Is Required  </div>
-                            </div>
-
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="address"  name="address" placeholder="Address">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="BankEditForm.controls.address.errors?.required && BankEditForm.controls.address.dirty" > Address Is Required  </div>
-                            </div>
-                            
-                        </div>
-    
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="BankEdit.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="BankEdit.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Account Settings Income Type Add Model -->
-    <div class="modal fade" bsModal #IncomeTypeAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Add Income Type </h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="IncomeTypeAdd.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="IncomeTypeAddForm" (submit) = onCrmSubmit() >
-            
-                        <div class="form-group row">
-                                
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="incomeType"  name="incomeType" placeholder=" Income Type ">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="IncomeTypeAddForm.controls.incomeType.errors?.required && IncomeTypeAddForm.controls.incomeType.dirty" > Income Type Is Required  </div>
-                            </div>
-
-                        </div>
-    
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="IncomeTypeAdd.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="IncomeTypeAdd.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Account Settings Income Type Edit Model -->
-    <div class="modal fade" bsModal #IncomeTypeEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Edit Income Type </h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="IncomeTypeEdit.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="IncomeTypeEditForm" (submit) = onRgisterSubmit() >
-            
-                        <div class="form-group row">
-                                
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="incomeType"  name="incomeType" placeholder=" Income Type ">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="IncomeTypeEditForm.controls.incomeType.errors?.required && IncomeTypeEditForm.controls.incomeType.dirty" > Income Type Is Required  </div>
-                            </div>
-
-                        </div>
-    
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="IncomeTypeEdit.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="IncomeTypeEdit.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-        
-    <!-- Account Settings Payment Terms Add Model -->
-    <div class="modal fade" bsModal #PaymentTermsAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Add Payment Terms </h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="PaymentTermsAdd.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="PaymentTermsAddForm" (submit) = onCrmSubmit() >
-            
-                        <div class="form-group row">
-                                
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="paymentTerm"  name="paymentTerm"  placeholder="Payment Term">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-12 color-danger" *ngIf="PaymentTermsAddForm.controls.paymentTerm.errors?.required && PaymentTermsAddForm.controls.paymentTerm.dirty" > Payment Term Is Required  </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container" style="margin-top:20px;">
-                                        <mat-checkbox formControlName="active" color="accent"  class="bg-color-primary" name="active" > Active </mat-checkbox>
-                                </div>
-                            </div>
-
-                        </div>
-        
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="PaymentTermsAdd.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="PaymentTermsAdd.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Account Settings Payment Terms Edit Model -->
-    <div class="modal fade" bsModal #PaymentTermsEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Edit Payment Terms</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="PaymentTermsEdit.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="PaymentTermsEditForm" (submit) = onRgisterSubmit() >
-            
-                        <div class="form-group row">
-                                
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="paymentTerm"  name="paymentTerm"  placeholder="Payment Term">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-12 color-danger" *ngIf="PaymentTermsEditForm.controls.paymentTerm.errors?.required && PaymentTermsEditForm.controls.paymentTerm.dirty" > Payment Term Is Required  </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container" style="margin-top:20px;">
-                                    <mat-checkbox formControlName="active" color="accent" class="bg-color-primary" name="active" > Active </mat-checkbox>
-                                </div>
-                            </div>
-
-                        </div>
-    
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="PaymentTermsEdit.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="PaymentTermsEdit.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-        
-    
-
-    <!-- Account Settings Delete Confirmation Model -->
-    <ng-template #DeleteConfirm>
-        <div class="modal-body text-center">
-            <p>Are You Sure You Whant To Delete This Data ?</p>
-            <button type="button" mat-raised-button class="bg-color-warning" color="accent" (click)="declineDelete()" >No</button>
-            <button type="button" mat-raised-button color="accent" class="btn btn-default" (click)="confirmDelete()" >Yes</button>
-        </div>
-    </ng-template>
-
-
-
-    
 
