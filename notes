@@ -1,5 +1,3 @@
-ng g c popups/example --module=app.module.ts
-
 ng g c settings/example --module=app.module.ts
 
-ng g component <path>/<component-name> -m <path>/<module-to-use>
+ng g c popups/settings/crmSettings/opportunityStatus --module=app.module.ts

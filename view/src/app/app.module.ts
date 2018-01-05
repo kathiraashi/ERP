@@ -8,25 +8,26 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
-//Feture Modules
+//Feture Modules -------------------------------
   import { from } from 'rxjs/observable/from';
   import { TextMaskModule } from 'angular2-text-mask';
   import { BsDatepickerModule, ModalModule } from 'ngx-bootstrap';
   import { AgmCoreModule } from '@agm/core';
 
-//Custome Module
+//Custome Module --------------------------------
   import { AppRoutingModule } from './app.routing.module';
   import { MaterialModule } from './material.module';
   import { PrimengModule } from './primeng.module';
 
-//Services
+//Services --------------------------------------
   import { CarService } from './service/carservice';
   import { CustomService } from './service/custome';
   import { DataSharedService } from './service/DataSharedService';
 
-//Popups
+//Popups ----------------------------------------
   //Others
-    import { ExampleComponent } from './popups/example/example.component';
+    import { ExampleComponent } from './popups/example/example.component';   
+    import { DeleteConfirmationComponent } from './popups/others/delete-confirmation/delete-confirmation.component';
   //Crm
     import { ContactFormComponent } from './popups/crm/contact-form/contact-form.component';
     import { ActivityFormComponent } from './popups/crm/activity-form/activity-form.component'; 
@@ -39,9 +40,21 @@ import { RouterModule, Routes } from '@angular/router';
       import { DepartmentsComponent } from './popups/settings/company-settings/departments/departments.component';
       import { BranchesComponent } from './popups/settings/company-settings/branches/branches.component';
       import { RegistrationInfoComponent } from './popups/settings/company-settings/registration-info/registration-info.component';
+    //crm Settings
+      import { AccountTypeComponent } from './popups/settings/crm-settings/account-type/account-type.component';
+      import { IndustryTypeComponent } from './popups/settings/crm-settings/industry-type/industry-type.component';
+      import { OwnershipTypeComponent } from './popups/settings/crm-settings/ownership-type/ownership-type.component';
+      import { ActivityTypeComponent } from './popups/settings/crm-settings/activity-type/activity-type.component';
+      import { ActivityStatusComponent } from './popups/settings/crm-settings/activity-status/activity-status.component';
+      import { ActivityPeriorityComponent } from './popups/settings/crm-settings/activity-periority/activity-periority.component';
+      import { PiplineStatusComponent } from './popups/settings/crm-settings/pipline-status/pipline-status.component';
+      import { ContactRoleComponent } from './popups/settings/crm-settings/contact-role/contact-role.component';
+      import { QuotationTermsComponent } from './popups/settings/crm-settings/quotation-terms/quotation-terms.component';
+      import { UniteOfMeasureComponent } from './popups/settings/crm-settings/unite-of-measure/unite-of-measure.component';
+      import { OpportunityStatusComponent } from './popups/settings/crm-settings/opportunity-status/opportunity-status.component';
 
 
-//Components
+//Components------------------------------------
   //Others
     import { AppComponent } from './app.component';
     import { HeaderComponent } from './header/header.component';
@@ -74,12 +87,10 @@ import { RouterModule, Routes } from '@angular/router';
     import { InvoiceCreateComponent } from './crm/invoice/invoice-create/invoice-create.component';
     import { InvoiceListComponent } from './crm/invoice/invoice-list/invoice-list.component';
     import { InvoiceViewComponent } from './crm/invoice/invoice-view/invoice-view.component';
-  //new
-
 
 @NgModule({
   declarations: [
-      //Componets
+      //Componets--------------------------
         //Others
           AppComponent,
           HeaderComponent,
@@ -112,9 +123,10 @@ import { RouterModule, Routes } from '@angular/router';
           InvoiceCreateComponent,
           InvoiceListComponent,
           InvoiceViewComponent,
-      //Popups
+      //Popups-----------------------------------
         //others
           ExampleComponent,
+          DeleteConfirmationComponent,
         //crm
           ContactFormComponent,
           ActivityFormComponent,
@@ -125,8 +137,19 @@ import { RouterModule, Routes } from '@angular/router';
             ContactInfoComponent,
             DepartmentsComponent,
             BranchesComponent,
-            RegistrationInfoComponent
-      //new
+            RegistrationInfoComponent,
+          //crm settings
+            AccountTypeComponent,
+            IndustryTypeComponent,
+            OwnershipTypeComponent,
+            ActivityTypeComponent,
+            ActivityStatusComponent,
+            ActivityPeriorityComponent,
+            PiplineStatusComponent,
+            ContactRoleComponent,
+            QuotationTermsComponent,
+            UniteOfMeasureComponent,
+            OpportunityStatusComponent
   ],
   imports: [
         CommonModule,
@@ -148,19 +171,34 @@ import { RouterModule, Routes } from '@angular/router';
   providers: [DataSharedService, CarService, CustomService ],
   bootstrap: [AppComponent],
   entryComponents: [
-      //popups
+      //popups------------------------------------
         //others
-          ExampleComponent, 
+          ExampleComponent,
+          DeleteConfirmationComponent,
         //crm
           ContactFormComponent, 
           ActivityFormComponent, 
           QuoteProductFormComponent,
         //settings
-          CompanyInfoComponent,
-          ContactInfoComponent,
-          DepartmentsComponent,
-          BranchesComponent,
-          RegistrationInfoComponent
+          //company settings
+            CompanyInfoComponent,
+            ContactInfoComponent,
+            DepartmentsComponent,
+            BranchesComponent,
+            RegistrationInfoComponent,
+          //crm settings
+            AccountTypeComponent,
+            IndustryTypeComponent,
+            OwnershipTypeComponent,
+            ActivityTypeComponent,
+            ActivityStatusComponent,
+            ActivityPeriorityComponent,
+            PiplineStatusComponent,
+            ContactRoleComponent,
+            QuotationTermsComponent,
+            UniteOfMeasureComponent,
+            OpportunityStatusComponent
+
   ]
 })
 export class AppModule { }

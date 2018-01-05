@@ -1,18 +1,30 @@
 // default modules
 import { Component, OnInit, TemplateRef  } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { DefaultUrlHandlingStrategy } from '@angular/router/src/url_handling_strategy';
 
 //Feture Modules
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 //custome Modules
 import { Car} from '../../domain/car';
 import { CarService} from '../../service/carservice';
 
+//popups
+import { AccountTypeComponent } from '../../popups/settings/crm-settings/account-type/account-type.component';
+import { IndustryTypeComponent } from '../../popups/settings/crm-settings/industry-type/industry-type.component';
+import { OwnershipTypeComponent } from '../../popups/settings/crm-settings/ownership-type/ownership-type.component';
+import { ActivityTypeComponent } from '../../popups/settings/crm-settings/activity-type/activity-type.component';
+import { ActivityStatusComponent } from '../../popups/settings/crm-settings/activity-status/activity-status.component';
+import { ActivityPeriorityComponent } from '../../popups/settings/crm-settings/activity-periority/activity-periority.component';
+import { PiplineStatusComponent } from '../../popups/settings/crm-settings/pipline-status/pipline-status.component';
+import { ContactRoleComponent } from '../../popups/settings/crm-settings/contact-role/contact-role.component';
+import { QuotationTermsComponent } from '../../popups/settings/crm-settings/quotation-terms/quotation-terms.component';
+import { UniteOfMeasureComponent } from '../../popups/settings/crm-settings/unite-of-measure/unite-of-measure.component';
+import { OpportunityStatusComponent } from '../../popups/settings/crm-settings/opportunity-status/opportunity-status.component';
+
+import { DeleteConfirmationComponent } from '../../popups/others/delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-crm-settings',
@@ -26,113 +38,192 @@ export class CrmSettingsComponent implements OnInit {
   // datatable primng
   cars: Car[];
   cols: any[];
-  noRows;
-  selectedCar: Car;
-  dialogVisible: boolean;
   msgs: Message[] = [];
 
 
-  //modal 
-  modalRef: BsModalRef;
-
-  //form
-  AccountTypeAddForm: FormGroup;
-  AccountTypeEditForm: FormGroup;
-  IndustryTypeAddForm: FormGroup;
-  IndustryTypeEditForm: FormGroup;
-  OwnershipTypeAddForm: FormGroup;
-  OwnershipTypeEditForm: FormGroup;
-  ActivityTypeAddForm: FormGroup;
-  ActivityTypeEditForm: FormGroup;
-  ActivityStatusAddForm: FormGroup;
-  ActivityStatusEditForm: FormGroup;
-  ActivityPeriorityAddForm: FormGroup;
-  ActivityPeriorityEditForm: FormGroup;
-  PiplineStatusAddForm: FormGroup;
-  PiplineStatusEditForm: FormGroup;
-  ContactRoleAddForm: FormGroup;
-  ContactRoleEditForm: FormGroup;
-  QuotationTermsAddForm: FormGroup;
-  QuotationTermsEditForm: FormGroup;
-  UniteOfMeasureAddForm: FormGroup;
-  UniteOfMeasureEditForm: FormGroup;
-  OpportunityStatusAddForm: FormGroup;
-  OpportunityStatusEditForm: FormGroup;
-
   text1: string = '<div>Hello World!</div><div>Add Quotation Terms</div>';
   text2: string = '<div>Hello World!</div><div>Edit Quotation Terms</div>';
-  vin;
 
-  constructor(  private formBuilder: FormBuilder,
-                private modalService: BsModalService,
+  constructor(  public dialog: MatDialog,
                 private carService: CarService,
                 private messageService: MessageService 
-              ) {
-                 this.createForm();
-                 this.noRows = '10';
-                } //constructor
+              ) {  } 
+
+// material dialog 
+  AccountTypeDialogRef: MatDialogRef<AccountTypeComponent>;
+  IndustryTypeDialogRef: MatDialogRef<IndustryTypeComponent>;
+  OwnershipTypeDialogRef: MatDialogRef<OwnershipTypeComponent>;
+  ActivityTypeDialogRef: MatDialogRef<ActivityTypeComponent>;
+  ActivityStatusDialogRef: MatDialogRef<ActivityStatusComponent>;
+  ActivityPeriorityDialogRef: MatDialogRef<ActivityPeriorityComponent>;
+  PiplineStatusDialogRef: MatDialogRef<PiplineStatusComponent>;
+  ContactRoleDialogRef: MatDialogRef<ContactRoleComponent>;
+  QuotationTermsDialogRef: MatDialogRef<QuotationTermsComponent>;
+  UniteOfMeasureDialogRef: MatDialogRef<UniteOfMeasureComponent>;
+  OpportunityStatusDialogRef: MatDialogRef<OpportunityStatusComponent>;
+
+  DeleteConfirmationDialogRef: MatDialogRef<DeleteConfirmationComponent>;
 
   ngOnInit() {
      this.carService.getCarsMedium().then(cars => this.cars = cars);
   }//ngOnInit
 
-  EditCar(car: Car) {
-    this.vin = car.vin;
-  }//EditCar
 
-  ViewCar(car: Car) {
-    this.msgs = [];
-    this.msgs.push({severity:'info', summary:'Car Select', detail:'Vin: ' + car.vin});
-  }//ViewCar
+    // Forms Popups
+      //Account Type
+          AddAccountType() {
+            let AccountTypeDialogRef = this.dialog.open(AccountTypeComponent, { width:'50%', data: { Header:'Account Type Creat Form', type:'Add' } });
+            AccountTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          EditAccountType(car: Car) {
+            let AccountTypeDialogRef = this.dialog.open(AccountTypeComponent, { width:'50%', data: { Header:'Account Type Edit Form', type:'Edit', value:car } });
+            AccountTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          ViewAccountType(car: Car) {
+            let AccountTypeDialogRef = this.dialog.open(AccountTypeComponent, { width:'50%', data: { Header:'Account Type View', type:'View', value:car } });
+          }
+      //Industry Type
+          AddIndustryType() {
+            let IndustryTypeDialogRef = this.dialog.open(IndustryTypeComponent, { width:'50%', data: { Header:'Industry Type Creat Form', type:'Add' } });
+            IndustryTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          EditIndustryType(car: Car) {
+            let IndustryTypeDialogRef = this.dialog.open(IndustryTypeComponent, { width:'50%', data: { Header:'Industry Type Edit Form', type:'Edit', value:car } });
+            IndustryTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          ViewIndustryType(car: Car) {
+            let IndustryTypeDialogRef = this.dialog.open(IndustryTypeComponent, { width:'50%', data: { Header:'Industry Type View', type:'View', value:car } });
+          }
+      //Ownership Type
+          AddOwnershipType() {
+            let OwnershipTypeDialogRef = this.dialog.open(OwnershipTypeComponent, { width:'50%', data: { Header:'Ownership Type Creat Form', type:'Add' } });
+            OwnershipTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          EditOwnershipType(car: Car) {
+            let OwnershipTypeDialogRef = this.dialog.open(OwnershipTypeComponent, { width:'50%', data: { Header:'Ownership Type Edit Form', type:'Edit', value:car } });
+            OwnershipTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          ViewOwnershipType(car: Car) {
+            let OwnershipTypeDialogRef = this.dialog.open(OwnershipTypeComponent, { width:'50%', data: { Header:'Ownership Type View', type:'View', value:car } });
+          }
+      //Activity Type
+          AddActivityType() {
+            let ActivityTypeDialogRef = this.dialog.open(ActivityTypeComponent, { width:'50%', data: { Header:'Activity Type Creat Form', type:'Add' } });
+            ActivityTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          EditActivityType(car: Car) {
+            let ActivityTypeDialogRef = this.dialog.open(ActivityTypeComponent, { width:'50%', data: { Header:'Activity Type Edit Form', type:'Edit', value:car } });
+            ActivityTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          ViewActivityType(car: Car) {
+            let ActivityTypeDialogRef = this.dialog.open(ActivityTypeComponent, { width:'50%', data: { Header:'Activity Type View', type:'View', value:car } });
+          }
+      //Activity Status
+          AddActivityStatus() {
+            let ActivityStatusDialogRef = this.dialog.open(ActivityStatusComponent, { width:'50%', data: { Header:'Activity Status Creat Form', type:'Add' } });
+            ActivityStatusDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          EditActivityStatus(car: Car) {
+            let ActivityStatusDialogRef = this.dialog.open(ActivityStatusComponent, { width:'50%', data: { Header:'Activity Status Edit Form', type:'Edit', value:car } });
+            ActivityStatusDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          ViewActivityStatus(car: Car) {
+            let ActivityStatusDialogRef = this.dialog.open(ActivityStatusComponent, { width:'50%', data: { Header:'Activity Status View', type:'View', value:car } });
+          }
+      //Activity Periority
+          AddActivityPeriority() {
+            let ActivityPeriorityDialogRef = this.dialog.open(ActivityPeriorityComponent, { width:'50%', data: { Header:'Activity Periority Creat Form', type:'Add' } });
+            ActivityPeriorityDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          EditActivityPeriority(car: Car) {
+            let ActivityPeriorityDialogRef = this.dialog.open(ActivityPeriorityComponent, { width:'50%', data: { Header:'Activity Periority Edit Form', type:'Edit', value:car } });
+            ActivityPeriorityDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          ViewActivityPeriority(car: Car) {
+            let ActivityPeriorityDialogRef = this.dialog.open(ActivityPeriorityComponent, { width:'50%', data: { Header:'Activity Periority View', type:'View', value:car } });
+          }
+      //Pipline Status
+          AddPiplineStatus() {
+            let PiplineStatusDialogRef = this.dialog.open(PiplineStatusComponent, { width:'50%', data: { Header:'Pipline Status Creat Form', type:'Add' } });
+            PiplineStatusDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          EditPiplineStatus(car: Car) {
+            let PiplineStatusDialogRef = this.dialog.open(PiplineStatusComponent, { width:'50%', data: { Header:'Pipline Status Edit Form', type:'Edit', value:car } });
+            PiplineStatusDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          ViewPiplineStatus(car: Car) {
+            let PiplineStatusDialogRef = this.dialog.open(PiplineStatusComponent, { width:'50%', data: { Header:'Pipline Status View', type:'View', value:car } });
+          }
+      //Contact Role
+          AddContactRole() {
+            let ContactRoleDialogRef = this.dialog.open(ContactRoleComponent, { width:'50%', data: { Header:'Contact Role Creat Form', type:'Add' } });
+            ContactRoleDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          EditContactRole(car: Car) {
+            let ContactRoleDialogRef = this.dialog.open(ContactRoleComponent, { width:'50%', data: { Header:'Contact Role Edit Form', type:'Edit', value:car } });
+            ContactRoleDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          ViewContactRole(car: Car) {
+            let ContactRoleDialogRef = this.dialog.open(ContactRoleComponent, { width:'50%', data: { Header:'Contact Role View', type:'View', value:car } });
+          }
+      //Quotation Terms
+          AddQuotationTerms() {
+            let QuotationTermsDialogRef = this.dialog.open(QuotationTermsComponent, { width:'60%', height:'460px', data: { Header:'Quotation Terms Creat Form', type:'Add' } });
+            QuotationTermsDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          EditQuotationTerms(car: Car) {
+            let QuotationTermsDialogRef = this.dialog.open(QuotationTermsComponent, { width:'60%', data: { Header:'Quotation Terms Edit Form', type:'Edit', value:car } });
+            QuotationTermsDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          ViewQuotationTerms(car: Car) {
+            let ContactInfoDialogRef = this.dialog.open(QuotationTermsComponent, { width:'60%', data: { Header:'Quotation Terms View', type:'View', value:car } });
+          }
+      //Unite Of Measure
+          AddUniteOfMeasure() {
+            let UniteOfMeasureDialogRef = this.dialog.open(UniteOfMeasureComponent, { width:'50%', data: { Header:'Unite Of Measure Creat Form', type:'Add' } });
+            UniteOfMeasureDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          EditUniteOfMeasure(car: Car) {
+            let UniteOfMeasureDialogRef = this.dialog.open(UniteOfMeasureComponent, { width:'50%', data: { Header:'Unite Of Measure Edit Form', type:'Edit', value:car } });
+            UniteOfMeasureDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          ViewUniteOfMeasure(car: Car) {
+            let UniteOfMeasureDialogRef = this.dialog.open(UniteOfMeasureComponent, { width:'50%', data: { Header:'Unite Of Measure View', type:'View', value:car } });
+          }
+      //Opportunity Status
+          AddOpportunityStatus() {
+            let OpportunityStatusDialogRef = this.dialog.open(OpportunityStatusComponent, { width:'50%', data: { Header:'Opportunity Status Creat Form', type:'Add' } });
+            OpportunityStatusDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          EditOpportunityStatus(car: Car) {
+            let OpportunityStatusDialogRef = this.dialog.open(OpportunityStatusComponent, { width:'50%', data: { Header:'Opportunity Status Edit Form', type:'Edit', value:car } });
+            OpportunityStatusDialogRef.afterClosed().subscribe(result => console.log(result));
+          }
+          ViewOpportunityStatus(car: Car) {
+            let OpportunityStatusDialogRef = this.dialog.open(OpportunityStatusComponent, { width:'50%', data: { Header:'Opportunity Status View', type:'View', value:car } });
+          }
+        
+      //Delete Confirmation
+          DeleteConfirmation(car: Car) {
+            let DeleteConfirmationDialogRef = this.dialog.open(DeleteConfirmationComponent, { width:'330px', disableClose:true,  data: { Header:'Delete Confirmation', value:car } });
+            DeleteConfirmationDialogRef.afterClosed().subscribe(result => this.returnDeleteConfirmation(result));
+          }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
-  }
- 
-  confirmDelete(): void {
-    this.modalRef.hide();
-    this.msgs = [];
-    this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
-  }
- 
-  declineDelete(): void {
-    this.modalRef.hide();
-    this.msgs = [];
-    this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Declined'});
-  }
 
 
+    returnDeleteConfirmation(result){
+      if(result === "Yes"){
+        this.msgs = [];
+        this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
+      }else{
+        this.msgs = [];
+        this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Declined'})
+      }
+    }
 
   handleChange(e) {
     console.log(e.index);
     console.log(e.originalEvent.target.innerText);
   }
-
-  createForm(){
-
-    this.AccountTypeAddForm= this.formBuilder.group({ accountType: ['', Validators.compose([ Validators.required ])] });
-    this.AccountTypeEditForm = this.formBuilder.group({ accountType: ['', Validators.compose([ Validators.required ])] });
-    this.IndustryTypeAddForm= this.formBuilder.group({ industryType: ['', Validators.compose([ Validators.required ])] });
-    this.IndustryTypeEditForm = this.formBuilder.group({  industryType: ['', Validators.compose([ Validators.required ])] });
-    this.OwnershipTypeAddForm = this.formBuilder.group({ ownershipType: ['', Validators.compose([ Validators.required ])] });
-    this.OwnershipTypeEditForm = this.formBuilder.group({ ownershipType: ['', Validators.compose([ Validators.required ])] });
-    this.ActivityTypeAddForm = this.formBuilder.group({ activityType: ['', Validators.compose([ Validators.required ])] });
-    this.ActivityTypeEditForm = this.formBuilder.group({ activityType: ['', Validators.compose([ Validators.required ])] });
-    this.ActivityStatusAddForm = this.formBuilder.group({ activityStatus: ['', Validators.compose([ Validators.required ])] });
-    this.ActivityStatusEditForm = this.formBuilder.group({ activityStatus: ['', Validators.compose([ Validators.required ])] });
-    this.ActivityPeriorityAddForm = this.formBuilder.group({ activityPeriority: ['', Validators.compose([ Validators.required ])] });
-    this.ActivityPeriorityEditForm = this.formBuilder.group({ activityPeriority: ['', Validators.compose([ Validators.required ])] });
-    this.PiplineStatusAddForm = this.formBuilder.group({ piplineStatus: ['', Validators.compose([ Validators.required ])] });
-    this.PiplineStatusEditForm = this.formBuilder.group({ piplineStatus: ['', Validators.compose([ Validators.required ])] });
-    this.ContactRoleAddForm = this.formBuilder.group({ contactRole: ['', Validators.compose([ Validators.required ])] });
-    this.ContactRoleEditForm = this.formBuilder.group({ contactRole: ['', Validators.compose([ Validators.required ])] });
-    this.QuotationTermsAddForm = this.formBuilder.group({ quotationTermsName: ['', Validators.compose([ Validators.required ])], quotationTerms: ['', Validators.compose([ Validators.required ])] });
-    this.QuotationTermsEditForm = this.formBuilder.group({ quotationTermsName: ['', Validators.compose([ Validators.required ])], quotationTerms: ['', Validators.compose([ Validators.required ])] });
-    this.UniteOfMeasureAddForm = this.formBuilder.group({ uniteOfMeasure: ['', Validators.compose([ Validators.required ])] });
-    this.UniteOfMeasureEditForm = this.formBuilder.group({ uniteOfMeasure: ['', Validators.compose([ Validators.required ])] });
-    this.OpportunityStatusAddForm = this.formBuilder.group({ opportunityStatus: ['', Validators.compose([ Validators.required ])] });
-    this.OpportunityStatusEditForm = this.formBuilder.group({ opportunityStatus: ['', Validators.compose([ Validators.required ])] });
-
-  };//createForm
 
 }

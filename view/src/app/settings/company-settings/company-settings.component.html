@@ -126,7 +126,7 @@
                                     <div class="button-row tabel-action">
                                         <button mat-mini-fab class="bg-color-info" color="accent"  (click)="EditContactInfo(car)" > <mat-icon>border_color</mat-icon> </button>
                                         <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewContactInfo(car)" > <mat-icon>visibility</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="DeleteConfirmation(car)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -183,7 +183,7 @@
                                     <div class="button-row tabel-action">
                                         <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditDepartments(car)" > <mat-icon>border_color</mat-icon> </button>
                                         <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewDepartments(car)" > <mat-icon>visibility</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="DeleteConfirmation(car)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -240,7 +240,7 @@
                                     <div class="button-row tabel-action">
                                         <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditBranches(car)" > <mat-icon>border_color</mat-icon> </button>
                                         <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewBranches(car)" > <mat-icon>visibility</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="DeleteConfirmation(car)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -297,7 +297,7 @@
                                     <div class="button-row tabel-action">
                                         <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditRegistrationInfo(car)" > <mat-icon>border_color</mat-icon> </button>
                                         <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewRegistrationInfo(car)" > <mat-icon>visibility</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="DeleteConfirmation(car)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -310,18 +310,6 @@
         
     </mat-card>
 </div>
-  
-
-
-<!-- Models -->
-    <!-- Company Settings Delete Confirmation Model -->
-    <ng-template #DeleteConfirm>
-        <div class="modal-body text-center">
-            <p>Are You Sure You Whant To Delete This Data ?</p>
-            <button type="button" mat-raised-button class="bg-color-warning" color="accent" (click)="declineDelete()" >No</button>
-            <button type="button" mat-raised-button color="accent" class="btn btn-default" (click)="confirmDelete()" >Yes</button>
-        </div>
-    </ng-template>
 
 
 
