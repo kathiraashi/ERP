@@ -1,17 +1,22 @@
 // default modules
 import { Component, OnInit, TemplateRef  } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { DefaultUrlHandlingStrategy } from '@angular/router/src/url_handling_strategy';
 
 //Feture Modules
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Message } from 'primeng/components/common/api';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 //custome Modules
 import { Car} from '../../domain/car';
 import { CarService} from '../../service/carservice';
+
+//popups
+import { WarehouseComponent } from '../../popups/settings/inventory-settings/warehouse/warehouse.component';
+import { InventoryUniteOfMeasureComponent } from '../../popups/settings/inventory-settings/inventory-unite-of-measure/inventory-unite-of-measure.component';
+
+import { DeleteConfirmationComponent } from '../../popups/others/delete-confirmation/delete-confirmation.component';
+
 
 @Component({
   selector: 'app-inventory-settings',
@@ -24,83 +29,77 @@ export class InventorySettingsComponent implements OnInit {
 // datatable primng
 cars: Car[];
 cols: any[];
-noRows;
-selectedCar: Car;
-dialogVisible: boolean;
 msgs: Message[] = [];
 
 
-//modal 
-modalRef: BsModalRef;
 
-//form
-WarehouseAddForm: FormGroup;
-WarehouseEditForm: FormGroup;
-UnitOfMeasureAddForm: FormGroup;
-UnitOfMeasureEditForm: FormGroup;
-vin;
-
-constructor(  private formBuilder: FormBuilder,
-              private modalService: BsModalService,
+constructor(  public dialog: MatDialog,
               private carService: CarService,
               private messageService: MessageService 
-            ) {
-               this.createForm();
-               this.noRows = '10';
-              } //constructor
+            ) { }
 
-ngOnInit() {
-   this.carService.getCarsMedium().then(cars => this.cars = cars);
-}//ngOnInit
+// material dialog 
+    WarehouseDialogRef: MatDialogRef<WarehouseComponent>;
+    UniteOfMeasureDialogRef: MatDialogRef<InventoryUniteOfMeasureComponent>;
 
-EditCar(car: Car) {
-  this.vin = car.vin;
-}//EditCar
+    DeleteConfirmationDialogRef: MatDialogRef<DeleteConfirmationComponent>;
 
-ViewCar(car: Car) {
-  this.msgs = [];
-  this.msgs.push({severity:'info', summary:'Car Select', detail:'Vin: ' + car.vin});
-}//ViewCar
-
-openModal(template: TemplateRef<any>) {
-  this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
-}
-
-confirmDelete(): void {
-  this.modalRef.hide();
-  this.msgs = [];
-  this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
-}
-
-declineDelete(): void {
-  this.modalRef.hide();
-  this.msgs = [];
-  this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Declined'});
-}
+  ngOnInit() {
+    this.carService.getCarsMedium().then(cars => this.cars = cars);
+  }//ngOnInit
 
 
-handleChange(e) {
-  // console.log(e.index);
-  // console.log(e.originalEvent.target.innerText);
-}
+  // Forms Popups
+    //Warehouse
+      AddWarehouse() {
+        let WarehouseDialogRef = this.dialog.open(WarehouseComponent, { width:'60%', data: { Header:'Warehouse Creat Form', type:'Add' } });
+        WarehouseDialogRef.afterClosed().subscribe(result => console.log(result));
+      }
+      EditWarehouse(car: Car) {
+        let WarehouseDialogRef = this.dialog.open(WarehouseComponent, { width:'60%', data: { Header:'Warehouse Edit Form', type:'Edit', value:car } });
+        WarehouseDialogRef.afterClosed().subscribe(result => console.log(result));
+      }
+      ViewWarehouse(car: Car) {
+        let WarehouseDialogRef = this.dialog.open(WarehouseComponent, { width:'60%', data: { Header:'Warehouse View', type:'View', value:car } });
+      }
+
+    //UniteOfMeasure
+      AddUniteOfMeasure() {
+        let UniteOfMeasureDialogRef = this.dialog.open(InventoryUniteOfMeasureComponent, { width:'60%', data: { Header:'Unite Of Measure Creat Form', type:'Add' } });
+        UniteOfMeasureDialogRef.afterClosed().subscribe(result => console.log(result));
+      }
+      EditUniteOfMeasure(car: Car) {
+        let UniteOfMeasureDialogRef = this.dialog.open(InventoryUniteOfMeasureComponent, { width:'60%', data: { Header:'Unite Of Measure Edit Form', type:'Edit', value:car } });
+        UniteOfMeasureDialogRef.afterClosed().subscribe(result => console.log(result));
+      }
+      ViewUniteOfMeasure(car: Car) {
+        let UniteOfMeasureDialogRef = this.dialog.open(InventoryUniteOfMeasureComponent, { width:'60%', data: { Header:'Unite Of Measure View', type:'View', value:car } });
+      }
 
 
-createForm(){
+    //Delete Confirmation
+      DeleteConfirmation(car: Car) {
+        let DeleteConfirmationDialogRef = this.dialog.open(DeleteConfirmationComponent, { width:'330px', disableClose:true,  data: { Header:'Delete Confirmation', value:car } });
+        DeleteConfirmationDialogRef.afterClosed().subscribe(result => this.returnDeleteConfirmation(result));
+      }
 
-  this.WarehouseAddForm = this.formBuilder.group({ 
-    warehouseName: ['', Validators.compose([ Validators.required ])],
-    warehouseCode: ['', Validators.compose([ Validators.required ])],
-    warehouseAddress: ['', Validators.compose([ Validators.required ])]
-  });
-  this.WarehouseEditForm= this.formBuilder.group({ 
-    warehouseName: ['', Validators.compose([ Validators.required ])],
-    warehouseCode: ['', Validators.compose([ Validators.required ])],
-    warehouseAddress: ['', Validators.compose([ Validators.required ])]
-  });
-  this.UnitOfMeasureAddForm = this.formBuilder.group({ unitOfMeasure: ['', Validators.compose([ Validators.required ])] });
-  this.UnitOfMeasureEditForm= this.formBuilder.group({ unitOfMeasure: ['', Validators.compose([ Validators.required ])] });
 
-};//createForm
+      returnDeleteConfirmation(result){
+        if(result === "Yes"){
+          this.msgs = [];
+          this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
+        }else{
+          this.msgs = [];
+          this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Declined'})
+        }
+      }
+
+
+
+  handleChange(e) {
+    // console.log(e.index);
+    // console.log(e.originalEvent.target.innerText);
+  }
 
 
 }

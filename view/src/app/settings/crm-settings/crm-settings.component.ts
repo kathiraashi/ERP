@@ -26,6 +26,9 @@ import { OpportunityStatusComponent } from '../../popups/settings/crm-settings/o
 
 import { DeleteConfirmationComponent } from '../../popups/others/delete-confirmation/delete-confirmation.component';
 
+//Services
+import { CrmSettingsService } from '../../service/settings/crm-settings-service'
+
 @Component({
   selector: 'app-crm-settings',
   templateUrl: './crm-settings.component.html',
@@ -45,6 +48,7 @@ export class CrmSettingsComponent implements OnInit {
   text2: string = '<div>Hello World!</div><div>Edit Quotation Terms</div>';
 
   constructor(  public dialog: MatDialog,
+                private crmSettingsService: CrmSettingsService,
                 private carService: CarService,
                 private messageService: MessageService 
               ) {  } 
@@ -73,7 +77,7 @@ export class CrmSettingsComponent implements OnInit {
       //Account Type
           AddAccountType() {
             let AccountTypeDialogRef = this.dialog.open(AccountTypeComponent, { width:'50%', data: { Header:'Account Type Creat Form', type:'Add' } });
-            AccountTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+            AccountTypeDialogRef.afterClosed().subscribe(result => this.AccountTypeReturn(result));
           }
           EditAccountType(car: Car) {
             let AccountTypeDialogRef = this.dialog.open(AccountTypeComponent, { width:'50%', data: { Header:'Account Type Edit Form', type:'Edit', value:car } });
@@ -217,7 +221,19 @@ export class CrmSettingsComponent implements OnInit {
         this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
       }else{
         this.msgs = [];
-        this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Declined'})
+        this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Declined'});
+      }
+    }
+
+    AccountTypeReturn(result){
+      if(result === "Close"){
+        this.msgs = [];
+        this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Form Closed'});
+      }else{
+        let data = this.crmSettingsService.addAccountType(result);
+        console.log(data);
+        this.msgs = [];
+        this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Form Submited'});
       }
     }
 

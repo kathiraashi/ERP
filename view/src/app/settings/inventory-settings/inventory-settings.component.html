@@ -26,7 +26,7 @@
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-button class="color-success" style="font-weight:600" (click)="WarehouseAdd.show()"> + Create </button> 
+                                    <button mat-button class="color-success" style="font-weight:600" (click)="AddWarehouse()"> + Create </button> 
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5 text-left"> 
@@ -65,9 +65,9 @@
                             </ng-template>
                             <ng-template let-car="rowData" pTemplate="body">
                                     <div class="button-row tabel-action">
-                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="WarehouseEdit.show()" > <mat-icon>border_color</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditWarehouse(car)" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewWarehouse(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="DeleteConfirmation(car)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -83,7 +83,7 @@
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-button class="color-success" style="font-weight:600" (click)="UnitOfMeasureAdd.show()"> + Create </button> 
+                                    <button mat-button class="color-success" style="font-weight:600" (click)="AddUniteOfMeasure()"> + Create </button> 
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5 text-left"> 
@@ -122,9 +122,9 @@
                             </ng-template>
                             <ng-template let-car="rowData" pTemplate="body">
                                     <div class="button-row tabel-action">
-                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="UnitOfMeasureEdit.show()" > <mat-icon>border_color</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditUniteOfMeasure(car)" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewUniteOfMeasure(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="DeleteConfirmation(car)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -138,196 +138,3 @@
     </mat-card>
 </div>
   
-
-
-<!-- Models -->
-
-    <!-- Inventory Settings Warehouse Add Model -->
-    <div class="modal fade" bsModal #WarehouseAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Add Warehouse </h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="WarehouseAdd.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="WarehouseAddForm" (submit) = onRgisterSubmit() >
-            
-                        <div class="form-group row">
-
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="warehouseName"  name="warehouseName" placeholder="Warehouse Name">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="WarehouseAddForm.controls.warehouseName.errors?.required && WarehouseAddForm.controls.warehouseName.dirty" > Warehouse Name Is Required  </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="warehouseCode"  name="warehouseCode" placeholder="Warehouse Code">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="WarehouseAddForm.controls.warehouseCode.errors?.required && WarehouseAddForm.controls.warehouseCode.dirty" > Warehouse Code Is Required  </div>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <textarea matInput formControlName="warehouseAddress" name="warehouseAddress" placeholder="warehouse Address"></textarea>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="WarehouseAddForm.controls.warehouseAddress.errors?.required && WarehouseAddForm.controls.warehouseAddress.dirty" > Warehouse Address Is Required  </div>
-                            </div>
-                            
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="WarehouseAdd.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="WarehouseAdd.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Inventory Settings Warehouse Edit Model -->
-    <div class="modal fade" bsModal #WarehouseEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Edit Warehouse</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="WarehouseEdit.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="WarehouseEditForm" (submit) = onCrmSubmit() >
-            
-                        <div class="form-group row">
-                                
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                    <div class="example-container">
-                                        <mat-form-field>
-                                            <input matInput type="text" formControlName="warehouseName"  name="warehouseName" placeholder="Warehouse Name">
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-sm-8  color-danger" *ngIf="WarehouseEditForm.controls.warehouseName.errors?.required && WarehouseEditForm.controls.warehouseName.dirty" > Warehouse Name Is Required  </div>
-                                </div>
-                                <div class="col-sm-6" style="margin-bottom:20px;">
-                                    <div class="example-container">
-                                        <mat-form-field>
-                                            <input matInput type="text" formControlName="warehouseCode"  name="warehouseCode" placeholder="Warehouse Code">
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-sm-8  color-danger" *ngIf="WarehouseEditForm.controls.warehouseCode.errors?.required && WarehouseEditForm.controls.warehouseCode.dirty" > Warehouse Code Is Required  </div>
-                                </div>
-                                <div class="col-sm-6" style="margin-bottom:20px;">
-                                    <div class="example-container">
-                                        <mat-form-field>
-                                            <textarea matInput formControlName="warehouseAddress" name="warehouseAddress" placeholder="warehouse Address"></textarea>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-sm-8  color-danger" *ngIf="WarehouseEditForm.controls.warehouseAddress.errors?.required && WarehouseEditForm.controls.warehouseAddress.dirty" > Warehouse Address Is Required  </div>
-                                </div>
-                            
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="WarehouseEdit.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="WarehouseEdit.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Inventory Settings Unit Of Measure Add Model -->
-    <div class="modal fade" bsModal #UnitOfMeasureAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Add Unit Of Measure </h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="UnitOfMeasureAdd.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="UnitOfMeasureAddForm" (submit) = onRgisterSubmit() >
-            
-                        <div class="form-group row">
-
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="unitOfMeasure"  name="unitOfMeasure" placeholder="Unit Of Measure">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="UnitOfMeasureAddForm.controls.unitOfMeasure.errors?.required && UnitOfMeasureAddForm.controls.unitOfMeasure.dirty" > Unit Of Measure Is Required  </div>
-                            </div>
-                            
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="UnitOfMeasureAdd.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="UnitOfMeasureAdd.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Inventory Settings Unit Of Measure Edit Model -->
-    <div class="modal fade" bsModal #UnitOfMeasureEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Edit Unit Of Measure</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="UnitOfMeasureEdit.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="UnitOfMeasureEditForm" (submit) = onCrmSubmit() >
-            
-                        <div class="form-group row">
-                                
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                    <div class="example-container">
-                                        <mat-form-field>
-                                            <input matInput type="text" formControlName="unitOfMeasure"  name="unitOfMeasure" placeholder=" Unit Of Measure ">
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-sm-8  color-danger" *ngIf="UnitOfMeasureEditForm.controls.unitOfMeasure.errors?.required && UnitOfMeasureEditForm.controls.unitOfMeasure.dirty" > Unit Of Measure Name Is Required  </div>
-                                </div>
-                            
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="UnitOfMeasureEdit.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="UnitOfMeasureEdit.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Inventory Settings Delete Confirmation Model -->
-    <ng-template #DeleteConfirm>
-        <div class="modal-body text-center">
-            <p>Are You Sure You Whant To Delete This Data ?</p>
-            <button type="button" mat-raised-button class="bg-color-warning" color="accent" (click)="declineDelete()" >No</button>
-            <button type="button" mat-raised-button color="accent" class="btn btn-default" (click)="confirmDelete()" >Yes</button>
-        </div>
-    </ng-template>
-
-
-
-    
-

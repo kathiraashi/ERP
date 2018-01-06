@@ -43,7 +43,7 @@ export class AccountTypeComponent implements OnInit {
     }
   
     close() {
-      this.dialogRef.close();
+      this.dialogRef.close('Close');
     }
 
     submit() {

@@ -26,7 +26,7 @@
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-button class="color-success" style="font-weight:600" (click)="EmployeeCategoryAdd.show()"> + Create </button> 
+                                    <button mat-button class="color-success" style="font-weight:600" (click)="AddEmployeeCategory()"> + Create </button> 
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5 text-left"> 
@@ -65,9 +65,9 @@
                             </ng-template>
                             <ng-template let-car="rowData" pTemplate="body">
                                     <div class="button-row tabel-action">
-                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="EmployeeCategoryEdit.show()" > <mat-icon>border_color</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditEmployeeCategory(car)" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewEmployeeCategory(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="DeleteConfirmation(car)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -83,7 +83,7 @@
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-button class="color-success" style="font-weight:600" (click)="DepartmentAdd.show()"> + Create </button> 
+                                    <button mat-button class="color-success" style="font-weight:600" (click)="AddDepartment()"> + Create </button> 
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5 text-left"> 
@@ -122,9 +122,9 @@
                             </ng-template>
                             <ng-template let-car="rowData" pTemplate="body">
                                     <div class="button-row tabel-action">
-                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="DepartmentEdit.show()" > <mat-icon>border_color</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditDepartment(car)"> <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewDepartment(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="DeleteConfirmation(car)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -140,7 +140,7 @@
                         <p-header>
                             <div class="row">
                                 <div class="col-sm-4 text-left">
-                                    <button mat-button class="color-success" style="font-weight:600" (click)="DesignationAdd.show()"> + Create </button> 
+                                    <button mat-button class="color-success" style="font-weight:600" (click)="AddDesignation()"> + Create </button> 
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-5 text-left"> 
@@ -179,9 +179,9 @@
                             </ng-template>
                             <ng-template let-car="rowData" pTemplate="body">
                                     <div class="button-row tabel-action">
-                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditCar(car)" (click)="DesignationEdit.show()" > <mat-icon>border_color</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewCar(car)" > <mat-icon>visibility</mat-icon> </button>
-                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="openModal(DeleteConfirm)" > <mat-icon>delete_forever</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-info" color="accent" (click)="EditDesignation(car)" > <mat-icon>border_color</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-warning" color="accent" (click)="ViewDesignation(car)" > <mat-icon>visibility</mat-icon> </button>
+                                        <button mat-mini-fab class="bg-color-danger" color="accent"  (click)="DeleteConfirmation(car)" > <mat-icon>delete_forever</mat-icon> </button>
                                     </div>
                             </ng-template>
                         </p-column>
@@ -195,237 +195,4 @@
     </mat-card>
 </div>
   
-
-
-<!-- Models -->
-
-    <!-- HR Settings Employee Category Add Model -->
-    <div class="modal fade" bsModal #EmployeeCategoryAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Add Employee Category </h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="EmployeeCategoryAdd.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="EmployeeCategoryAddForm" (submit) = onRgisterSubmit() >
-            
-                        <div class="form-group row">
-
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="employeeCategory"  name="employeeCategory" placeholder="Employee Category">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="EmployeeCategoryAddForm.controls.employeeCategory.errors?.required && EmployeeCategoryAddForm.controls.employeeCategory.dirty" > Employee Category Is Required  </div>
-                            </div>
-                            
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="EmployeeCategoryAdd.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="EmployeeCategoryAdd.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- HR Settings Employee Category Edit Model -->
-    <div class="modal fade" bsModal #EmployeeCategoryEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Edit Employee Category</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="EmployeeCategoryEdit.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="EmployeeCategoryEditForm" (submit) = onCrmSubmit() >
-            
-                        <div class="form-group row">
-                                
-                          <div class="col-sm-6" style="margin-bottom:20px;">
-                              <div class="example-container">
-                                  <mat-form-field>
-                                      <input matInput type="text" formControlName="employeeCategory"  name="employeeCategory" placeholder="Employee Category">
-                                  </mat-form-field>
-                              </div>
-                              <div class="col-sm-8  color-danger" *ngIf="EmployeeCategoryEditForm.controls.employeeCategory.errors?.required && EmployeeCategoryEditForm.controls.employeeCategory.dirty" > Employee Category Is Required  </div>
-                          </div>
-                            
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="EmployeeCategoryEdit.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="EmployeeCategoryEdit.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- HR Settings Department Add Model -->
-    <div class="modal fade" bsModal #DepartmentAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Add Department </h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="DepartmentAdd.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="DepartmentAddForm" (submit) = onRgisterSubmit() >
-            
-                        <div class="form-group row">
-
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="department"  name="department" placeholder="Department">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="DepartmentAddForm.controls.department.errors?.required && DepartmentAddForm.controls.department.dirty" > Department Is Required  </div>
-                            </div>
-                            
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="DepartmentAdd.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="DepartmentAdd.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- HR Settings Department Edit Model -->
-    <div class="modal fade" bsModal #DepartmentEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Edit Department</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="DepartmentEdit.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="DepartmentEditForm" (submit) = onCrmSubmit() >
-            
-                        <div class="form-group row">
-                                
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="department"  name="department" placeholder="Department">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="DepartmentEditForm.controls.department.errors?.required && DepartmentEditForm.controls.department.dirty" > Department Is Required  </div>
-                            </div>
-                            
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="DepartmentEdit.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="DepartmentEdit.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-        <!-- HR Settings Designation Add Model -->
-    <div class="modal fade" bsModal #DesignationAdd="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Add Designation </h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="DesignationAdd.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="DesignationAddForm" (submit) = onRgisterSubmit() >
-            
-                        <div class="form-group row">
-
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="designation"  name="designation" placeholder="Designation">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="DesignationAddForm.controls.designation.errors?.required && DesignationAddForm.controls.designation.dirty" > Designation Is Required  </div>
-                            </div>
-                            
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="DesignationAdd.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="DesignationAdd.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- HR Settings Designation Edit Model -->
-    <div class="modal fade" bsModal #DesignationEdit="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">Edit Designation</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="DesignationEdit.hide()">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="md-float-material" [formGroup]="DesignationEditForm" (submit) = onCrmSubmit() >
-            
-                        <div class="form-group row">
-                                
-                            <div class="col-sm-6" style="margin-bottom:20px;">
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <input matInput type="text" formControlName="designation"  name="designation" placeholder="Designation">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-sm-8  color-danger" *ngIf="DesignationEditForm.controls.designation.errors?.required && DesignationEditForm.controls.designation.dirty" > Designation Is Required  </div>
-                            </div>
-                            
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button mat-raised-button class="bg-color-warning" color="accent" (click)="DesignationEdit.hide()"> Close </button>
-                    <button mat-raised-button color="accent" (click)="DesignationEdit.hide()"> Submit </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- HR Settings Delete Confirmation Model -->
-    <ng-template #DeleteConfirm>
-        <div class="modal-body text-center">
-            <p>Are You Sure You Whant To Delete This Data ?</p>
-            <button type="button" mat-raised-button class="bg-color-warning" color="accent" (click)="declineDelete()" >No</button>
-            <button type="button" mat-raised-button color="accent" class="btn btn-default" (click)="confirmDelete()" >Yes</button>
-        </div>
-    </ng-template>
-
-
-
-    
 
