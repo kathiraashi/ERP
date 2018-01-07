@@ -39,6 +39,7 @@ export class CrmSettingsComponent implements OnInit {
 
 
   // datatable primng
+  getdatas= [];
   cars: Car[];
   cols: any[];
   msgs: Message[] = [];
@@ -70,6 +71,8 @@ export class CrmSettingsComponent implements OnInit {
 
   ngOnInit() {
      this.carService.getCarsMedium().then(cars => this.cars = cars);
+     this.crmSettingsService.getAccountType().then(datas => console.log(datas));
+     
   }//ngOnInit
 
 
@@ -230,8 +233,7 @@ export class CrmSettingsComponent implements OnInit {
         this.msgs = [];
         this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Form Closed'});
       }else{
-        let data = this.crmSettingsService.addAccountType(result);
-        console.log(data);
+        this.crmSettingsService.addAccountType(result);
         this.msgs = [];
         this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Form Submited'});
       }

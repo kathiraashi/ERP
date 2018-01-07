@@ -9,7 +9,7 @@ var dbConfig = require('./app/config/database.config.js');
 var mongoose = require('mongoose');
 
 mongoose.connect(dbConfig.url);
-mongoose.connection.on('error', function() { console.log('Could not connect to the database.');
+mongoose.connection.on('error', function(err) { console.log(err);
     process.exit();
 });
 mongoose.connection.once('open', function() { console.log("Successfully connected to the database");

@@ -23,6 +23,7 @@ import { RouterModule, Routes } from '@angular/router';
   import { CarService } from './service/carservice';
   import { CustomService } from './service/custome';
   import { DataSharedService } from './service/DataSharedService';
+  import { CrmSettingsService } from './service/settings/crm-settings-service';
 
 //Popups ----------------------------------------
   //Others
@@ -206,7 +207,7 @@ import { RouterModule, Routes } from '@angular/router';
         TextMaskModule,
         AgmCoreModule.forRoot({apiKey: 'AIzaSyD9sVX8Wudcp2N1Qp23aED0q2pVwehbnGs'})
   ],
-  providers: [DataSharedService, CarService, CustomService ],
+  providers: [DataSharedService, CarService, CustomService, CrmSettingsService ],
   bootstrap: [AppComponent],
   entryComponents: [
       //popups------------------------------------

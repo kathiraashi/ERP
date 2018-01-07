@@ -9,8 +9,13 @@ export class CrmSettingsService {
 
     constructor(private http: HttpClient) { }
 
+    getAccountType(){
+        return this.http.get<any>("http://localhost:3000/getAccountTypes").toPromise()
+        .then(data => { return data; });
+    }
+
     addAccountType(data){
-        return this.http.post("http://localhost:3000/accountTypeAdd", data).map(res => res);
+        const req = this.http.post('http://localhost:3000/accountTypeAdd', data).subscribe( res => { console.log(res); }, err => { console.log("Error occured"); } );
     }
 
     getProductCustom() {
