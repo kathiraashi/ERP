@@ -1,39 +1,56 @@
-import { Http, Headers, RequestOptions } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+
+const API_URL = 'http://localhost:3000';
 
 @Injectable()
 export class CrmSettingsService {
 
-    constructor(private http: HttpClient) { }
+    constructor( private http: Http ) {  }
 
-    getAccountType(){
-        return this.http.get<any>("http://localhost:3000/getAccountTypes").toPromise()
-        .then(data => { return data; });
-    }
 
-    addAccountType(data){
-        const req = this.http.post('http://localhost:3000/accountTypeAdd', data).subscribe( res => { console.log(res); }, err => { console.log("Error occured"); } );
-    }
+        private handleError (error: Response | any) {
+            console.error('ApiService::handleError', error);
+            return Observable.throw(error);
+        }
 
-    getProductCustom() {
-      return this.http.get<any>('assets/showcase/data/products.json')
-        .toPromise()
-        .then(res => <any[]>res.data)
-        .then(data => { return data; });
-    }
-    getTaxCustom() {
-      return this.http.get<any>('assets/showcase/data/tax.json')
-        .toPromise()
-        .then(res => <any[]>res.data)
-        .then(data => { return data; });
-    }
-    getQuotationCustom() {
-      return this.http.get<any>('assets/showcase/data/quotation.json')
-        .toPromise()
-        .then(res => <any[]>res.data)
-        .then(data => { return data; });
-    }
-}
+      // API: GET
+        public getAccountType(): Observable<any[]>  {
+            return this.http .get(API_URL + '/getAccountTypes')
+            .map(response => { const datas = response.json(); return datas; })
+            .catch(this.handleError);
+        }
+
+    // API: POST
+        public addAccountType(data: any) {
+            return this.http .post(API_URL + '/accountTypeAdd' , data)
+            .map(response => { const datas = response.json(); return datas; })
+            .catch(this.handleError);
+        }
+
+    // API: GET By Id
+        public findAccountType(Id: any) {
+            return this.http .get(API_URL + '/findAccountType/' + Id)
+            .map(response => { const datas = response.json(); return datas; })
+            .catch(this.handleError);
+        }
+
+    // API: PUT By Id
+        public updateAccountType(data: any) {
+            return this.http .put(API_URL + '/updateAccountType/' + data._id, data)
+            .map(response => { const datas = response.json(); return datas; })
+            .catch(this.handleError);
+        }
+
+    //API: DELETE Buy Id
+        public deleteAccountType(Id: any) {
+            return this.http .delete(API_URL + '/deleteAccountType/' + Id)
+            .map(response => { const datas = response.json(); return datas; })
+            .catch(this.handleError);
+        }
+
+} 

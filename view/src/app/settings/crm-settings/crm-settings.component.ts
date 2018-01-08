@@ -17,7 +17,7 @@ import { IndustryTypeComponent } from '../../popups/settings/crm-settings/indust
 import { OwnershipTypeComponent } from '../../popups/settings/crm-settings/ownership-type/ownership-type.component';
 import { ActivityTypeComponent } from '../../popups/settings/crm-settings/activity-type/activity-type.component';
 import { ActivityStatusComponent } from '../../popups/settings/crm-settings/activity-status/activity-status.component';
-import { ActivityPeriorityComponent } from '../../popups/settings/crm-settings/activity-periority/activity-periority.component';
+import { ActivityPriorityComponent } from '../../popups/settings/crm-settings/activity-priority/activity-priority.component';
 import { PiplineStatusComponent } from '../../popups/settings/crm-settings/pipline-status/pipline-status.component';
 import { ContactRoleComponent } from '../../popups/settings/crm-settings/contact-role/contact-role.component';
 import { QuotationTermsComponent } from '../../popups/settings/crm-settings/quotation-terms/quotation-terms.component';
@@ -39,7 +39,10 @@ export class CrmSettingsComponent implements OnInit {
 
 
   // datatable primng
-  getdatas= [];
+  accountTypeResult = [];
+  accountTypeDatas= [];
+  deleteUrl;
+  deleteId;
   cars: Car[];
   cols: any[];
   msgs: Message[] = [];
@@ -60,7 +63,7 @@ export class CrmSettingsComponent implements OnInit {
   OwnershipTypeDialogRef: MatDialogRef<OwnershipTypeComponent>;
   ActivityTypeDialogRef: MatDialogRef<ActivityTypeComponent>;
   ActivityStatusDialogRef: MatDialogRef<ActivityStatusComponent>;
-  ActivityPeriorityDialogRef: MatDialogRef<ActivityPeriorityComponent>;
+  ActivityPriorityDialogRef: MatDialogRef<ActivityPriorityComponent>;
   PiplineStatusDialogRef: MatDialogRef<PiplineStatusComponent>;
   ContactRoleDialogRef: MatDialogRef<ContactRoleComponent>;
   QuotationTermsDialogRef: MatDialogRef<QuotationTermsComponent>;
@@ -71,20 +74,54 @@ export class CrmSettingsComponent implements OnInit {
 
   ngOnInit() {
      this.carService.getCarsMedium().then(cars => this.cars = cars);
-     this.crmSettingsService.getAccountType().then(datas => console.log(datas));
-     
+     this.crmSettingsService.getAccountType().subscribe( datas => this.accountTypes(datas) );
   }//ngOnInit
+
+    accountTypes(datas){
+      if(datas.status === "True"){
+        this.accountTypeDatas = datas.data;
+      }else{
+        console.log(datas.message);
+      }
+    }
+
+    AddAccountTypeReturn(result){
+      if(result === "Close"){
+        this.msgs = [];
+        this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Form Closed'});
+      }else{
+        this.crmSettingsService.addAccountType(result)
+          .subscribe( datas => {
+            this.accountTypeDatas.push(datas.data); 
+            this.accountTypeDatas = this.accountTypeDatas.slice(); 
+        });
+        this.msgs = [];
+        this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Form Submited'});
+      }
+    }
+
+
+    EditAccountTypeReturn(result){
+      if(result === "Close"){
+        this.msgs = [];
+        this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Form Closed'});
+      }else{
+        this.crmSettingsService.updateAccountType(result).subscribe( datas => console.log(datas) );
+        this.msgs = [];
+        this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Form Submited'});
+      }
+    }
 
 
     // Forms Popups
       //Account Type
           AddAccountType() {
             let AccountTypeDialogRef = this.dialog.open(AccountTypeComponent, { width:'50%', data: { Header:'Account Type Creat Form', type:'Add' } });
-            AccountTypeDialogRef.afterClosed().subscribe(result => this.AccountTypeReturn(result));
+            AccountTypeDialogRef.afterClosed().subscribe(result => this.AddAccountTypeReturn(result));
           }
-          EditAccountType(car: Car) {
-            let AccountTypeDialogRef = this.dialog.open(AccountTypeComponent, { width:'50%', data: { Header:'Account Type Edit Form', type:'Edit', value:car } });
-            AccountTypeDialogRef.afterClosed().subscribe(result => console.log(result));
+          EditAccountType(data: any) {
+             let AccountTypeDialogRef = this.dialog.open(AccountTypeComponent, { width:'50%', data: { Header:'Account Type Edit Form', type:'Edit', value:data } });
+             AccountTypeDialogRef.afterClosed().subscribe(result => this.EditAccountTypeReturn(result));
           }
           ViewAccountType(car: Car) {
             let AccountTypeDialogRef = this.dialog.open(AccountTypeComponent, { width:'50%', data: { Header:'Account Type View', type:'View', value:car } });
@@ -138,16 +175,16 @@ export class CrmSettingsComponent implements OnInit {
             let ActivityStatusDialogRef = this.dialog.open(ActivityStatusComponent, { width:'50%', data: { Header:'Activity Status View', type:'View', value:car } });
           }
       //Activity Periority
-          AddActivityPeriority() {
-            let ActivityPeriorityDialogRef = this.dialog.open(ActivityPeriorityComponent, { width:'50%', data: { Header:'Activity Periority Creat Form', type:'Add' } });
-            ActivityPeriorityDialogRef.afterClosed().subscribe(result => console.log(result));
+          AddActivityPriority() {
+            let ActivityPriorityDialogRef = this.dialog.open(ActivityPriorityComponent, { width:'50%', data: { Header:'Activity Periority Creat Form', type:'Add' } });
+            ActivityPriorityDialogRef.afterClosed().subscribe(result => console.log(result));
           }
-          EditActivityPeriority(car: Car) {
-            let ActivityPeriorityDialogRef = this.dialog.open(ActivityPeriorityComponent, { width:'50%', data: { Header:'Activity Periority Edit Form', type:'Edit', value:car } });
-            ActivityPeriorityDialogRef.afterClosed().subscribe(result => console.log(result));
+          EditActivityPriority(car: Car) {
+            let ActivityPriorityDialogRef = this.dialog.open(ActivityPriorityComponent, { width:'50%', data: { Header:'Activity Periority Edit Form', type:'Edit', value:car } });
+            ActivityPriorityDialogRef.afterClosed().subscribe(result => console.log(result));
           }
-          ViewActivityPeriority(car: Car) {
-            let ActivityPeriorityDialogRef = this.dialog.open(ActivityPeriorityComponent, { width:'50%', data: { Header:'Activity Periority View', type:'View', value:car } });
+          ViewActivityPriority(car: Car) {
+            let ActivityPriorityDialogRef = this.dialog.open(ActivityPriorityComponent, { width:'50%', data: { Header:'Activity Periority View', type:'View', value:car } });
           }
       //Pipline Status
           AddPiplineStatus() {
@@ -211,15 +248,31 @@ export class CrmSettingsComponent implements OnInit {
           }
         
       //Delete Confirmation
-          DeleteConfirmation(car: Car) {
-            let DeleteConfirmationDialogRef = this.dialog.open(DeleteConfirmationComponent, { width:'330px', disableClose:true,  data: { Header:'Delete Confirmation', value:car } });
+          DeleteConfirmation(data: any) {
+            this.deleteId = data._id
+            let DeleteConfirmationDialogRef = this.dialog.open(DeleteConfirmationComponent, { width:'330px', disableClose:true,  data: { Header:'Delete Confirmation', value:data } });
             DeleteConfirmationDialogRef.afterClosed().subscribe(result => this.returnDeleteConfirmation(result));
           }
 
 
+          changeDeleteUrl(url){ this.deleteUrl = url; }
+
 
     returnDeleteConfirmation(result){
       if(result === "Yes"){
+        if(this.deleteUrl === "AccountType"){  
+          this.crmSettingsService.deleteAccountType(this.deleteId)
+          .subscribe( datas => { 
+              if(datas.status === "True"){
+                  let accountTypeData = this.accountTypeDatas.filter(x => x._id == this.deleteId);
+                  let accountTypeIndex = this.accountTypeDatas.indexOf(accountTypeData[0]);
+                  if (accountTypeIndex >= 0) { this.accountTypeDatas.splice(accountTypeIndex, 1); } 
+                  this.accountTypeDatas = this.accountTypeDatas.slice();
+              }else{
+                  console.log(datas)
+              }
+           } );
+        }
         this.msgs = [];
         this.msgs.push({severity:'success', summary:'Alert Message', detail:'Deleted'});
       }else{
@@ -228,16 +281,6 @@ export class CrmSettingsComponent implements OnInit {
       }
     }
 
-    AccountTypeReturn(result){
-      if(result === "Close"){
-        this.msgs = [];
-        this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Form Closed'});
-      }else{
-        this.crmSettingsService.addAccountType(result);
-        this.msgs = [];
-        this.msgs.push({severity:'warn', summary:'Alert Message', detail:'Form Submited'});
-      }
-    }
 
   handleChange(e) {
     console.log(e.index);

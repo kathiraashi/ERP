@@ -47,7 +47,7 @@ import { RouterModule, Routes } from '@angular/router';
       import { OwnershipTypeComponent } from './popups/settings/crm-settings/ownership-type/ownership-type.component';
       import { ActivityTypeComponent } from './popups/settings/crm-settings/activity-type/activity-type.component';
       import { ActivityStatusComponent } from './popups/settings/crm-settings/activity-status/activity-status.component';
-      import { ActivityPeriorityComponent } from './popups/settings/crm-settings/activity-periority/activity-periority.component';
+      import { ActivityPriorityComponent } from './popups/settings/crm-settings/activity-priority/activity-priority.component';
       import { PiplineStatusComponent } from './popups/settings/crm-settings/pipline-status/pipline-status.component';
       import { ContactRoleComponent } from './popups/settings/crm-settings/contact-role/contact-role.component';
       import { QuotationTermsComponent } from './popups/settings/crm-settings/quotation-terms/quotation-terms.component';
@@ -164,7 +164,7 @@ import { RouterModule, Routes } from '@angular/router';
             OwnershipTypeComponent,
             ActivityTypeComponent,
             ActivityStatusComponent,
-            ActivityPeriorityComponent,
+            ActivityPriorityComponent,
             PiplineStatusComponent,
             ContactRoleComponent,
             QuotationTermsComponent,
@@ -231,7 +231,7 @@ import { RouterModule, Routes } from '@angular/router';
             OwnershipTypeComponent,
             ActivityTypeComponent,
             ActivityStatusComponent,
-            ActivityPeriorityComponent,
+            ActivityPriorityComponent,
             PiplineStatusComponent,
             ContactRoleComponent,
             QuotationTermsComponent,

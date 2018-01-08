@@ -40,8 +40,8 @@ var ActivityStatusSchema = mongoose.Schema({
     { timestamps: true }
 );
 
-var ActivityPerioritySchema = mongoose.Schema({
-    activity_periority: String,
+var ActivityPrioritySchema = mongoose.Schema({
+    activity_priority: String,
     user_id: String,
     user_type: String
     }, 
@@ -100,7 +100,7 @@ var varIndustryType = mongoose.model('IndustryType', IndustryTypeSchema, 'CRMSet
 var varOwnershipType = mongoose.model('OwnershipType', OwnershipTypeSchema, 'CRMSettingsOwnershipType');
 var varActivityType = mongoose.model('ActivityType', ActivityTypeSchema, 'CRMSettingsActivityType');
 var varActivityStatus = mongoose.model('ActivityStatus', ActivityStatusSchema, 'CRMSettingsActivityStatus');
-var varActivityPeriority = mongoose.model('ActivityPeriority', ActivityPerioritySchema, 'CRMSettingsActivityPeriority');
+var varActivityPriority = mongoose.model('ActivityPriority', ActivityPrioritySchema, 'CRMSettingsActivityPriority');
 var varPiplineStaus = mongoose.model('PiplineStaus', PiplineStausSchema, 'CRMSettingsPiplineStaus');
 var varContactRole = mongoose.model('ContactRole', ContactRoleSchema, 'CRMSettingsContactRole');
 var varQuotationTerms = mongoose.model('QuotationTerms', QuotationTermsSchema, 'CRMSettingsQuotationTerms');
@@ -114,7 +114,7 @@ module.exports = {
     OwnershipType : varOwnershipType,
     ActivityType : varActivityType,
     ActivityStatus : varActivityStatus,
-    ActivityPeriority : varActivityPeriority,
+    ActivityPriority : varActivityPriority,
     PiplineStaus : varPiplineStaus,
     ContactRole : varContactRole,
     QuotationTerms : varQuotationTerms,

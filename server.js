@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-// const cors = require('cors');
+var cors = require('cors');
 // const path = require('path');
 const jwt = require('jsonwebtoken');
 
@@ -18,9 +18,9 @@ mongoose.connection.once('open', function() { console.log("Successfully connecte
 // create express app
 var app = express();
 
-// app.use(cors({
-//     origin: 'http://localhost:4200'
-// }));
+app.use(cors({
+    origin: 'http://localhost:4200'
+}));
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))

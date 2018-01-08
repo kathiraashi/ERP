@@ -28,13 +28,13 @@ export class AccountTypeComponent implements OnInit {
 
       if (this.data.type == 'Edit') {
         this.AccountTypeForm = new FormGroup({
-          accountType: new FormControl(this.data.value.vin, Validators.required)
+          accountType: new FormControl(this.data.value.account_type, Validators.required)
         });
       }
 
       if (this.data.type == 'View') {
         this.AccountTypeForm = new FormGroup({
-          accountType: new FormControl({value: this.data.value.vin, disabled: true}, Validators.required)
+          accountType: new FormControl({value: this.data.value.account_type, disabled: true}, Validators.required)
         });
         this.disabled = true ;
         this.floatLabel = 'never';
@@ -47,7 +47,14 @@ export class AccountTypeComponent implements OnInit {
     }
 
     submit() {
-      this.dialogRef.close(this.AccountTypeForm.value);
+      if(this.data.type === "Edit" ) {
+        this.data.value.account_type = this.AccountTypeForm.value.accountType;
+        this.dialogRef.close(this.data.value);
+      };
+      if(this.data.type === "Add"){
+        this.dialogRef.close(this.AccountTypeForm.value);
+      }
+      
     }
 
 }

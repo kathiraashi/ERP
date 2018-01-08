@@ -1,4 +1,4 @@
-<form [formGroup]="ActivityPeriorityForm" (ngSubmit)="submit()">
+<form [formGroup]="ActivityPriorityForm" (ngSubmit)="submit()">
     <h1 mat-dialog-title class="pop-up-title"> {{data.Header}} </h1>
     <hr style="margin-top:10px;">
     <mat-dialog-content style="overflow:initial">
@@ -6,8 +6,8 @@
         <div class="col-sm-7" style="margin-bottom:20px;">
             <div class="example-container">
                 <mat-form-field [floatLabel]="floatLabel" class="availabel-prefix">
-                    <input matInput type="text" formControlName="activityPeriority" placeholder=" Activity Periority ">
-                    <span *ngIf="disabled" matPrefix> <b>  Activity Periority : </b></span>
+                    <input matInput type="text" formControlName="activityPriority" placeholder=" Activity Priority ">
+                    <span *ngIf="disabled" matPrefix> <b>  Activity Priority : </b></span>
                 </mat-form-field>
             </div>
         </div>

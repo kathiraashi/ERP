@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActivityPeriorityComponent } from './activity-periority.component';
+import { ActivityPriorityComponent } from './activity-priority.component';
 
 describe('ActivityPeriorityComponent', () => {
-  let component: ActivityPeriorityComponent;
-  let fixture: ComponentFixture<ActivityPeriorityComponent>;
+  let component: ActivityPriorityComponent;
+  let fixture: ComponentFixture<ActivityPriorityComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActivityPeriorityComponent ]
+      declarations: [ ActivityPriorityComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ActivityPeriorityComponent);
+    fixture = TestBed.createComponent(ActivityPriorityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
