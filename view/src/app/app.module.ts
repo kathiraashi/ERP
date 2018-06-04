@@ -8,40 +8,40 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
-//Feture Modules -------------------------------
+// Feture Modules -------------------------------
   import { from } from 'rxjs/observable/from';
   import { TextMaskModule } from 'angular2-text-mask';
   import { BsDatepickerModule, ModalModule } from 'ngx-bootstrap';
   import { AgmCoreModule } from '@agm/core';
 
-//Custome Module --------------------------------
+// Custome Module --------------------------------
   import { AppRoutingModule } from './app.routing.module';
   import { MaterialModule } from './material.module';
   import { PrimengModule } from './primeng.module';
 
-//Services --------------------------------------
+// Services --------------------------------------
   import { CarService } from './service/carservice';
   import { CustomService } from './service/custome';
   import { DataSharedService } from './service/DataSharedService';
   import { CrmSettingsService } from './service/settings/crm-settings-service';
 
-//Popups ----------------------------------------
-  //Others
-    import { ExampleComponent } from './popups/example/example.component';   
+// Popups ----------------------------------------
+  // Others
+    import { ExampleComponent } from './popups/example/example.component';
     import { DeleteConfirmationComponent } from './popups/others/delete-confirmation/delete-confirmation.component';
-  //Crm
+  // Crm
     import { ContactFormComponent } from './popups/crm/contact-form/contact-form.component';
-    import { ActivityFormComponent } from './popups/crm/activity-form/activity-form.component'; 
+    import { ActivityFormComponent } from './popups/crm/activity-form/activity-form.component';
     import { QuoteProductFormComponent } from './popups/crm/quote-product-form/quote-product-form.component';
 
-  //settings
-    //Company Settings
+  // settings
+    // Company Settings
       import { CompanyInfoComponent } from './popups/settings/company-settings/company-info/company-info.component';
       import { ContactInfoComponent } from './popups/settings/company-settings/contact-info/contact-info.component';
       import { DepartmentsComponent } from './popups/settings/company-settings/departments/departments.component';
       import { BranchesComponent } from './popups/settings/company-settings/branches/branches.component';
       import { RegistrationInfoComponent } from './popups/settings/company-settings/registration-info/registration-info.component';
-    //crm Settings
+    // crm Settings
       import { AccountTypeComponent } from './popups/settings/crm-settings/account-type/account-type.component';
       import { IndustryTypeComponent } from './popups/settings/crm-settings/industry-type/industry-type.component';
       import { OwnershipTypeComponent } from './popups/settings/crm-settings/ownership-type/ownership-type.component';
@@ -53,35 +53,41 @@ import { RouterModule, Routes } from '@angular/router';
       import { QuotationTermsComponent } from './popups/settings/crm-settings/quotation-terms/quotation-terms.component';
       import { UniteOfMeasureComponent } from './popups/settings/crm-settings/unite-of-measure/unite-of-measure.component';
       import { OpportunityStatusComponent } from './popups/settings/crm-settings/opportunity-status/opportunity-status.component';
-    //leads Settings
+    // leads Settings
       import { LeadSourceComponent } from './popups/settings/leads-settings/lead-source/lead-source.component';
-    //Purchase Settings
+    // Purchase Settings
       import { VendorQuoteTermsComponent } from './popups/settings/purchase-settings/vendor-quote-terms/vendor-quote-terms.component';
-    //Account Settings 
+    // Account Settings
       import { TaxComponent } from './popups/settings/account-settings/tax/tax.component';
       import { BankComponent } from './popups/settings/account-settings/bank/bank.component';
       import { IncomeTypeComponent } from './popups/settings/account-settings/income-type/income-type.component';
       import { PaymentTermsComponent } from './popups/settings/account-settings/payment-terms/payment-terms.component';
-    //hrms settings
+    // hrms settings
       import { LeaveTypeComponent } from './popups/settings/hrms-settings/leave-type/leave-type.component';
       import { ExpensesTypeComponent } from './popups/settings/hrms-settings/expenses-type/expenses-type.component';
-    //hr settings
+    // hr settings
       import { EmployeeCategoryComponent } from './popups/settings/hr-settings/employee-category/employee-category.component';
       import { DepartmentComponent } from './popups/settings/hr-settings/department/department.component';
       import { DesignationComponent } from './popups/settings/hr-settings/designation/designation.component';
-    //inventory settings
+    // inventory settings
       import { WarehouseComponent } from './popups/settings/inventory-settings/warehouse/warehouse.component';
-      import { InventoryUniteOfMeasureComponent } from './popups/settings/inventory-settings/inventory-unite-of-measure/inventory-unite-of-measure.component';
+      import { InventoryUniteOfMeasureComponent
+        } from './popups/settings/inventory-settings/inventory-unite-of-measure/inventory-unite-of-measure.component';
 
 
-//Components------------------------------------
-  //Others
+// Components------------------------------------
+  // Others
     import { AppComponent } from './app.component';
     import { HeaderComponent } from './header/header.component';
     import { LoginComponent } from './login/login.component';
     import { DashboardComponent } from './dashboard/dashboard.component';
     import { UiComponent } from './ui/ui.component';
-  //settings
+  // settings
+    // CRM Settings
+      import { MainCrmSettingsComponent } from './settings/CRM_Settings/main-crm-settings/main-crm-settings.component';
+      import { CrmSettingsAccountTypeComponent
+        } from './settings/CRM_Settings/crm-settings-account-type/crm-settings-account-type.component';
+    // Old
     import { CrmSettingsComponent } from './settings/crm-settings/crm-settings.component';
     import { CompanySettingsComponent } from './settings/company-settings/company-settings.component';
     import { LeadsSettingsComponent } from './settings/leads-settings/leads-settings.component';
@@ -91,10 +97,10 @@ import { RouterModule, Routes } from '@angular/router';
     import { HrSettingsComponent } from './settings/hr-settings/hr-settings.component';
     import { InventorySettingsComponent } from './settings/inventory-settings/inventory-settings.component';
     import { ProductSettingsComponent } from './settings/product-settings/product-settings.component';
-  //Products
+  // Products
     import { ProductsComponent } from './products/products/products.component';
     import { ProductsAddComponent } from './products/products-add/products-add.component';
-  //crm
+  // crm
     import { CustomersListComponent } from './crm/customers/customers-list/customers-list.component';
     import { CustomersCreateComponent } from './crm/customers/customers-create/customers-create.component';
     import { CustomersViewComponent } from './crm/customers/customers-view/customers-view.component';
@@ -110,14 +116,18 @@ import { RouterModule, Routes } from '@angular/router';
 
 @NgModule({
   declarations: [
-      //Componets--------------------------
-        //Others
+      // Componets--------------------------
+        // Others
           AppComponent,
           HeaderComponent,
           LoginComponent,
           DashboardComponent,
           UiComponent,
-        //Settings
+        // Settings
+          // CRM Settings
+            MainCrmSettingsComponent,
+            CrmSettingsAccountTypeComponent,
+          // Old
           CrmSettingsComponent,
           CompanySettingsComponent,
           LeadsSettingsComponent,
@@ -127,10 +137,10 @@ import { RouterModule, Routes } from '@angular/router';
           HrSettingsComponent,
           InventorySettingsComponent,
           ProductSettingsComponent,
-        //products
+        // products
           ProductsComponent,
           ProductsAddComponent,
-        //crm
+        // crm
           CustomersListComponent,
           CustomersCreateComponent,
           CustomersViewComponent,
@@ -143,22 +153,22 @@ import { RouterModule, Routes } from '@angular/router';
           InvoiceCreateComponent,
           InvoiceListComponent,
           InvoiceViewComponent,
-      //Popups-----------------------------------
-        //others
+      // Popups-----------------------------------
+        // others
           ExampleComponent,
           DeleteConfirmationComponent,
-        //crm
+        // crm
           ContactFormComponent,
           ActivityFormComponent,
           QuoteProductFormComponent,
-        //settings
-          //Company Settings
+        // settings
+          // Company Settings
             CompanyInfoComponent,
             ContactInfoComponent,
             DepartmentsComponent,
             BranchesComponent,
             RegistrationInfoComponent,
-          //crm settings
+          // crm settings
             AccountTypeComponent,
             IndustryTypeComponent,
             OwnershipTypeComponent,
@@ -170,25 +180,25 @@ import { RouterModule, Routes } from '@angular/router';
             QuotationTermsComponent,
             UniteOfMeasureComponent,
             OpportunityStatusComponent,
-          //leads settings
+          // leads settings
             LeadSourceComponent,
-          //purchase settings
+          // purchase settings
             VendorQuoteTermsComponent,
-          //account settings
+          // account settings
             TaxComponent,
             BankComponent,
             IncomeTypeComponent,
             PaymentTermsComponent,
-          //hrms settings
+          // hrms settings
             LeaveTypeComponent,
             ExpensesTypeComponent,
-          //hr settings
+          // hr settings
             EmployeeCategoryComponent,
             DepartmentComponent,
             DesignationComponent,
-          //inventory settings
+          // inventory settings
             WarehouseComponent,
-            InventoryUniteOfMeasureComponent
+            InventoryUniteOfMeasureComponent,
   ],
   imports: [
         CommonModule,
@@ -210,22 +220,22 @@ import { RouterModule, Routes } from '@angular/router';
   providers: [DataSharedService, CarService, CustomService, CrmSettingsService ],
   bootstrap: [AppComponent],
   entryComponents: [
-      //popups------------------------------------
-        //others
+      // popups------------------------------------
+        // others
           ExampleComponent,
           DeleteConfirmationComponent,
-        //crm
-          ContactFormComponent, 
-          ActivityFormComponent, 
+        // crm
+          ContactFormComponent,
+          ActivityFormComponent,
           QuoteProductFormComponent,
-        //settings
-          //company settings
+        // settings
+          // company settings
             CompanyInfoComponent,
             ContactInfoComponent,
             DepartmentsComponent,
             BranchesComponent,
             RegistrationInfoComponent,
-          //crm settings
+          // crm settings
             AccountTypeComponent,
             IndustryTypeComponent,
             OwnershipTypeComponent,
@@ -237,23 +247,23 @@ import { RouterModule, Routes } from '@angular/router';
             QuotationTermsComponent,
             UniteOfMeasureComponent,
             OpportunityStatusComponent,
-          //leads settings
+          // leads settings
             LeadSourceComponent,
-          //purchase settings
+          // purchase settings
             VendorQuoteTermsComponent,
-          //account settings
+          // account settings
             TaxComponent,
             BankComponent,
             IncomeTypeComponent,
             PaymentTermsComponent,
-          //hrms settings
+          // hrms settings
             LeaveTypeComponent,
             ExpensesTypeComponent,
-          //hr settings
+          // hr settings
             EmployeeCategoryComponent,
             DepartmentComponent,
             DesignationComponent,
-          //inventory settings
+          // inventory settings
             WarehouseComponent,
             InventoryUniteOfMeasureComponent
 

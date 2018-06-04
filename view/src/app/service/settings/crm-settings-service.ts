@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:4000';
 
 @Injectable()
 export class CrmSettingsService {
@@ -46,11 +46,11 @@ export class CrmSettingsService {
             .catch(this.handleError);
         }
 
-    //API: DELETE Buy Id
+    // API: DELETE Buy Id
         public deleteAccountType(Id: any) {
             return this.http .delete(API_URL + '/deleteAccountType/' + Id)
             .map(response => { const datas = response.json(); return datas; })
             .catch(this.handleError);
         }
 
-} 
+}
